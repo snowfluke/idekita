@@ -1,25 +1,13 @@
 import { useContext, useState } from "react";
 import { UserContext } from "@modules/context";
-import {
-  getDocs,
-  orderBy,
-  limit,
-  startAfter,
-  collectionGroup,
-  db,
-  query,
-} from "@modules/firebase";
+import { getDocs, orderBy, limit, startAfter, collectionGroup, db, query } from "@modules/firebase";
 import { docToJSON } from "@modules/helper";
 import { LeftSidebar, RightSidebar, Feed, Spinner } from "@modules/composer";
 
 const LIMIT = 10;
 
 export async function getServerSideProps(context) {
-  const postsQuery = query(
-    collectionGroup(db, "posts"),
-    orderBy("dateCreated", "desc"),
-    limit(LIMIT)
-  );
+  const postsQuery = query(collectionGroup(db, "posts"), orderBy("dateCreated", "desc"), limit(LIMIT));
 
   const postsFetched = (await getDocs(postsQuery)).docs.map(docToJSON);
 
@@ -38,12 +26,7 @@ export default function Sky({ postsFetched }) {
     setLoading(true);
     const lastPost = posts[posts.length - 1];
 
-    const newPostsQuery = query(
-      collectionGroup(db, "posts"),
-      orderBy("dateCreated", "desc"),
-      startAfter(lastPost.dateCreated),
-      limit(LIMIT)
-    );
+    const newPostsQuery = query(collectionGroup(db, "posts"), orderBy("dateCreated", "desc"), startAfter(lastPost.dateCreated), limit(LIMIT));
 
     const newPosts = (await getDocs(newPostsQuery)).docs.map(docToJSON);
 
@@ -68,10 +51,10 @@ export default function Sky({ postsFetched }) {
 
         <div className="col-span-2">
           <div className="mb-4">
-            <a href="#" className="px-2 text-xl font-bold">
+            <a href="#" className="px-2 text-xl font-bold hover:text-fuchsia-500">
               Terbaru
             </a>
-            <a href="#" className="px-2 text-xl">
+            <a href="#" className="px-2 text-xl hover:text-fuchsia-500">
               Jelajah
             </a>
           </div>
@@ -79,14 +62,16 @@ export default function Sky({ postsFetched }) {
           <Feed posts={posts} idekiawan={false} />
 
           {!loading && !postsEnd && (
-            <button onClick={getMorePosts} className="hover:underline">
-              Lihat lebih banyak
-            </button>
+            <div className="flex justify-center">
+              <button onClick={getMorePosts} className="btn-fuchsia rounded-full hover:bg-fuchsia-600">
+                Lihat lebih banyak
+              </button>
+            </div>
           )}
 
           <Spinner show={loading} />
 
-          {postsEnd && "Kamu mencapai batas akhir"}
+          {postsEnd && <p className="text-center">Kamu telah mencapai batas akhir postingan</p>}
         </div>
 
         <RightSidebar />
