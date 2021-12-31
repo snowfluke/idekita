@@ -37,7 +37,7 @@ const getUserWithUsername = async (username) => {
     const userDoc = (await getDocs(queryUsers)).docs.map((doc) =>
       docToJSON(doc)
     )[0];
-    return userDoc;
+    return userDoc || null;
   } catch (error) {
     console.log(error);
   }

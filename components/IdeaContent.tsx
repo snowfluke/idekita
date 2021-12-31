@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { LinkTo } from "@modules/composer";
+import { LinkTo, toast } from "@modules/composer";
 import { formatDate, minutesToRead } from "@modules/helper";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -16,7 +16,10 @@ export default function IdeaContent({ post, userData }) {
     {
       name: "#Dukung",
       icon: "✊",
-      onclick: () => setCloud(cloud + 1),
+      onclick: () => {
+        setCloud(cloud + 1);
+        toast.success("Berhasil memberikan dukungan 💪");
+      },
     },
     {
       name: "#Bagikan",

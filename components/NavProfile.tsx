@@ -62,14 +62,14 @@ export default function NavProfile({ user }) {
             </div>
           </li>
           {showNotifMenu && <NotificationItems />}
-          {showProfileMenu && <ProfileMenu />}
+          {showProfileMenu && <ProfileMenu username={user?.username} />}
         </ul>
       </div>
     </>
   );
 }
 
-const ProfileMenu = () => {
+const ProfileMenu = ({ username }) => {
   return (
     <div
       className=" origin-top-right absolute right-0 mt-2 top-10 w-44 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -86,13 +86,12 @@ const ProfileMenu = () => {
         >
           Eksplorasi
         </LinkTo>
-        <a
-          href="#"
+        <LinkTo
+          href={`/${username}`}
           className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200"
-          role="menuitem"
         >
           Profil
-        </a>
+        </LinkTo>
         <a
           href="https://myaccount.google.com/"
           className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-200"
