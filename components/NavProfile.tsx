@@ -19,20 +19,31 @@ export default function NavProfile({ user }) {
     <>
       <div className="relative text-left">
         <ul className="flex items-center list-none">
-          <li className="text-fuchsia-500 px-3 py-1 border border-fuchsia-500 rounded hover:bg-fuchsia-500 hover:text-white b-transition">
-            <a href="#" className="lg:block">
-              #Buat ide
-            </a>
+          <li className="list-none">
+            <LinkTo
+              href={"/langit-ide"}
+              className="relative rounded-full transition duration-300 p-2 cursor-pointer hover:bg-gray-300"
+            >
+              🏠
+            </LinkTo>
           </li>
-          <li className="md:ml-5 rounded list-none">
-            <a
-              className="relative p-[3px] cursor-pointer hover:border-b border-fuchsia-500 hover:text-fuchsia-400"
+          <li className="list-none">
+            <LinkTo
+              href={"/mesin-ide"}
+              className="relative rounded-full transition duration-300 p-2 cursor-pointer hover:bg-gray-300"
+            >
+              📝
+            </LinkTo>
+          </li>
+          <li className="list-none">
+            <button
+              className="relative p-2 cursor-pointer rounded-full hover:bg-gray-300 focus:bg-gray-300 transition duration-300"
               aria-expanded="true"
               aria-haspopup="true"
               onClick={() => showNotif()}
             >
-              #Notifikasi
-            </a>
+              🔔
+            </button>
           </li>
           <li className="md:ml-5 rounded">
             <div className="flex md:space-x-2">
