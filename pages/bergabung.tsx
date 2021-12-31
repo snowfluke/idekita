@@ -70,46 +70,23 @@ export default function Register() {
 
   return !user ? (
     <section className="w-full py-14">
-      <div className="container mx-auto px-4 h-full">
+      <div className="container mx-auto px-0 md:px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
-          <div className="w-full lg:w-1/2 px-4 mt-4">
+          <div className="w-full sm:w-[85%] md:w-[70%] lg:w-1/2 px-4 mt-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-fuchsia-500 border-0">
               <div className="rounded-t mb-0 px-6 py-10 text-white text-center">
                 <div className="mb-3">
-                  <h6>
-                    Dengan mendaftar berarti Anda menyetujui segala peraturan
-                    dan kebijakan yang terdapat di situs iDekita.
-                  </h6>
+                  <h3 className="px-3">Dengan mendaftar berarti Anda menyetujui segala peraturan dan kebijakan yang terdapat di situs iDekita.</h3>
                 </div>
                 <hr className="my-6" />
                 <div className="grid">
-                  <h6>Mendaftar menggunakan</h6>
+                  <h3>Mendaftar menggunakan</h3>
                   <div className="justify-self-center mt-4">
-                    <button
-                      className="bg-white text-gray-700 px-6 py-2 flex rounded outline-none shadow hover:shadow-md transition ease-in-out duration-300 hover:bg-gray-50"
-                      onClick={signIn}
-                    >
-                      <svg
-                        className="w-6 h-6 mr-3"
-                        viewBox="0 0 47 48"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          id="Page-1"
-                          stroke="none"
-                          strokeWidth="1"
-                          fill="none"
-                          fillRule="evenodd"
-                        >
-                          <g
-                            id="Social-Icons---Isolated"
-                            transform="translate(-389.000000, -727.000000)"
-                          >
-                            <g
-                              id="Google"
-                              transform="translate(389.000000, 727.000000)"
-                            >
+                    <button className="bg-white text-gray-700 px-6 py-2 flex rounded outline-none shadow hover:shadow-md transition ease-in-out duration-300 hover:bg-gray-50" onClick={signIn}>
+                      <svg className="w-6 h-6 mr-3" viewBox="0 0 47 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                          <g id="Social-Icons---Isolated" transform="translate(-389.000000, -727.000000)">
+                            <g id="Google" transform="translate(389.000000, 727.000000)">
                               <path
                                 d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
                                 id="Fill-1"
@@ -146,24 +123,29 @@ export default function Register() {
     </section>
   ) : (
     !username && (
-      <section className="my-8 pt-14">
-        <h3>Choose Username</h3>
-        <form onSubmit={submitHandler}>
-          <input
-            name="username"
-            placeholder="myname"
-            value={valueForm}
-            onChange={changeHandler}
-          />
-          <UsernameMessage
-            username={valueForm}
-            isValid={isValid}
-            loading={loading}
-          />
-          <button type="submit" className="btn-green" disabled={!isValid}>
-            Gunakan
-          </button>
-        </form>
+      <section className="w-full py-24">
+        <div className="container mx-auto px-0 md:px-4 h-full">
+          <div className="flex content-center items-center justify-center h-full">
+            <div className="w-full sm:w-[85%] md:w-[70%] lg:w-1/2 px-4 mt-4">
+              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-fuchsia-500 border-0">
+                <div className="rounded-t mb-0 px-6 py-10 text-white text-center">
+                  <div className="mb-6">
+                    <h3 className="font-semibold text-xl">Buat Username</h3>
+                  </div>
+                  <div>
+                    <form onSubmit={submitHandler}>
+                      <input name="username" className="text-gray-700 px-4 py-2 rounded outline-none w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center shadow-md" placeholder="username" value={valueForm} onChange={changeHandler} />
+                      <UsernameMessage username={valueForm} isValid={isValid} loading={loading} />
+                      <button type="submit" className="px-8 py-2 mt-6 rounded-md border border-white text-white hover:text-fuchsia-500 hover:bg-white b-transition font-semibold" disabled={!isValid}>
+                        Gunakan
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     )
   );
@@ -171,11 +153,15 @@ export default function Register() {
 
 function UsernameMessage({ username, isValid, loading }) {
   if (loading) {
-    return <p>Mengecek...</p>;
+    return <p className="mt-2">👨🏻‍💻 Sedang mengecek ...</p>;
   } else if (isValid) {
-    return <p className="text-success">{username} bisa digunakan</p>;
+    return (
+      <p className="mt-2">
+        <span className="font-semibold">{username}</span> bisa digunakan 👍🏻
+      </p>
+    );
   } else if (username && !isValid) {
-    return <p className="text-danger">Nama pengguna sudah dipakai</p>;
+    return <p className="mt-2">Nama pengguna sudah dipakai 😭</p>;
   } else {
     return <p></p>;
   }
