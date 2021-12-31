@@ -31,8 +31,12 @@ html {
     @apply px-8 py-2 rounded-md outline-none shadow-md text-gray-700 bg-white b-transition;
   }
 
+  .btn-fuchsia {
+    @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition
+  }
+
   .input-white {
-    @apply rounded-md text-gray-700 outline-none shadow-md
+    @apply rounded-md text-gray-700 outline-none shadow-md;
   }
 
   .h1-style {
