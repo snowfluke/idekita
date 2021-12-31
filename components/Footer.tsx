@@ -8,7 +8,13 @@ export default function Footer() {
           {/* <!-- about --> */}
           <div className="leading-6 tracking-wide text-center md:text-left">
             <span className="font-semibold">
-              GNU General Public License v3.0 #iDekita
+              #2022 iDekita -{" "}
+              <a
+                href="https://github.com/snowfluke/idekita"
+                className="underline"
+              >
+                Repositori GitHub
+              </a>
             </span>
             <span className="block mt-3 md:mt-0">
               Jl. Dr. Wahidin RT 003/003 Sindangsari, Majenang, Jawa Tengah
