@@ -54,7 +54,7 @@ const docToJSON = (doc) => {
       }
     : {
         ...data,
-        dateJoined: data?.dateJoined.toMillis() || 0,
+        dateJoined: data?.dateJoined?.toMillis() || 0,
       };
 };
 
