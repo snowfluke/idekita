@@ -9,9 +9,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <UserContext.Provider value={UserData}>
-      <Head>
-        <html className="smooth-scroll"></html>
-      </Head>
       <Navbar />
       <div>
         <main className="w-[80%] m-auto my-8 pt-14 bg-gray-200 text-gray-800">

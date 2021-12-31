@@ -35,14 +35,14 @@ export default function IdeaContent({ post, userData }) {
 
       <div className="flex-auto h-[100%] sticky top-24 space-y-2 rounded-md border flex flex-col">
         <div className="flex-1 font-bold text-3xl  p-5 rounded-md content-center">
-          <div className="active:-translate-y-2 duration-300 transition">
+          <div className="active:-translate-y-2 duration-300 transition select-none">
             ☁ {cloud}
           </div>
         </div>
         <div className="flex-1 cursor-pointer rounded-tr-full border-l-4 hover:translate-x-10 transition border-dashed border-fuchsia-500 rounded-br-full   bg-white rounded-md content-center">
           <div
             onClick={() => setCloud(cloud + 1)}
-            className="p-5 flex text-lg font-bold text-fuchsia-500"
+            className="p-5 flex text-lg font-bold text-fuchsia-500 select-none"
           >
             #Dukung
           </div>
@@ -50,7 +50,7 @@ export default function IdeaContent({ post, userData }) {
         <div className="flex-1 cursor-pointer rounded-tr-full border-l-4 hover:translate-x-10 transition border-dashed border-fuchsia-500 rounded-br-full bg-white rounded-md content-center">
           <a
             href={`#${post.slug}`}
-            className="p-5 flex text-lg font-bold text-fuchsia-500"
+            className="p-5 flex text-lg font-bold text-fuchsia-500 select-none"
           >
             #Bagikan
           </a>
@@ -64,7 +64,7 @@ export default function IdeaContent({ post, userData }) {
                 )
               )
             }
-            className="p-5 flex text-lg font-bold text-fuchsia-500"
+            className="p-5 flex text-lg font-bold text-fuchsia-500 select-none"
           >
             #Kirim Email
           </div>
@@ -72,7 +72,7 @@ export default function IdeaContent({ post, userData }) {
         <div className="flex-1 cursor-pointer rounded-tr-full border-l-4 hover:translate-x-10 transition border-dashed border-fuchsia-500 rounded-br-full bg-white rounded-md content-center">
           <div
             onClick={() => router.back()}
-            className="p-5 flex text-lg font-bold text-fuchsia-500"
+            className="p-5 flex text-lg font-bold text-fuchsia-500 select-none"
           >
             #Kembali
           </div>

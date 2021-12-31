@@ -47,7 +47,7 @@ export default function Navbar() {
               id="menu2"
             >
               <a onClick={signIn}>
-                <li className="mb-2 md:mb-0 hover:border-b border-fuchsia-500 hover:text-fuchsia-500 b-transition">
+                <li className="mb-2 md:mb-0 hover:border-b border-fuchsia-500 hover:text-fuchsia-500 b-transition cursor-pointer">
                   #Masuk
                 </li>
               </a>
