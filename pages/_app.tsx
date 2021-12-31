@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
     <UserContext.Provider value={UserData}>
       <Navbar />
       <div>
-        <main className="w-[80%] m-auto my-8 pt-14 bg-gray-200 text-gray-800">
+        <main className="w-[80%] m-auto my-8 pt-14">
           <Component {...pageProps} />
           <Footer />
         </main>
