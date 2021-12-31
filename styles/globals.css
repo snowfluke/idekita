@@ -24,7 +24,7 @@
   }
 
   .btn-fuchsia {
-    @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition
+    @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition;
   }
 
   .input-white {
@@ -58,5 +58,26 @@
 
   .wrap-section {
     @apply px-6 py-10 text-white text-center;
+  }
+
+  /* leftsidebar class component LeftSidebar.tsx */
+  .title-leftsidebar {
+    @apply text-xl font-bold;
+  }
+
+  .card-leftsidebar {
+    @apply border border-gray-300 bg-white rounded-md shadow;
+  }
+
+  .item-card-leftsidebar {
+    @apply border-b border-gray-300 py-4 px-6 cursor-pointer;
+  }
+
+  .text-card-leftsidebar {
+    @apply font-semibold leading-5;
+  }
+
+  .tag-card-leftsidebar {
+    @apply text-sm mt-1;
   }
 }

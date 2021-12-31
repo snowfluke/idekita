@@ -1,3 +1,3 @@
 export default function Spinner({ show }) {
-  return show ? <div className="spinner">Memuat...</div> : null;
+  return show ? <div className="spinner text-center">Memuat...</div> : null;
 }
