@@ -5,13 +5,13 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { toast, IdeaContentRight } from "@modules/composer";
 import { IdeaLayout } from "@modules/layouter";
-import { formatDate, isValidTag } from "@modules/helper";
+import { isValidTag } from "@modules/helper";
 import { UserContext } from "@modules/contexter";
 
 const IdeaContent = dynamic(() => import("@components/IdeaContent"));
 
 export default function IdeaMachine() {
-  const { user, username, userData } = useContext(UserContext);
+  const { username, userData } = useContext(UserContext);
 
   const router = useRouter();
   const [preview, setPreview] = useState(false);
@@ -80,6 +80,7 @@ export default function IdeaMachine() {
           SidebarComponent={<PublishSidebar preview={previewProps} />}
         />
       )}
+
       {!preview && (
         <IdeaLayout
           MainComponent={
@@ -88,6 +89,7 @@ export default function IdeaMachine() {
               tags={tagsProps}
               background={backgroundProps}
               content={contentProps}
+              userData={userData}
             />
           }
           SidebarComponent={<PublishSidebar preview={previewProps} />}
@@ -292,7 +294,16 @@ const PublishIdeaComponent = (props) => {
           placeholder="Judul ide brilianmu"
         />
         <div>
-          Tautan: <span className="font-semibold">{slug}</span>
+          <a href={`https://idekita.id/${props.userData.username}/${slug}`}>
+            <TextareaAutosize
+              id="idea-slug"
+              value={`https://idekita.id/${props.userData.username}/${slug}`}
+              className="form-control underline cursor-pointer text-fuchsia-500 block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none"
+              spellCheck={false}
+              disabled
+              minRows={1}
+            />
+          </a>
         </div>
         <hr />
         <blockquote>
@@ -303,7 +314,7 @@ const PublishIdeaComponent = (props) => {
             spellCheck={false}
             onChange={props.background.update}
             minRows={1}
-            placeholder="Latar belakang:"
+            placeholder="Latar belakang: Ceritakan bagaimana idemu bisa terlahir dan buat orang lain tertarik"
           />
         </blockquote>
         <div className="w-full flex">
@@ -312,7 +323,7 @@ const PublishIdeaComponent = (props) => {
             spellCheck={false}
             value={tagsInputChild}
             className="form-control outline-none border-none w-full"
-            placeholder="Tambahkan tag dengan pemisah koma"
+            placeholder="Berikan tag idemu dan pisahkan dengan koma"
             onKeyDown={tagsProps.onkeydown}
             onKeyUp={tagsProps.onkeyup}
             onChange={tagsProps.onchange}
@@ -321,11 +332,11 @@ const PublishIdeaComponent = (props) => {
         <TextareaAutosize
           id="idea-background"
           value={props.content.content}
-          className="form-control block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none"
+          className="form-control mt-2 block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none"
           spellCheck={false}
           onChange={props.content.update}
           minRows={1}
-          placeholder="Tuangkan idemu dengan sepenuhnya, mulai dengan mengetik # Halo Dunia"
+          placeholder="Tuliskan '# Halo iDekita' dan mulai dari sekarang sebelum idemu pergi"
         />
       </article>
     </div>
