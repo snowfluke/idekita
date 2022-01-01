@@ -1,5 +1,6 @@
 import { LinkTo } from "@modules/composer";
 import { minutesToRead, formatDate } from "@modules/helper";
+import { emoji } from "@modules/emojier";
 
 export default function Feed({ posts, idekiawan }) {
   return posts ? posts.map((post, id) => <FeedItem post={post} key={post.slug + id} idekiawan={idekiawan} />) : null;
@@ -10,34 +11,28 @@ const FeedItem = ({ post, idekiawan = false }) => {
   const publishedDate = formatDate(post.dateCreated);
 
   return (
-    <div className="border-2 border-gray-300 py-3 md:py-4 px-4 md:px-5 flex-row mb-7 bg-white rounded-md b-transition cursor-pointer hover:border-fuchsia-500 hover:shadow-lg">
-      <div className="flex justify-between text-sm">
-        <span className="text-opacity-80 text-gray-500">{publishedDate}</span>
+    <div className="border-2 border-gray-300 p-4 mb-7 bg-white rounded-md b-transition hover:border-fuchsia-500 hover:shadow-lg">
+      <div>
+        <span className="text-opacity-feed">{publishedDate}</span>
       </div>
       <div className="grid my-3 content-center">
         <LinkTo href={`/${post.username}/${post.slug}`}>
-          <h2 className="font-semibold b-transition hover:translate-x-2 bg-gray-100 rounded-sm text-xl md:text-2xl border-l-8 px-4 py-2 border-fuchsia-500">
-            <span>{post.title}</span>
-          </h2>
+          <h2 className="font-semibold b-transition bg-gray-100 rounded-md text-xl md:text-2xl border-l-8 px-4 py-2 border-fuchsia-500 hover:translate-x-2">{post.title}</h2>
         </LinkTo>
-        <div className="text-sm mt-3">{post.background.substring(0, 200)}..</div>
-        <div className="text-opicity-80 text-gray-500 mt-2 text-sm space-x-3">
+        <div className="text-sm mt-3 text-justify">{post.background.substring(0, 200)}..</div>
+        <div className="mt-2 text-gray-500 text-sm space-x-2">
           <Tags items={post.tags} />
         </div>
       </div>
       <div className="flex justify-between items-center">
-        <div className="flex">
-          <div className="flex mr-4 items-center">
-            <svg className="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-            </svg>
-            <span className="text-opacity-80 text-gray-500 ml-1 text-xs md:text-sm">{post.cloud}</span>
+        <div className="flex space-x-4">
+          <div className="flex items-center">
+            <span className="text-xl pt-[3px]">{emoji.awan}</span>
+            <span className="text-icon-feed">{post.cloud}</span>
           </div>
           <div className="flex items-center">
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span className="text-opacity-80 text-gray-500 ml-1 md:text-sm text-xs">{readTime}m baca</span>
+            <span className="text-lg">⏱️</span>
+            <span className="text-icon-feed">{readTime}m baca</span>
           </div>
         </div>
 

@@ -17,15 +17,14 @@ export default function IdeaContent({ post, userData }) {
     });
 
   return (
-    <div className="bg-white rounded-md border border-gray-300 px-24 py-16">
-      <article className="prose prose-a:text-fuchsia-500 prose-headings:text-fuchsia-500 lg:prose-lg mx-auto prose-a:underline prose-a:decoration-fuchsia-500">
+    <div className="article-wrapper">
+      <article className="article-prose">
         <h1 id="idea-header" className="scroll-mt-36">
           {post.title}
         </h1>
         <h5>
           📅 {publishedDate} • 📝
-          <LinkTo href={`/${post.username}`}>{userData.displayName}</LinkTo> •
-          ⌛ {readTime} menit membaca
+          <LinkTo href={`/${post.username}`}>{userData.displayName}</LinkTo> • ⌛ {readTime} menit membaca
         </h5>
 
         <hr />

@@ -20,17 +20,17 @@ export default function NavProfile({ user }) {
       <div className="relative text-left">
         <ul className="flex items-center list-none">
           <li className="list-none">
-            <LinkTo href={"/langit-ide"} className="li-item-profile hover:bg-gray-300">
+            <LinkTo href={"/langit-ide"} className="li-item-profile">
               🏠
             </LinkTo>
           </li>
           <li className="list-none">
-            <LinkTo href={"/mesin-ide"} className="li-item-profile hover:bg-gray-300">
+            <LinkTo href={"/mesin-ide"} className="li-item-profile">
               📝
             </LinkTo>
           </li>
           <li className="list-none">
-            <button className="li-item-profile hover:bg-gray-300 focus:bg-gray-300" aria-expanded="true" aria-haspopup="true" onClick={() => showNotif()}>
+            <button className="li-item-profile py-[6px] focus:bg-gray-300" aria-expanded="true" aria-haspopup="true" onClick={() => showNotif()}>
               🔔
             </button>
           </li>
@@ -51,19 +51,19 @@ export default function NavProfile({ user }) {
 
 const ProfileMenu = ({ username }) => {
   return (
-    <div className="origin-top-right absolute right-0 mt-2 top-12 w-44 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-btn" id="dropnav">
+    <div className="origin-top-right dropdown-list-nav w-48 py-3" role="menu" aria-orientation="vertical" aria-labelledby="menu-btn" id="dropnav">
       {/* <!-- dropdown item --> */}
       <div role="none">
-        <LinkTo href="/langit-ide" className="li-item-profile-menu hover:bg-gray-200">
+        <LinkTo href="/langit-ide" className="li-item-profile-menu">
           🌈 Eksplorasi
         </LinkTo>
-        <a href="#" className="li-item-profile-menu hover:bg-gray-200" role="menuitem">
-          🙎🏻‍♂️ Profil
+        <a href="#" className="li-item-profile-menu" role="menuitem">
+          🙎🏻‍♂️ <span className="pl-[3px]">Profil</span>
         </a>
-        <a href="https://myaccount.google.com/" className="li-item-profile-menu hover:bg-gray-200" role="menuitem">
+        <a href="https://myaccount.google.com/" className="li-item-profile-menu" role="menuitem">
           ⚙️ Pengaturan Akun
         </a>
-        <a onClick={signOut} className="li-item-profile-menu font-semibold hover:bg-gray-200" role="menuitem">
+        <a onClick={signOut} className="li-item-profile-menu font-semibold" role="menuitem">
           🚪
           <span className="text-fuchsia pl-2 cursor-pointer">Keluar</span>
         </a>
@@ -74,14 +74,14 @@ const ProfileMenu = ({ username }) => {
 
 const NotificationItems = () => {
   return (
-    <div className="origin-top-center absolute right-0 mt-2 top-10 w-64 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="notif-btn" id="dropnotif">
+    <div className="origin-top-center dropdown-list-nav w-64" role="menu" aria-orientation="vertical" aria-labelledby="notif-btn" id="dropnotif">
       <div className="pt-1" role="none">
         <span className="px-4 py-2 block font-semibold">Notifikasi</span>
         <hr className="shadow" />
         <div>
-          <span className="px-4 py-2 block text-sm hover:bg-gray-200 border-b">Selamat! Kamu mendapatkan lencana #Pocung</span>
-          <span className="px-4 py-2 block text-sm hover:bg-gray-200 border-b">Idemu tentang telah didukung lebih dari 100 orang</span>
-          <span className="px-4 py-2 block text-sm hover:bg-gray-200 border-b">Idemu tentang telah dilihat lebih dari 1000 kali</span>
+          <span className="dropdown-list-notif">Selamat! Kamu mendapatkan lencana #Pocung</span>
+          <span className="dropdown-list-notif">Idemu tentang telah didukung lebih dari 100 orang</span>
+          <span className="dropdown-list-notif">Idemu tentang telah dilihat lebih dari 1000 kali</span>
         </div>
       </div>
     </div>

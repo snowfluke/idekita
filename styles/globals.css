@@ -14,7 +14,7 @@
   }
 
   .social-icon {
-    @apply text-white bg-fuchsia-500 rounded-full inline-block w-7 h-7 text-center mx-1 b-transition;
+    @apply text-white bg-fuchsia-500 rounded-full w-10 h-10 text-center mx-1 b-transition inline-block py-2 hover:bg-fuchsia-600;
   }
 
   .burger-div {
@@ -76,7 +76,7 @@
   }
 
   .item-card-leftsidebar {
-    @apply border-b border-gray-300 py-4 px-6 cursor-pointer;
+    @apply border-b border-gray-300 py-4 px-6 cursor-pointer hover:bg-gray-100;
   }
 
   .text-card-leftsidebar {
@@ -89,10 +89,45 @@
 
   /* Nav Profile class component NavProfile.tsx */
   .li-item-profile {
-    @apply relative rounded-full b-transition p-2 cursor-pointer;
+    @apply relative rounded-full b-transition p-2 cursor-pointer hover:bg-gray-300;
   }
 
   .li-item-profile-menu {
-    @apply text-gray-700 block px-4 py-2 text-sm cursor-pointer;
+    @apply text-gray-700 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-200;
+  }
+
+  .dropdown-list-nav {
+    @apply absolute right-0 mt-2 top-10 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none;
+  }
+
+  .dropdown-list-notif {
+    @apply px-4 py-2 block text-sm hover:bg-gray-100 border-b;
+  }
+
+  /* Feed class component Feed.tsx */
+  .text-opacity-feed {
+    @apply text-opacity-80 text-gray-500 text-sm;
+  }
+  .text-icon-feed {
+    @apply text-opacity-feed ml-1 text-xs md:text-sm;
+  }
+
+  /* NavMiddle class component NavMiddle.tsx */
+  .li-item-navmid {
+    @apply md:mx-3 border-fuchsia-500 b-transition mb-1 md:mb-0 hover:border-b hover:text-fuchsia-500;
+  }
+
+  /* IdeaContent & IdeaPublish class component .tsx*/
+  .article-prose {
+    @apply prose prose-a:text-fuchsia-500 prose-headings:text-fuchsia-500 lg:prose-lg mx-auto prose-a:underline prose-a:decoration-fuchsia-500;
+  }
+
+  .article-wrapper {
+    @apply bg-white rounded-md border border-gray-300 px-24 py-16 mb-10 shadow;
+  }
+
+  /* RightSidebar class component .tsx */
+  .li-r-sidebar {
+    @apply pb-3 hover:scale-110 b-transition hover:rotate-2
   }
 }
