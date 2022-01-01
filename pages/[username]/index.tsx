@@ -10,10 +10,10 @@ import {
   collectionGroup,
   db,
   query,
-} from "@modules/firebase";
+} from "@modules/firebaser";
 import { useState } from "react";
 import { useContext } from "react";
-import { UserContext } from "@modules/context";
+import { UserContext } from "@modules/contexter";
 
 const LIMIT = 10;
 const q = query;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { toast, IdeaContent } from "@modules/composer";
 import IdeaContentRight from "@components/IdeaContentRight";
-import IdeaLayout from "../../layouts/IdeaLayout";
+import { IdeaLayout } from "@modules/layouter";
 
 export default function IdeaMachine() {
   const router = useRouter();

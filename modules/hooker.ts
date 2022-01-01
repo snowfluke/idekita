@@ -1,6 +1,6 @@
 import { docToJSON } from "@modules/helper";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db, doc, onSnapshot } from "@modules/firebase";
+import { auth, db, doc, onSnapshot } from "@modules/firebaser";
 import { useEffect, useState } from "react";
 
 export function useUserData() {

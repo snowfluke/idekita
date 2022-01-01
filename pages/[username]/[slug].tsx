@@ -1,6 +1,6 @@
 import { IdeaContent } from "@modules/composer";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
-import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebase";
+import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import IdeaContentRight from "@components/IdeaContentRight";
 import IdeaLayout from "../../layouts/IdeaLayout";
 import { toast } from "@modules/composer";

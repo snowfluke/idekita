@@ -1,6 +1,6 @@
 import "@styles/globals.css";
-import { UserContext } from "@modules/context";
-import { useUserData } from "@modules/hooks";
+import { UserContext } from "@modules/contexter";
+import { useUserData } from "@modules/hooker";
 import { Navbar, Footer, Toaster } from "@modules/composer";
 import Head from "next/head";
 

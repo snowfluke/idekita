@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
-import { UserContext } from "@modules/context";
-import { doc, db, writeBatch, serverTimestamp } from "@modules/firebase";
+import { UserContext } from "@modules/contexter";
+import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
 import { signIn, isValidUsername, isUsernameAvailable } from "@modules/helper";
 
 export default function Register() {
@@ -76,13 +76,19 @@ export default function Register() {
             <div className="box-section">
               <div className="wrap-section">
                 <div className="mb-3">
-                  <h3 className="px-3">Dengan mendaftar berarti Anda menyetujui segala peraturan dan kebijakan yang terdapat di situs iDekita.</h3>
+                  <h3 className="px-3">
+                    Dengan mendaftar berarti Anda menyetujui segala peraturan
+                    dan kebijakan yang terdapat di situs iDekita.
+                  </h3>
                 </div>
                 <hr className="my-6" />
                 <div className="grid">
                   <h3>Mendaftar menggunakan</h3>
                   <div className="justify-self-center mt-4">
-                    <button className="btn-white flex hover:shadow-md hover:bg-gray-50" onClick={signIn}>
+                    <button
+                      className="btn-white flex hover:shadow-md hover:bg-gray-50"
+                      onClick={signIn}
+                    >
                       <img src="google-logo.png" className="w-6 h-6 mr-2" />
                       Google
                     </button>
@@ -107,10 +113,24 @@ export default function Register() {
                   </div>
                   <div>
                     <form onSubmit={submitHandler}>
-                      <input name="username" className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center" placeholder="username" value={valueForm} onChange={changeHandler} />
-                      <UsernameMessage username={valueForm} isValid={isValid} loading={loading} />
+                      <input
+                        name="username"
+                        className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center"
+                        placeholder="username"
+                        value={valueForm}
+                        onChange={changeHandler}
+                      />
+                      <UsernameMessage
+                        username={valueForm}
+                        isValid={isValid}
+                        loading={loading}
+                      />
 
-                      <button type="submit" className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white" disabled={!isValid}>
+                      <button
+                        type="submit"
+                        className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white"
+                        disabled={!isValid}
+                      >
                         Gunakan
                       </button>
                     </form>

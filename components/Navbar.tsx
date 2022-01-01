@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import { UserContext } from "@modules/context";
+import { UserContext } from "@modules/contexter";
 import { signIn } from "@modules/helper";
 import { NavMiddle, NavSearch, NavProfile, LinkTo } from "@modules/composer";
 

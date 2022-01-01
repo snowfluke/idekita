@@ -10,7 +10,7 @@ import {
   doc,
   getDoc,
   getDocs,
-} from "@modules/firebase";
+} from "@modules/firebaser";
 import { toast } from "@modules/composer";
 
 const signIn = async () => {
