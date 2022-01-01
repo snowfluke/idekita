@@ -10,6 +10,7 @@ export { default as NavMiddle } from "@components/NavMiddle";
 export { default as NavSearch } from "@components/NavSearch";
 export { default as NavProfile } from "@components/NavProfile";
 export { default as IdeaContent } from "@components/IdeaContent";
+export { default as IdeaContentRight } from "@components/IdeaContentRight";
 export { default as Meta } from "@components/Meta";
 
 // Library
