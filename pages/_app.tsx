@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={UserData}>
       <Navbar />
-      <div className="pt-14 print:!pt-1">
+      <div className="pt-14 mt-10 print:!pt-1 print:!mt-0">
         <main className="w-[80%] mx-auto">
           <Component {...pageProps} />
           <Footer />

@@ -78,21 +78,14 @@ export default function IdeaProfile({ post, userData }) {
 
   const TopElement = () => {
     return (
-      <div className=" prose flex-1 font-bold text-3xl p-5 rounded-md content-center">
-        <button className="focus:animate-bounce duration-1000 transition select-none">
-          {emoji.awan}
+      <div className="prose flex-1 font-bold text-3xl p-5 content-center">
+        <button className="focus:animate-bounce duration-1000 b-transition select-none">
+          <span className="pr-3">{emoji.awan}</span>
           {cloud}
         </button>
       </div>
     );
   };
 
-  return (
-    <IdeaLayout
-      MainComponent={<IdeaContent post={post} userData={userData} />}
-      SidebarComponent={
-        <IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />
-      }
-    />
-  );
+  return <IdeaLayout MainComponent={<IdeaContent post={post} userData={userData} />} SidebarComponent={<IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />} />;
 }

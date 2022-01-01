@@ -15,18 +15,12 @@ export default function Navbar() {
         <nav className="md:flex justify-between items-center">
           <div className="flex justify-between">
             {/* <!-- logo --> */}
-            <LinkTo
-              href={"/"}
-              className="inline-block text-fuchsia-600 text-2xl font-semibold cursor-pointer"
-            >
+            <LinkTo href={"/"} className="inline-block text-fuchsia-600 text-2xl font-semibold cursor-pointer">
               iDekita
             </LinkTo>
 
             {/* <!-- burger --> */}
-            <div
-              id="burger"
-              className="cursor-pointer md:hidden float-right text-center leading-snug"
-            >
+            <div id="burger" className="cursor-pointer md:hidden float-right text-center leading-snug">
               <div className="burger-div mt-2"></div>
               <div className="burger-div my-[5px]"></div>
               <div className="burger-div"></div>
@@ -42,19 +36,12 @@ export default function Navbar() {
 
           {username && <NavProfile user={userData} />}
           {!username && (
-            <ul
-              className="items-center md:flex text-center mt-3 md:mt-0 mb-3 md:mb-0"
-              id="menu2"
-            >
+            <ul className="items-center md:flex text-center mt-3 md:mt-0 mb-3 md:mb-0" id="menu2">
               <a onClick={signIn}>
-                <li className="mb-2 md:mb-0 hover:border-b border-fuchsia-500 hover:text-fuchsia-500 b-transition cursor-pointer">
-                  #Masuk
-                </li>
+                <li className="mb-2 md:mb-0 hover:border-b border-fuchsia-500 hover:text-fuchsia-500 b-transition cursor-pointer">#Masuk</li>
               </a>
               <a href="/bergabung">
-                <li className="md:ml-5 text-fuchsia-500 px-3 py-1 border border-fuchsia-500 rounded hover:bg-fuchsia-500 hover:text-white b-transition">
-                  #Bergabung
-                </li>
+                <li className="md:ml-5 text-fuchsia-500 px-3 py-1 border border-fuchsia-500 rounded-md hover:bg-fuchsia-500 hover:text-white b-transition">#Bergabung</li>
               </a>
             </ul>
           )}

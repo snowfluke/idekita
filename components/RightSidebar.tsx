@@ -39,7 +39,7 @@ export default function RightSidebar({ username = "" }) {
     <>
       {menuList.map((menu) => (
         <React.Fragment key={menu.name}>
-          <li className={menu.icon !== "🚪" ? "pb-3 hover:text-fuchsia-500 hover:scale-110 b-transition hover:rotate-2" : "pb-3 text-fuchsia-500 b-transition hover:scale-110 hover:rotate-2"}>
+          <li className={menu.icon !== "🚪" ? "li-r-sidebar hover:text-fuchsia-500" : "li-r-sidebar text-fuchsia-500"}>
             <a href={menu.route}>
               <div className="flex space-x-2">
                 <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">{menu.icon}</div>

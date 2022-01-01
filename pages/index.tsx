@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       {/* <!-- Content --> */}
-      <div className="flex-row lg:flex justify-between items-center">
+      <div className="flex-row lg:flex justify-between items-center mt-4">
         {/* <!-- hero image --> */}
         <img src="hero.png" alt="iDekita" className="w-full lg:w-[50%]" />
 
@@ -18,8 +18,8 @@ export default function Home() {
           </h1>
           <h4 className="text-lg py-8 lg:tracking-wider leading-6">
             <span>Tidak semua orang mempunyai ide</span>
-            <span className="block ">dan tidak semua orang dapat</span>
-            <span className="block ">mewujudkan idenya</span>
+            <span className="block">dan tidak semua orang dapat</span>
+            <span className="block">mewujudkan idenya</span>
           </h4>
           <LinkTo href="/langit-ide" className="mt-0 md:mt-5 btn-fuchsia px-10 hover:bg-fuchsia-600 hover:scale-105 inline-block hover:-rotate-6 ">
             #Eksplorasi
