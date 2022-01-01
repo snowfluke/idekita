@@ -1,10 +1,33 @@
 import TextareaAutosize from "react-textarea-autosize";
 import kebabCase from "lodash.kebabcase";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { toast } from "@modules/composer";
 
 export default function IdeaMachine() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const slug = encodeURI(kebabCase(title));
+
+  const isValid = title.length > 10 && title.length < 100;
+
+  const publishIdea = async (event) => {
+    event.preventDefault();
+    // const uid = auth.currentUser.uid;
+    // const ref = firestore.collection('users').doc(uid).collection('posts').doc(slug);
+
+    // // Tip: give all fields a default value here
+    // const data = {
+
+    // };
+
+    // await ref.set(data);
+
+    // toast
+
+    // Imperative navigation after doc is set
+    router.push(`/admin/${slug}`);
+  };
 
   return (
     <>

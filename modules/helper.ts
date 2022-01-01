@@ -43,6 +43,11 @@ const getUserWithUsername = async (username) => {
   }
 };
 
+/**
+ * Convert a DocumentSnapshot into a JSON, because the problems of Firestore Document is that the Timestamp is not going to be a milisecons
+ * @param doc DocumentSnapshot that is want to serialize as a JSON
+ * @returns JSON of the Document snap
+ */
 const docToJSON = (doc) => {
   const data = doc.data();
   const isPost = data.hasOwnProperty("dateCreated") ? true : false;
@@ -58,12 +63,12 @@ const docToJSON = (doc) => {
       };
 };
 
-const isValidUsername = (username) => {
+const isValidUsername = (username: string) => {
   const regex = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
   return regex.test(username);
 };
 
-const isUsernameAvailable = async (username) => {
+const isUsernameAvailable = async (username: string) => {
   try {
     const ref = doc(db, "usernames", username);
     const snap = await getDoc(ref);
@@ -75,13 +80,18 @@ const isUsernameAvailable = async (username) => {
   }
 };
 
-const minutesToRead = (content) => {
+/**
+ * Calculate the amount of time to read using Naive Method
+ * @param content The text content
+ * @returns minutes
+ */
+const minutesToRead = (content: string) => {
   const wordCount = content.trim().split(/\s+/g).length;
   const minutes = (wordCount / 100 + 1).toFixed(0);
   return minutes;
 };
 
-const formatDate = (milis) =>
+const formatDate = (milis: number) =>
   new Intl.DateTimeFormat("id", {
     dateStyle: "long",
   }).format(milis);
