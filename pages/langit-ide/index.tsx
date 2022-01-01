@@ -46,7 +46,7 @@ export default function Sky({ postsFetched }) {
         </h1>
       </div>
 
-      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-14 my-12">
+      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-7 my-12">
         <LeftSidebar />
 
         <div className="col-span-2">
@@ -74,7 +74,7 @@ export default function Sky({ postsFetched }) {
           {postsEnd && <p className="text-center">Kamu telah mencapai batas akhir postingan</p>}
         </div>
 
-        <RightSidebar />
+        <RightSidebar username={username} />
       </div>
     </>
   );

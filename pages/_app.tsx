@@ -1,7 +1,7 @@
 import "@styles/globals.css";
 import { UserContext } from "@modules/context";
 import { useUserData } from "@modules/hooks";
-import { Navbar, Footer } from "@modules/composer";
+import { Navbar, Footer, Toaster } from "@modules/composer";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
@@ -10,12 +10,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={UserData}>
       <Navbar />
-      <div>
-        <main className="w-[80%] m-auto my-8 pt-14">
+      <div className="pt-14 print:!pt-1">
+        <main className="w-[80%] mx-auto">
           <Component {...pageProps} />
           <Footer />
         </main>
       </div>
+      <Toaster />
     </UserContext.Provider>
   );
 }

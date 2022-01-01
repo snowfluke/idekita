@@ -6,11 +6,11 @@ import { NavMiddle, NavSearch, NavProfile, LinkTo } from "@modules/composer";
 
 export default function Navbar() {
   const router = useRouter();
-  const { user, username } = useContext(UserContext);
+  const { userData, username } = useContext(UserContext);
   const isLandingPage = router.pathname === "/" ? true : false;
 
   return (
-    <div className="bg-gray-100 shadow-md fixed top-0 w-full z-50">
+    <div className="bg-gray-100 shadow-md fixed top-0 w-full z-50 print:hidden">
       <div className="w-[80%] m-auto p-3">
         <nav className="md:flex justify-between items-center">
           <div className="flex justify-between">
@@ -40,7 +40,7 @@ export default function Navbar() {
 
           {/* <!-- menu right --> */}
 
-          {username && <NavProfile user={user} />}
+          {username && <NavProfile user={userData} />}
           {!username && (
             <ul
               className="items-center md:flex text-center mt-3 md:mt-0 mb-3 md:mb-0"

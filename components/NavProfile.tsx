@@ -42,14 +42,14 @@ export default function NavProfile({ user }) {
             </div>
           </li>
           {showNotifMenu && <NotificationItems />}
-          {showProfileMenu && <ProfileMenu />}
+          {showProfileMenu && <ProfileMenu username={user?.username} />}
         </ul>
       </div>
     </>
   );
 }
 
-const ProfileMenu = () => {
+const ProfileMenu = ({ username }) => {
   return (
     <div className="origin-top-right absolute right-0 mt-2 top-12 w-44 rounded-md shadow-lg bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-btn" id="dropnav">
       {/* <!-- dropdown item --> */}

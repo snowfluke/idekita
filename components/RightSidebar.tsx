@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function RightSidebar() {
+export default function RightSidebar({ username = "" }) {
   const menuList = [
     {
       icon: "🏠",
@@ -10,12 +10,13 @@ export default function RightSidebar() {
     {
       icon: "🙍",
       name: "#Profil",
-      route: "/",
+      route: `/${username}`,
+      linkto: true,
     },
     {
       icon: "💡",
       name: "#Buat Ide",
-      route: "/",
+      route: `/mesin-ide`,
     },
     {
       icon: "📕",

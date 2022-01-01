@@ -1,7 +1,11 @@
 import { IdeaContent } from "@modules/composer";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebase";
-
+import IdeaContentRight from "@components/IdeaContentRight";
+import IdeaLayout from "../../layouts/IdeaLayout";
+import { toast } from "@modules/composer";
+import { useRouter } from "next/router";
+import { useState } from "react";
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
   const userData = await getUserWithUsername(username);
@@ -37,5 +41,56 @@ export async function getStaticPaths({ params }) {
 }
 
 export default function IdeaProfile({ post, userData }) {
-  return <IdeaContent post={post} userData={userData} />;
+  const router = useRouter();
+  const [cloud, setCloud] = useState(parseInt(post.cloud));
+
+  const ideaContentMenu = [
+    {
+      name: "#Dukung",
+      icon: "✊",
+      onclick: () => {
+        setCloud(cloud + 1);
+        toast.success("Berhasil memberikan dukungan 💪");
+      },
+    },
+    {
+      name: "#Bagikan",
+      icon: "🖐",
+      onclick: () => router.push("#idea-header"),
+    },
+    {
+      name: "#Kirim Email",
+      icon: "🤝",
+      onclick: () =>
+        router.push(
+          encodeURI(
+            `https://mail.google.com/mail/?view=cm&fs=1&to=${userData.email}&su=iDekita - ${post.title}&body=Hai, ${userData.displayName} 👋! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
+          )
+        ),
+    },
+    {
+      name: "#Kembali",
+      icon: "👈",
+      onclick: () => router.back(),
+    },
+  ];
+
+  const TopElement = () => {
+    return (
+      <div className="flex-1 font-bold text-3xl  p-5 rounded-md content-center">
+        <button className="focus:animate-bounce duration-1000 transition select-none">
+          ☁ {cloud}
+        </button>
+      </div>
+    );
+  };
+
+  return (
+    <IdeaLayout
+      MainComponent={<IdeaContent post={post} userData={userData} />}
+      SidebarComponent={
+        <IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />
+      }
+    />
+  );
 }

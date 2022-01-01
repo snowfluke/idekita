@@ -12,4 +12,4 @@ export { default as NavProfile } from "@components/NavProfile";
 export { default as IdeaContent } from "@components/IdeaContent";
 
 // Library
-export { toast } from "react-hot-toast";
+export { default as toast, Toaster } from "react-hot-toast";
