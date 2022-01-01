@@ -1,15 +1,24 @@
+import dynamic from "next/dynamic";
 import TextareaAutosize from "react-textarea-autosize";
 import kebabCase from "lodash.kebabcase";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { toast, IdeaContent } from "@modules/composer";
-import IdeaContentRight from "@components/IdeaContentRight";
+import { toast, IdeaContentRight } from "@modules/composer";
 import { IdeaLayout } from "@modules/layouter";
+import { formatDate, isValidTag } from "@modules/helper";
+import { UserContext } from "@modules/contexter";
+
+const IdeaContent = dynamic(() => import("@components/IdeaContent"));
 
 export default function IdeaMachine() {
+  const { user, username, userData } = useContext(UserContext);
+
   const router = useRouter();
+  const [preview, setPreview] = useState(false);
   const [title, setTitle] = useState("");
-  const slug = encodeURI(kebabCase(title));
+  const [background, setBackground] = useState("");
+  const [content, setContent] = useState("");
+  const [tags, setTags] = useState([]);
 
   const isValid = title.length > 10 && title.length < 100;
 
@@ -28,10 +37,64 @@ export default function IdeaMachine() {
     // toast
 
     // Imperative navigation after doc is set
-    router.push(`/admin/${slug}`);
+    // router.push(`/admin/${slug}`);
   };
 
-  return <IdeaLayout mainCo />;
+  const titleProps = { title, onchange: (ev) => setTitle(ev.target.value) };
+  const tagsProps = {
+    tags,
+    update: (tagsFromChild) => setTags(tagsFromChild),
+  };
+  const backgroundProps = {
+    background,
+    update: (ev) => setBackground(ev.target.value),
+  };
+  const contentProps = {
+    content,
+    update: (ev) => setContent(ev.target.value),
+  };
+  const previewProps = {
+    onclick: () => setPreview(!preview),
+  };
+
+  return (
+    <>
+      {preview && (
+        <IdeaLayout
+          MainComponent={
+            <IdeaContent
+              post={{
+                background,
+                cloud: 0,
+                content,
+                dateCreated: Date.now(),
+                dateUpdated: Date.now(),
+                report: 0,
+                tags,
+                title,
+                username,
+              }}
+              userData={userData}
+            />
+          }
+          SidebarComponent={<PublishSidebar preview={previewProps} />}
+        />
+      )}
+      {!preview && (
+        <IdeaLayout
+          MainComponent={
+            <PublishIdeaComponent
+              heading={titleProps}
+              tags={tagsProps}
+              background={backgroundProps}
+              content={contentProps}
+            />
+          }
+          SidebarComponent={<PublishSidebar preview={previewProps} />}
+        />
+      )}
+    </>
+  );
 }
 
 // const B = () => {
@@ -170,3 +233,122 @@ export default function IdeaMachine() {
 //   </>
 //   )
 // }
+const PublishIdeaComponent = (props) => {
+  const [tags, setTags] = useState([]);
+  const [tagsInputChild, setTagsInputChild] = useState("");
+  const slug = encodeURI(kebabCase(props.heading.title));
+
+  const resetTag = (ev) => {
+    ev.preventDefault();
+    setTagsInputChild("");
+  };
+  const tagsProps = {
+    onchange: (ev) => setTagsInputChild(ev.target.value),
+    onkeyup: () => {
+      props.tags.update([...tags]);
+    },
+    onkeydown: (ev) => {
+      const { key } = ev;
+      const trimmed = tagsInputChild.trim().toLowerCase();
+
+      if (key === ",") {
+        if (tags.includes(trimmed)) return resetTag(ev);
+        if (!isValidTag(trimmed) || tags.length > 3) return resetTag(ev);
+
+        setTags((prevTags) => [...prevTags, trimmed]);
+        return resetTag(ev);
+      }
+
+      if (key === "Backspace" && tags.length && tagsInputChild.length === 0) {
+        ev.preventDefault();
+        let copiedTags = [...tags];
+        let leftoverTag = copiedTags.pop();
+        setTags(copiedTags);
+        setTagsInputChild(leftoverTag);
+      }
+    },
+  };
+
+  useEffect(() => {
+    setTags(props.tags.tags);
+  }, [props]);
+
+  const renderTag = () =>
+    tags.map((tag, id) => (
+      <a key={tag + id} className="mr-2">
+        #{tag}
+      </a>
+    ));
+  return (
+    <div className="bg-white rounded-md border border-gray-300 px-24 py-16">
+      <article className="prose prose-a:text-fuchsia-500 prose-headings:text-fuchsia-500 lg:prose-lg mx-auto prose-a:underline prose-a:decoration-fuchsia-500">
+        <TextareaAutosize
+          id="idea-header"
+          value={props.heading.title}
+          spellCheck={false}
+          onChange={props.heading.onchange}
+          className="scroll-mt-36 form-control block w-full bg-clip-padding rounded b-transition border-none text-4xl font-bold focus:outline-none overflow-hidden resize-none"
+          minRows={1}
+          placeholder="Judul ide brilianmu"
+        />
+        <div>
+          Tautan: <span className="font-semibold">{slug}</span>
+        </div>
+        <hr />
+        <blockquote>
+          <TextareaAutosize
+            id="idea-background"
+            value={props.background.background}
+            className="italic form-control block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none"
+            spellCheck={false}
+            onChange={props.background.update}
+            minRows={1}
+            placeholder="Latar belakang:"
+          />
+        </blockquote>
+        <div className="w-full flex">
+          {renderTag()}
+          <input
+            spellCheck={false}
+            value={tagsInputChild}
+            className="form-control outline-none border-none w-full"
+            placeholder="Tambahkan tag dengan pemisah koma"
+            onKeyDown={tagsProps.onkeydown}
+            onKeyUp={tagsProps.onkeyup}
+            onChange={tagsProps.onchange}
+          />
+        </div>
+        <TextareaAutosize
+          id="idea-background"
+          value={props.content.content}
+          className="form-control block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none"
+          spellCheck={false}
+          onChange={props.content.update}
+          minRows={1}
+          placeholder="Tuangkan idemu dengan sepenuhnya, mulai dengan mengetik # Halo Dunia"
+        />
+      </article>
+    </div>
+  );
+};
+
+const PublishSidebar = (props) => {
+  const menu = [
+    {
+      name: "#Publikasi",
+      icon: "🚀",
+      onclick: () => {
+        toast.success("Pesan berhasil di publikasi! 🎉");
+      },
+    },
+    {
+      name: "#Pratinjau",
+      icon: "👀",
+      onclick: props.preview.onclick,
+    },
+    { name: "#Bantuan", icon: "🙋‍♂️", onclick: () => {} },
+    { name: "#Buang", icon: "😢", onclick: () => {} },
+  ];
+
+  return <IdeaContentRight TopElement={false} menu={menu} />;
+};

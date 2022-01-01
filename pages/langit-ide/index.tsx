@@ -57,13 +57,13 @@ export default function Sky({ postsFetched }) {
 
   return (
     <>
-      <div className="text-4xl md:text-7xl font-bold mt-4 mb-7 md:mb-0">
+      <div className="text-4xl md:text-7xl font-bold mt-4 my-2 md:mb-0">
         <h1>
           <span className="text-fuchsia-500">#Langit</span> ide
         </h1>
       </div>
 
-      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-7 my-12">
+      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-7 my-6">
         <LeftSidebar />
 
         <div className="col-span-2">

@@ -68,6 +68,11 @@ const isValidUsername = (username: string) => {
   return regex.test(username);
 };
 
+const isValidTag = (tag) => {
+  const regex = /^(?=[a-zA-Z._]{4,12}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+  return regex.test(tag);
+};
+
 const isUsernameAvailable = async (username: string) => {
   try {
     const ref = doc(db, "usernames", username);
@@ -105,4 +110,5 @@ export {
   minutesToRead,
   formatDate,
   isUsernameAvailable,
+  isValidTag,
 };
