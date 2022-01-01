@@ -6,6 +6,7 @@ import IdeaLayout from "../../layouts/IdeaLayout";
 import { toast } from "@modules/composer";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
   const userData = await getUserWithUsername(username);
@@ -77,7 +78,7 @@ export default function IdeaProfile({ post, userData }) {
 
   const TopElement = () => {
     return (
-      <div className="flex-1 font-bold text-3xl  p-5 rounded-md content-center">
+      <div className="flex-1 font-bold text-3xl p-5 rounded-md content-center">
         <button className="focus:animate-bounce duration-1000 transition select-none">
           ☁ {cloud}
         </button>
