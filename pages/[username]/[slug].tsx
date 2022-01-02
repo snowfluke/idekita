@@ -81,6 +81,7 @@ export default function IdeaProfile({ post, userDataPost }) {
   };
 
   return (
+  
     <IdeaLayout
       MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
       SidebarComponent={

@@ -2,13 +2,9 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";
 import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
-import {
-  signIn,
-  isValidUsername,
-  isUsernameAvailable,
-  signOut,
-} from "@modules/helper";
+import { signIn, isValidUsername, isUsernameAvailable, signOut } from "@modules/helper";
 import { useRouter } from "next/router";
+import { Meta } from "@modules/composer"
 
 export default function Register() {
   const [valueForm, setValueForm] = useState("");
@@ -76,6 +72,10 @@ export default function Register() {
 
   return (
     <>
+    <Meta
+        title="Bergabung 🤝🏻 Bersama dengan iDekita"
+        description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
+      />
       {user ? (
         username ? (
           <ThankYou />
@@ -91,24 +91,10 @@ export default function Register() {
                       </div>
                       <div>
                         <form onSubmit={submitHandler}>
-                          <input
-                            name="username"
-                            className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center"
-                            placeholder="username"
-                            value={valueForm}
-                            onChange={changeHandler}
-                          />
-                          <UsernameMessage
-                            username={valueForm}
-                            isValid={isValid}
-                            loading={loading}
-                          />
+                          <input name="username" className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center" placeholder="username" value={valueForm} onChange={changeHandler} />
+                          <UsernameMessage username={valueForm} isValid={isValid} loading={loading} />
 
-                          <button
-                            type="submit"
-                            className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white"
-                            disabled={!isValid}
-                          >
+                          <button type="submit" className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white" disabled={!isValid}>
                             Gunakan
                           </button>
                         </form>
@@ -136,19 +122,13 @@ function CreateUser() {
             <div className="box-section">
               <div className="wrap-section">
                 <div className="mb-3">
-                  <h3 className="px-0 md:px-3">
-                    Dengan mendaftar berarti Anda menyetujui segala peraturan
-                    dan kebijakan yang terdapat di situs iDekita.
-                  </h3>
+                  <h3 className="px-0 md:px-3">Dengan mendaftar berarti Anda menyetujui segala peraturan dan kebijakan yang terdapat di situs iDekita.</h3>
                 </div>
                 <hr className="my-6" />
                 <div className="grid">
                   <h3>Mendaftar menggunakan</h3>
                   <div className="justify-self-center mt-4">
-                    <button
-                      className="btn-white flex hover:shadow-md hover:bg-gray-50"
-                      onClick={signIn}
-                    >
+                    <button className="btn-white flex hover:shadow-md hover:bg-gray-50" onClick={signIn}>
                       <img src="google-logo.png" className="w-6 h-6 mr-2" />
                       Google
                     </button>
@@ -167,14 +147,23 @@ function ThankYou() {
   const router = useRouter();
   return (
     <section className="w-full py-14">
-      <div className="container-section">
-        <h1>Terima kasih telah bergabung menjadi bagian dari Idekita 😎</h1>
-        <div className="flex">
-          <h3 onClick={() => router.push("/langit-ide")}>Eksplorasi</h3>
-          <h3 onClick={() => router.back()}>Kembali</h3>
-          <h3 onClick={() => signOut(router)}>Keluar</h3>
-        </div>
+      <div className="prose text-center mx-auto pb-10">
+        <p className="text-4xl">😎</p>
+        <h1>Terima kasih telah bergabung menjadi bagian dari Idekita </h1>        
       </div>
+      <div className="flex justify-center">
+          <p className="btn-section" onClick={() => router.push("/langit-ide")}>
+            Mulai Eksplorasi
+          </p>
+        </div>
+        <div className="flex justify-center space-x-4 mt-4">
+          <p className="btn-section" onClick={() => router.back()}>
+            Kembali
+          </p>
+          <p className="btn-section" onClick={() => signOut(router)}>
+            Keluar
+          </p>
+        </div>  
     </section>
   );
 }
