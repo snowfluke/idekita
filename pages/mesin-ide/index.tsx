@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { IdeaLayout } from "@modules/layouter";
-import { PublishSidebar } from "@modules/composer";
+import { PublishSidebar, CheckLogin } from "@modules/composer";
 import { UserContext } from "@modules/contexter";
 
 // Dynamic Imports
@@ -58,7 +58,7 @@ export default function IdeaMachine() {
   };
 
   return (
-    <>
+    <CheckLogin>
       {preview && (
         <IdeaLayout
           MainComponent={
@@ -95,6 +95,6 @@ export default function IdeaMachine() {
           SidebarComponent={<PublishSidebar preview={previewProps} />}
         />
       )}
-    </>
+    </CheckLogin>
   );
 }

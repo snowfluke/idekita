@@ -1,4 +1,3 @@
-import TextareaAutosize from "react-textarea-autosize";
 import { useEffect, useState } from "react";
 import { isValidTag } from "@modules/helper";
 import { TextArea } from "@modules/composer";

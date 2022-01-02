@@ -16,7 +16,7 @@ export default function TextArea({
       onChange={onChange}
       disabled={disabled}
       className={
-        "scroll-mt-36 form-control block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden resize-none" +
+        "resize-none form-control block w-full bg-clip-padding rounded b-transition border-none focus:outline-none overflow-hidden" +
         className
       }
       minRows={1}
