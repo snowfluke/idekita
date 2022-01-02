@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IdeaLayout } from "@modules/layouter";
 import { PublishSidebar, IdeaContent, toast } from "@modules/composer";
+import { validator, msg } from "@modules/validator";
 import { UserContext } from "@modules/contexter";
 import {
   auth,
@@ -24,6 +25,7 @@ export default function PublishIdea({ initialPost, userData }) {
     content: "",
     uid: "",
     report: 0,
+    edited: false,
     tags: [],
     title: "",
     published: false,
@@ -34,24 +36,50 @@ export default function PublishIdea({ initialPost, userData }) {
   const [tags, setTags] = useState([]);
   const [tagsInput, setTagsInput] = useState("");
   const [preview, setPreview] = useState(false);
+  const router = useRouter();
   const slug = initialPost ? post.slug : encodeURI(kebabCase(post.title));
 
-  // const publishIdea = async ({ content, background, tags }) => {
-  //   return console.log({ content, background, title, tags });
-  //   await updateDoc(docRef, {
-  //     content,
-  //     background,
-  //     title,
-  //     tags,
-  //     published: true,
-  //     dateUpdated: serverTimestamp(),
-  //   });
+  const check = (expression, arg) => validator[expression](arg);
+  const publishIdea = async () => {
+    try {
+      if (!check("title", post.title)) return toast.error(msg["title"]);
+      if (!check("background", post.background))
+        return toast.error(msg["background"]);
+      if (!check("tags", tags)) return toast.error(msg["tags"]);
+      if (!check("content", post.content)) return toast.error(msg["content"]);
 
-  //   toast.success("Berhasil mempublikasi ide 🎉");
-  // };
+      const docRef = doc(db, `users/${userData.uid}/posts`, slug);
+
+      if (initialPost) {
+        await updateDoc(docRef, {
+          title: post.title,
+          content: post.content,
+          tags: tags,
+          background: post.background,
+          dateUpdated: serverTimestamp(),
+          edited: true,
+        });
+
+        if (!initialPost) {
+          await setDoc(docRef, {
+            ...post,
+            tags: tags,
+            dateCreated: serverTimestamp(),
+            dateUpdated: serverTimestamp(),
+          });
+        }
+
+        toast.success("Berhasil mempublikasikan ide 🎉");
+        router.push(`/${userData.username}/${post.slug}`);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan, silakan coba kembali");
+    }
+  };
 
   const renderTag = () =>
-    post.tags.map((tag, id) => (
+    tags.map((tag, id) => (
       <a key={tag + id} className="mr-2">
         #{tag}
       </a>
@@ -88,6 +116,7 @@ export default function PublishIdea({ initialPost, userData }) {
 
   useEffect(() => {
     if (initialPost) {
+      setTags(initialPost.tags);
       setPost(initialPost);
       return;
     }
@@ -108,6 +137,7 @@ export default function PublishIdea({ initialPost, userData }) {
                 name="title"
                 className="txt-area scroll-mt-36 text-4xl font-bold"
                 placeholder="Judul ide brilianmu"
+                maxLength={100}
               />
 
               <div className="flex w-full">
@@ -130,6 +160,7 @@ export default function PublishIdea({ initialPost, userData }) {
                   className="txt-area italic"
                   spellCheck={false}
                   minRows={2}
+                  maxLength={400}
                   placeholder="Latar belakang: Ceritakan bagaimana idemu bisa terlahir dan buat orang lain terinspirasi"
                 />
               </blockquote>
@@ -151,6 +182,7 @@ export default function PublishIdea({ initialPost, userData }) {
               </div>
 
               <TextArea
+                maxLength={10000}
                 name="content"
                 onChange={(ev) =>
                   setPost({ ...post, content: ev.target.value })
@@ -168,6 +200,7 @@ export default function PublishIdea({ initialPost, userData }) {
               dateCreated: Date.now(),
               dateUpdated: Date.now(),
               ...post,
+              tags: tags,
             }}
             userData={userData}
           />
@@ -177,6 +210,7 @@ export default function PublishIdea({ initialPost, userData }) {
         <PublishSidebar
           sidebar={{
             preview: () => setPreview(!preview),
+            submit: () => publishIdea(),
           }}
         />
       }

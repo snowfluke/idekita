@@ -70,7 +70,7 @@ const isValidUsername = (username: string) => {
 };
 
 const isValidTag = (tag) => {
-  const regex = /^(?=[a-zA-Z._]{4,12}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+  const regex = /^(?=[a-zA-Z._]{3,12}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
   return regex.test(tag);
 };
 

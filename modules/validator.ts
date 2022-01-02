@@ -9,9 +9,9 @@ const tools = {
 
 const msg = {
   title: "Panjang judul 10 - 100 karakter",
-  background: "Panjang latar belakang 50 - 300 karakter",
+  background: "Panjang latar belakang 50 - 400 karakter",
   tags: "Tag minimal 1 dan maksimal 4",
-  content: "Isi ide minimal 100 - 1000 karakter",
+  content: "Isi ide minimal 100 - 10000 karakter",
 };
 
 const validator = {
@@ -22,7 +22,7 @@ const validator = {
   },
 
   background(background) {
-    if (!tools.validLength(background, 50, 300)) return;
+    if (!tools.validLength(background, 50, 400)) return;
     false;
 
     return true;
@@ -34,7 +34,7 @@ const validator = {
   },
 
   content(content) {
-    if (!tools.validLength(content, 100, 1000)) return false;
+    if (!tools.validLength(content, 100, 10000)) return false;
     return true;
   },
 };
