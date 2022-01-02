@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
+import { Meta } from "@modules/composer"
 
 const LIMIT = 10;
 const q = query;
@@ -80,6 +81,10 @@ export default function Profile({ user, post }) {
 
   return (
     <>
+    <Meta
+        title="iDekiawan 👨🏻‍🏫 Pasukan iDekita"
+        description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
+      />
       <div className="big-heading print:hidden">
         <h1>
           <span className="text-fuchsia-500">#Idekiawan</span> kita

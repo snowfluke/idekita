@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import { LinkTo } from "@modules/composer";
+import { Meta } from "@modules/composer";
 
 export default function Home() {
   return (
     <>
+      <Meta title="iDekita 💡 Wadah Ide-ide Kreatif" description="Cari, temukan, dan publikasikan ide-ide kreatif bersama dengan Idekiawan di seluruh Indonesia" />
       {/* <!-- Content --> */}
       <div className="flex-row lg:flex justify-between items-center mt-4">
         {/* <!-- hero image --> */}

@@ -4,6 +4,7 @@ import { UserContext } from "@modules/contexter";
 import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
 import { signIn, isValidUsername, isUsernameAvailable, signOut } from "@modules/helper";
 import { useRouter } from "next/router";
+import { Meta } from "@modules/composer"
 
 export default function Register() {
   const [valueForm, setValueForm] = useState("");
@@ -71,6 +72,10 @@ export default function Register() {
 
   return (
     <>
+    <Meta
+        title="Bergabung 🤝🏻 Bersama dengan iDekita"
+        description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
+      />
       {user ? (
         username ? (
           <ThankYou />
