@@ -77,6 +77,10 @@
     @apply px-6 py-10 text-white text-center;
   }
 
+  .btn-section {
+    @apply text-lg text-white bg-fuchsia-500 hover:bg-fuchsia-600 rounded-md py-2 px-5 b-transition cursor-pointer
+  }
+
   /* leftsidebar class component LeftSidebar.tsx */
   .title-leftsidebar {
     @apply text-xl font-bold;
