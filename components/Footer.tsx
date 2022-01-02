@@ -40,7 +40,7 @@ export default function Footer() {
         {/* <!-- footer text --> */}
         <div className="flex justify-center my-8">
           <h2 className="text-center text-4xl font-semibold">
-            <span className="text-fuchsia-500 b-transition hover:scale-105 inline-block hover:-rotate-3">#Terbangkan</span> idemu di awan
+            <span className="text-h-rotate">#Terbangkan</span> idemu di awan
           </h2>
         </div>
       </footer>

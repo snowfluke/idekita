@@ -9,6 +9,7 @@
     @apply font-body;
   }
 
+  /* transition */
   .b-transition {
     @apply transition duration-300 ease-in-out;
   }
@@ -21,6 +22,11 @@
     @apply w-6 h-[3px] bg-gray-600 rounded-xl;
   }
 
+  .report-btn {
+    @apply w-2 h-2 rounded-full bg-gray-600
+  }
+
+  /* btn & input style */
   .btn-transparent {
     @apply px-8 py-2 rounded-md border border-white text-white b-transition font-semibold outline-none;
   }
@@ -30,11 +36,16 @@
   }
 
   .btn-fuchsia {
-    @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition;
+    @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition hover:bg-fuchsia-600;
   }
 
   .input-white {
     @apply rounded-md text-gray-700 outline-none shadow-md;
+  }
+
+  /* heading className */
+  .big-heading {
+    @apply text-4xl md:text-7xl font-bold mb-7 md:mb-0;
   }
 
   .h1-style {
@@ -128,6 +139,16 @@
 
   /* RightSidebar class component .tsx */
   .li-r-sidebar {
-    @apply pb-3 hover:scale-110 b-transition hover:rotate-2
+    @apply pb-3 hover:scale-110 b-transition hover:rotate-2;
+  }
+
+  /* index.tsx & footer.tsx class component */
+  .text-h-rotate {
+    @apply text-fuchsia-500 b-transition hover:scale-105 inline-block hover:-rotate-3;
+  }
+
+  /* index.tsx langit-ide className*/
+  .li-top-menu {
+    @apply px-2 text-xl hover:text-fuchsia-500;
   }
 }
