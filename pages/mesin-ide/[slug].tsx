@@ -65,15 +65,7 @@ export default function IdeaMachine() {
   };
   const sidebarProps = {
     preview: () => setPreview(!preview),
-    submit: () => {
-      if (!check("title", title)) return toast.error(msg["title"]);
-      if (!check("background", background))
-        return toast.error(msg["background"]);
-      if (!check("tags", tags)) return toast.error(msg["tags"]);
-      if (!check("content", content)) return toast.error(msg["content"]);
-
-      toast("Berhasil mempublikasikan ide 🎉");
-    },
+    submit: () => {},
   };
 
   return (

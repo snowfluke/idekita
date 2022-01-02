@@ -12,12 +12,14 @@ export default function Feed({ posts, idekiawan }) {
 
 const FeedItem = ({ post, idekiawan = false }) => {
   const readTime = minutesToRead(post.content);
-  const publishedDate = formatDate(post.dateCreated);
+  const publishedDate = formatDate(post.dateUpdated);
 
   return (
     <div className="border-2 border-gray-300 p-4 mb-7 bg-white rounded-md b-transition hover:border-fuchsia-500 hover:shadow-lg">
       <div>
-        <span className="text-opacity-feed">{publishedDate}</span>
+        <span className="text-opacity-feed">
+          {post.edited && "Diubah"} {publishedDate}
+        </span>
       </div>
       <div className="grid my-3 content-center">
         <LinkTo href={`/${post.username}/${post.slug}`}>
