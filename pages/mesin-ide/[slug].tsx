@@ -31,7 +31,11 @@ function IdeaManager() {
       {post && (
         <PublishIdea
           initialPost={post}
-          userData={{ username: post.username, uid: post.uid }}
+          userData={{
+            username: post.username,
+            uid: post.uid,
+            photoURL: post.photoURL,
+          }}
         />
       )}
     </>

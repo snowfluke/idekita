@@ -23,7 +23,8 @@ export default function PublishIdea({ initialPost, userData }) {
     cloud: 0,
     slug: "",
     content: "",
-    uid: "",
+    uid: userData.uid,
+    photoURL: userData.photoURL,
     report: 0,
     edited: false,
     tags: [],
@@ -42,6 +43,8 @@ export default function PublishIdea({ initialPost, userData }) {
   const check = (expression, arg) => validator[expression](arg);
   const publishIdea = async () => {
     try {
+      setPost({ ...post, tags: tags });
+
       if (!check("title", post.title)) return toast.error(msg["title"]);
       if (!check("background", post.background))
         return toast.error(msg["background"]);
@@ -49,7 +52,6 @@ export default function PublishIdea({ initialPost, userData }) {
       if (!check("content", post.content)) return toast.error(msg["content"]);
 
       const docRef = doc(db, `users/${userData.uid}/posts`, slug);
-
       if (initialPost) {
         await updateDoc(docRef, {
           title: post.title,
@@ -59,19 +61,35 @@ export default function PublishIdea({ initialPost, userData }) {
           dateUpdated: serverTimestamp(),
           edited: true,
         });
-
-        if (!initialPost) {
-          await setDoc(docRef, {
-            ...post,
-            tags: tags,
-            dateCreated: serverTimestamp(),
-            dateUpdated: serverTimestamp(),
-          });
-        }
-
-        toast.success("Berhasil mempublikasikan ide 🎉");
-        router.push(`/${userData.username}/${post.slug}`);
       }
+
+      if (!initialPost) {
+        await setDoc(docRef, {
+          ...post,
+          slug,
+          tags: tags,
+          dateCreated: serverTimestamp(),
+          dateUpdated: serverTimestamp(),
+        });
+      }
+
+      toast.success("Berhasil mempublikasikan ide 🎉");
+      router.push(`/${userData.username}/${post.slug}`);
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan, silakan coba kembali");
+    }
+  };
+
+  const deleteIdea = async () => {
+    try {
+      if (initialPost) {
+        const docRef = doc(db, `users/${userData.uid}/posts`, slug);
+        await deleteDoc(docRef);
+      }
+
+      router.push("/langit-ide");
+      toast.success("Berhasil membuang ide 😢");
     } catch (error) {
       console.log(error);
       toast.error("Terjadi kesalahan, silakan coba kembali");
@@ -202,7 +220,7 @@ export default function PublishIdea({ initialPost, userData }) {
               ...post,
               tags: tags,
             }}
-            userData={userData}
+            userDataPost={userData}
           />
         )
       }
@@ -211,6 +229,7 @@ export default function PublishIdea({ initialPost, userData }) {
           sidebar={{
             preview: () => setPreview(!preview),
             submit: () => publishIdea(),
+            delete: () => deleteIdea(),
           }}
         />
       }

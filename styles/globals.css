@@ -155,4 +155,8 @@
   .txt-area {
     @apply resize-none block w-full bg-clip-padding rounded b-transition focus:outline-none overflow-hidden;
   }
+
+  .btn-idea-right {
+    @apply flex-1 rounded-tr-full border-l-4 hover:translate-x-10 b-transition border-dashed border-fuchsia-500 rounded-br-full rounded-md content-center;
+  }
 }

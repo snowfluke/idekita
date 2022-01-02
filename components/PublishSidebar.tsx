@@ -18,7 +18,7 @@ export default function PublishSidebar(props) {
     {
       name: "#Buang",
       icon: "🗑️",
-      onclick: () => props.sidebar.delete,
+      onclick: props.sidebar.delete,
     },
   ];
 

@@ -1,25 +1,24 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import { IdeaLayout } from "@modules/layouter";
-import { toast, IdeaContentRight, IdeaContent } from "@modules/composer";
+import { IdeaContentRight, IdeaContent } from "@modules/composer";
 import { emoji } from "@modules/emojier";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
-  const userData = await getUserWithUsername(username);
+  const userDataPost = await getUserWithUsername(username);
 
   let post;
 
-  if (userData) {
-    const postRef = doc(db, `users/${userData.uid}/posts`, slug);
+  if (userDataPost) {
+    const postRef = doc(db, `users/${userDataPost.uid}/posts`, slug);
     const postData = await getDoc(postRef);
     post = docToJSON(postData);
   }
 
   return {
-    props: { post, userData },
+    props: { post, userDataPost },
     revalidate: 60 * 1000,
   };
 }
@@ -40,18 +39,13 @@ export async function getStaticPaths({ params }) {
   };
 }
 
-export default function IdeaProfile({ post, userData }) {
+export default function IdeaProfile({ post, userDataPost }) {
   const router = useRouter();
-  const [cloud, setCloud] = useState(parseInt(post.cloud));
 
   const ideaContentMenu = [
     {
-      name: "#Dukung",
-      icon: "✊",
-      onclick: () => {
-        setCloud(cloud + 1);
-        toast.success("Berhasil memberikan dukungan 💪");
-      },
+      special: true,
+      post: post,
     },
     {
       name: "#Bagikan",
@@ -64,7 +58,7 @@ export default function IdeaProfile({ post, userData }) {
       onclick: () =>
         router.push(
           encodeURI(
-            `https://mail.google.com/mail/?view=cm&fs=1&to=${userData.email}&su=iDekita - ${post.title}&body=Hai, ${userData.displayName} 👋! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
+            `https://mail.google.com/mail/?view=cm&fs=1&to=${userDataPost.email}&su=iDekita - ${post.title}&body=Hai, ${userDataPost.displayName} 👋! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
           )
         ),
     },
@@ -77,10 +71,10 @@ export default function IdeaProfile({ post, userData }) {
 
   const TopElement = () => {
     return (
-      <div className="prose flex-1 font-bold text-3xl p-5 content-center">
+      <div className="prose flex-1 font-bold text-3xl pl-5 pt-2 content-center">
         <button className="focus:animate-bounce duration-1000 b-transition select-none">
           <span className="pr-3">{emoji.awan}</span>
-          {cloud}
+          {post.cloud}
         </button>
       </div>
     );
@@ -88,7 +82,7 @@ export default function IdeaProfile({ post, userData }) {
 
   return (
     <IdeaLayout
-      MainComponent={<IdeaContent post={post} userData={userData} />}
+      MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
       SidebarComponent={
         <IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />
       }

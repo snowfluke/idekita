@@ -9,7 +9,7 @@ export default function IdeaMachineCollection() {
     <CheckLogin>
       {user && (
         <PublishIdea
-          userData={{ username, uid: user.uid }}
+          userData={{ username, uid: user.uid, photoURL: user.photoURL }}
           initialPost={false}
         />
       )}

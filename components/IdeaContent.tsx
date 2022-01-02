@@ -2,8 +2,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { LinkTo } from "@modules/composer";
 import { formatDate, minutesToRead } from "@modules/helper";
+import { useContext } from "react";
+import { UserContext } from "@modules/contexter";
 
-export default function IdeaContent({ post, userData }) {
+export default function IdeaContent({ post, userDataPost }) {
+  const { username } = useContext(UserContext);
   const publishedDate = formatDate(post.dateUpdated);
   const readTime = minutesToRead(post.content);
 
@@ -22,10 +25,22 @@ export default function IdeaContent({ post, userData }) {
         <h1 id="idea-header" className="scroll-mt-36">
           {post.title}
         </h1>
+        {username === post.username && (
+          <div className="flex content-center w-full justify-center p-2 cursor-pointer hover:bg-fuchsia-100 rounded-md mb-5 border-2 border-fuchsia-500">
+            <LinkTo
+              className="text-lg no-underline"
+              href={`/mesin-ide/${post.slug}`}
+            >
+              Ubah
+            </LinkTo>
+          </div>
+        )}
         <h5>
           📅 {post.edited && <>Diubah</>} {publishedDate} • 📝
-          <LinkTo href={`/${post.username}`}>{userData.displayName}</LinkTo> •
-          ⌛ {readTime} menit membaca
+          <LinkTo href={`/${post.username}`}>
+            {userDataPost.displayName}
+          </LinkTo>{" "}
+          • ⌛ {readTime} menit membaca
         </h5>
 
         <hr />
