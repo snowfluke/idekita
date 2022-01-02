@@ -57,7 +57,7 @@ export default function Sky({ postsFetched }) {
 
   return (
     <>
-      <div className="text-4xl md:text-7xl font-bold mb-7 md:mb-0">
+      <div className="big-heading">
         <h1>
           <span className="text-fuchsia-500">#Langit</span> ide
         </h1>
@@ -68,13 +68,10 @@ export default function Sky({ postsFetched }) {
 
         <div className="col-span-2">
           <div className="mb-4">
-            <a
-              href="#"
-              className="px-2 text-xl font-bold hover:text-fuchsia-500"
-            >
+            <a href="#" className="li-top-menu font-bold">
               Terbaru
             </a>
-            <a href="#" className="px-2 text-xl hover:text-fuchsia-500">
+            <a href="#" className="li-top-menu">
               Jelajah
             </a>
           </div>
