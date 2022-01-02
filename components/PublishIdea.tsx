@@ -51,8 +51,8 @@ export default function PublishIdea(props) {
     ));
 
   return (
-    <div className="bg-white rounded-md border border-gray-300 px-24 py-16">
-      <article className="prose prose-a:text-fuchsia-500 prose-headings:text-fuchsia-500 lg:prose-lg mx-auto prose-a:underline prose-a:decoration-fuchsia-500">
+    <div className="article-wrapper">
+      <article className="article-prose">
         <TextArea
           id="idea-header"
           value={props.heading.title}
