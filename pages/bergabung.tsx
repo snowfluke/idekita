@@ -2,7 +2,13 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";
 import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
-import { signIn, isValidUsername, isUsernameAvailable } from "@modules/helper";
+import {
+  signIn,
+  isValidUsername,
+  isUsernameAvailable,
+  signOut,
+} from "@modules/helper";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const [valueForm, setValueForm] = useState("");
@@ -52,7 +58,7 @@ export default function Register() {
       photoURL: user.photoURL,
       dateJoined: serverTimestamp(),
       email: user.email,
-      notifications: ["Selamat bergabung di iDekita!"],
+      notifications: [{ msg: "Selamat bergabung di iDekita!", read: false }],
       reports: 0,
       title: {
         special: "Nakama",
@@ -68,7 +74,61 @@ export default function Register() {
     checkUsername(valueForm);
   }, [valueForm]);
 
-  return !user ? (
+  return (
+    <>
+      {user ? (
+        username ? (
+          <ThankYou />
+        ) : (
+          <section className="w-full py-24">
+            <div className="container-section">
+              <div className="flex content-center items-center justify-center h-full">
+                <div className="w-section">
+                  <div className="box-section">
+                    <div className="wrap-section">
+                      <div className="mb-6">
+                        <h3 className="h3-style">Buat Username</h3>
+                      </div>
+                      <div>
+                        <form onSubmit={submitHandler}>
+                          <input
+                            name="username"
+                            className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center"
+                            placeholder="username"
+                            value={valueForm}
+                            onChange={changeHandler}
+                          />
+                          <UsernameMessage
+                            username={valueForm}
+                            isValid={isValid}
+                            loading={loading}
+                          />
+
+                          <button
+                            type="submit"
+                            className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white"
+                            disabled={!isValid}
+                          >
+                            Gunakan
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      ) : (
+        <CreateUser />
+      )}
+    </>
+  );
+}
+
+function CreateUser() {
+  return (
     <section className="w-full py-14">
       <div className="container-section">
         <div className="flex content-center items-center justify-center h-full">
@@ -76,13 +136,19 @@ export default function Register() {
             <div className="box-section">
               <div className="wrap-section">
                 <div className="mb-3">
-                  <h3 className="px-0 md:px-3">Dengan mendaftar berarti Anda menyetujui segala peraturan dan kebijakan yang terdapat di situs iDekita.</h3>
+                  <h3 className="px-0 md:px-3">
+                    Dengan mendaftar berarti Anda menyetujui segala peraturan
+                    dan kebijakan yang terdapat di situs iDekita.
+                  </h3>
                 </div>
                 <hr className="my-6" />
                 <div className="grid">
                   <h3>Mendaftar menggunakan</h3>
                   <div className="justify-self-center mt-4">
-                    <button className="btn-white flex hover:shadow-md hover:bg-gray-50" onClick={signIn}>
+                    <button
+                      className="btn-white flex hover:shadow-md hover:bg-gray-50"
+                      onClick={signIn}
+                    >
                       <img src="google-logo.png" className="w-6 h-6 mr-2" />
                       Google
                     </button>
@@ -94,34 +160,22 @@ export default function Register() {
         </div>
       </div>
     </section>
-  ) : (
-    !username && (
-      <section className="w-full py-24">
-        <div className="container-section">
-          <div className="flex content-center items-center justify-center h-full">
-            <div className="w-section">
-              <div className="box-section">
-                <div className="wrap-section">
-                  <div className="mb-6">
-                    <h3 className="h3-style">Buat Username</h3>
-                  </div>
-                  <div>
-                    <form onSubmit={submitHandler}>
-                      <input name="username" className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center" placeholder="username" value={valueForm} onChange={changeHandler} />
-                      <UsernameMessage username={valueForm} isValid={isValid} loading={loading} />
+  );
+}
 
-                      <button type="submit" className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white" disabled={!isValid}>
-                        Gunakan
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+function ThankYou() {
+  const router = useRouter();
+  return (
+    <section className="w-full py-14">
+      <div className="container-section">
+        <h1>Terima kasih telah bergabung menjadi bagian dari Idekita 😎</h1>
+        <div className="flex">
+          <h3 onClick={() => router.push("/langit-ide")}>Eksplorasi</h3>
+          <h3 onClick={() => router.back()}>Kembali</h3>
+          <h3 onClick={() => signOut(router)}>Keluar</h3>
         </div>
-      </section>
-    )
+      </div>
+    </section>
   );
 }
 

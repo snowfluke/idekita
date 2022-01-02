@@ -7,14 +7,12 @@ export default function PublishSidebar(props) {
     {
       name: "#Publikasi",
       icon: "🚀",
-      onclick: () => {
-        toast.success("Pesan berhasil di publikasi! 🎉");
-      },
+      onclick: props.sidebar.submit,
     },
     {
       name: "#Pratinjau",
       icon: "👀",
-      onclick: props.preview.onclick,
+      onclick: props.sidebar.preview,
     },
     { name: "#Bantuan", icon: "🙋‍♂️", onclick: () => {} },
     {

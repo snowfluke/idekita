@@ -1,10 +1,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { IdeaContent } from "@modules/composer";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import { IdeaLayout } from "@modules/layouter";
-import { toast, IdeaContentRight } from "@modules/composer";
+import { toast, IdeaContentRight, IdeaContent } from "@modules/composer";
 import { emoji } from "@modules/emojier";
 
 export async function getStaticProps({ params }) {
@@ -87,5 +86,12 @@ export default function IdeaProfile({ post, userData }) {
     );
   };
 
-  return <IdeaLayout MainComponent={<IdeaContent post={post} userData={userData} />} SidebarComponent={<IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />} />;
+  return (
+    <IdeaLayout
+      MainComponent={<IdeaContent post={post} userData={userData} />}
+      SidebarComponent={
+        <IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />
+      }
+    />
+  );
 }

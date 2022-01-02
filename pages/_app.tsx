@@ -3,9 +3,11 @@ import { UserContext } from "@modules/contexter";
 import { useUserData } from "@modules/hooker";
 import { Navbar, Footer, Toaster } from "@modules/composer";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const UserData = useUserData();
+  const router = useRouter();
 
   return (
     <UserContext.Provider value={UserData}>

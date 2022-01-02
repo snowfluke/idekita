@@ -16,15 +16,16 @@ import { toast } from "@modules/composer";
 const signIn = async () => {
   try {
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    const log = await signInWithPopup(auth, provider);
   } catch (error) {
     console.log(error);
     toast.error("Terjadi kesalahan, coba lagi");
   }
 };
 
-const signOut = () => {
+const signOut = (router) => {
   auth.signOut();
+  router.reload();
 };
 
 const getUserWithUsername = async (username) => {
