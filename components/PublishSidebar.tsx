@@ -1,4 +1,4 @@
-import { toast, IdeaContentRight } from "@modules/composer";
+import { IdeaContentRight } from "@modules/composer";
 import { useRouter } from "next/router";
 
 export default function PublishSidebar(props) {
@@ -17,11 +17,8 @@ export default function PublishSidebar(props) {
     { name: "#Bantuan", icon: "🙋‍♂️", onclick: () => {} },
     {
       name: "#Buang",
-      icon: "😢",
-      onclick: () => {
-        toast.error("Ide telah dibuang 😥");
-        router.back();
-      },
+      icon: "🗑️",
+      onclick: () => props.sidebar.delete,
     },
   ];
 

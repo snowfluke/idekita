@@ -78,18 +78,11 @@ const ProfileMenu = ({ username }) => {
       {/* <!-- dropdown item --> */}
       <div role="none">
         <LinkTo href="/langit-ide" className="li-item-profile-menu">
-          🌈 Eksplorasi
+          🌎 Eksplorasi
         </LinkTo>
-        <a href="#" className="li-item-profile-menu" role="menuitem">
+        <LinkTo href={`/${username}`} className="li-item-profile-menu">
           🙎🏻‍♂️ <span className="pl-[3px]">Profil</span>
-        </a>
-        <a
-          href="https://myaccount.google.com/"
-          className="li-item-profile-menu"
-          role="menuitem"
-        >
-          ⚙️ Pengaturan Akun
-        </a>
+        </LinkTo>
         <a
           onClick={() => signOut(router)}
           className="li-item-profile-menu font-semibold"
