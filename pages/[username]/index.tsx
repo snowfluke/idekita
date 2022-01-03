@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
-import { Meta } from "@modules/composer"
+import { Meta } from "@modules/composer";
 
 const LIMIT = 10;
 const q = query;
@@ -81,7 +81,7 @@ export default function Profile({ user, post }) {
 
   return (
     <>
-    <Meta
+      <Meta
         title="iDekiawan 👨🏻‍🏫 Pasukan iDekita"
         description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
       />
@@ -124,7 +124,7 @@ export default function Profile({ user, post }) {
                 className="block px-4 py-2 text-sm hover:bg-fuchsia-500 hover:text-white b-transition rounded-md"
                 role="menuitem"
               >
-                Report
+                Laporkan
               </a>
             </div>
           </div>
@@ -150,8 +150,9 @@ export default function Profile({ user, post }) {
             {user.displayName}
           </p>
           <p className="text-xl font-semibold">
-            Kawaii young developer looking for inner peace, hell yea. Ultimate
-            cringe human being ever exist. Stop simping 👋
+            Kamu telah terdafter resmi sebagai Idekiawan! Selamat datang di
+            iDekita - Jembatani ide dan realisasi. Klik disini untuk mengubah
+            bio mu 👋
           </p>
           <p className="text-xl text-fuchsia-500 font-semibold">{user.email}</p>
         </div>
