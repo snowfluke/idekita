@@ -1,3 +1,27 @@
+# 💡 iDekita 🌉 Jembatani Ide Dengan Realisasi
+
+## Tentang 💡 iDekita
+
+iDekita merupakan sebuah aplikasi berbasis web yang dikembangkan sebagai wadah untuk menampung dan mencari ide-ide kreatif seperti ide proyek, ide penelitian, ide penyelesaian permasalahan dan ide-ide kreatif lainnya. Aplikasi iDekita harapannya dapat menampung para pemikir hebat, imajinatif dan kreatif yang memiliki ide namun tidak mampu merealisasikannya dengan alasan tertentu.
+
+Selain itu, di sisi lain para pencari ide-ide kreatif maupun penanam modal dapat memanfaatkan iDekita untuk mencari ide, memfasilitasi realisasi ide tersebut dan mengajak kerja sama dengan pencetus. iDekita dapat pula dimanfaatkan sebagai portofolio gagasan kreatif untuk generasi yang akan datang yang mungkin dapat mewujudkannya.
+
+## Fitur 💡 iDekita
+
+- Menjadi iDekiawan
+- Mempublikasikan Ide
+- Memberikan Dukungan Ide
+- Penghargaan Ide
+- Pencarian Ide
+- Portofolio Ide
+- Laporkan Ide 
+
+## Berpartisipasi Menjadi 👨🏻‍💻 Pengembang
+
+Saat ini iDekita belum mengembangkan REST API. Jika kalian ingin berpartisipasi ikuti langkah berikut.
+
+## Menyiapkan 🧰 Pengembangan
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
