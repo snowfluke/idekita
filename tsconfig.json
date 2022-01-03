@@ -20,7 +20,8 @@
       "@modules/*": ["modules/*"],
       "@styles/*": ["styles/*"],
       "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@markdowns/*": ["markdowns/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

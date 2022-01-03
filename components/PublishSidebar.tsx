@@ -1,8 +1,10 @@
 import { IdeaContentRight } from "@modules/composer";
-import { useRouter } from "next/router";
+import { UserContext } from "@modules/contexter";
+import { useContext } from "react";
+import { markdownhelps } from "@modules/markdowner";
 
 export default function PublishSidebar(props) {
-  const router = useRouter();
+  const { modal } = useContext(UserContext);
   const menu = [
     {
       name: "#Publikasi",
@@ -14,7 +16,16 @@ export default function PublishSidebar(props) {
       icon: "👀",
       onclick: props.sidebar.preview,
     },
-    { name: "#Bantuan", icon: "🙋‍♂️", onclick: () => {} },
+    {
+      name: "#Bantuan",
+      icon: "🙋‍♂️",
+      onclick: () => {
+        modal.openModal({
+          title: "Bantuan Penggunaan Markdown",
+          content: markdownhelps,
+        });
+      },
+    },
     {
       name: "#Buang",
       icon: "🗑️",

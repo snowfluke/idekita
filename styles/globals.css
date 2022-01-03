@@ -129,7 +129,7 @@
 
   /* NavMiddle class component NavMiddle.tsx */
   .li-item-navmid {
-    @apply md:mx-3 border-fuchsia-500 b-transition mb-1 md:mb-0 hover:border-b hover:text-fuchsia-500;
+    @apply md:mx-3 border-fuchsia-500 b-transition mb-1 md:mb-0 hover:border-b hover:text-fuchsia-500 cursor-pointer;
   }
 
   /* IdeaContent & IdeaPublish class component .tsx*/

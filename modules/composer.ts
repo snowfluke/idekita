@@ -16,6 +16,7 @@ export { default as PublishSidebar } from "@components/PublishSidebar";
 export { default as CheckLogin } from "@components/CheckLogin";
 export { default as Meta } from "@components/Meta";
 export { default as Cloud } from "@components/Cloud";
+export { default as Modal } from "@components/Modal";
 
 // Library
 export { default as toast, Toaster } from "react-hot-toast";
