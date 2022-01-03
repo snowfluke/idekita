@@ -37,10 +37,8 @@ export default function IdeaContent({ post, userDataPost }) {
         )}
         <h5>
           📅 {post.edited && <>Diubah</>} {publishedDate} • 📝
-          <LinkTo href={`/${post.username}`}>
-            {userDataPost.displayName}
-          </LinkTo>{" "}
-          • ⌛ {readTime} menit membaca
+          <LinkTo href={`/${post.username}`}>{userDataPost.username}</LinkTo> •
+          ⌛ {readTime} menit membaca
         </h5>
 
         <hr />

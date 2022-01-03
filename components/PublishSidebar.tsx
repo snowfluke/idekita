@@ -22,5 +22,5 @@ export default function PublishSidebar(props) {
     },
   ];
 
-  return <IdeaContentRight TopElement={false} menu={menu} />;
+  return <IdeaContentRight Top={false} menu={menu} />;
 }
