@@ -46,7 +46,9 @@ const FeedItem = ({ post, idekiawan = false }) => {
           </div>
         </div>
 
-        <LinkTo href={`/mesin-ide/${post.slug}`}>
+        <LinkTo
+          href={idekiawan ? `/mesin-ide/${post.slug}` : `/${post.username}`}
+        >
           <div className="flex items-center bg-gray-100 rounded-full pl-5 hover:bg-gray-200 transition-colors">
             <span className="text-fuchsia-500 font-semibold mr-2 md:mr-4 text-xs md:text-base">
               {idekiawan ? "Ubah ide" : post.username}

@@ -1,19 +1,19 @@
 import { useDocument } from "react-firebase-hooks/firestore";
 import { toast } from "@modules/composer";
 import { db, doc, writeBatch, increment } from "@modules/firebaser";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "@modules/contexter";
 
 export default function Cloud({ post, update }) {
   const { user } = useContext(UserContext);
 
-  const cloudRef = doc(
-    db,
-    `users/${post.uid}/posts/${post.slug}/clouds`,
-    user.uid
-  );
-  const postRef = doc(db, `users/${post.uid}/posts`, post.slug);
+  const cloudRef = user
+    ? doc(db, `users/${post.uid}/posts/${post.slug}/clouds`, user.uid)
+    : null;
+
+  const postRef = user ? doc(db, `users/${post.uid}/posts`, post.slug) : null;
   const [cloudDoc] = useDocument(cloudRef);
+
   const addCloud = async () => {
     try {
       const uid = user.uid;

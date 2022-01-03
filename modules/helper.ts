@@ -18,14 +18,12 @@ const signIn = async () => {
     const provider = new GoogleAuthProvider();
     const log = await signInWithPopup(auth, provider);
   } catch (error) {
-    console.log(error);
-    toast.error("Terjadi kesalahan, coba lagi");
+    toast.error("Autentikasi dibatalkan");
   }
 };
 
 const signOut = (router) => {
   auth.signOut();
-  router.reload();
 };
 
 const getUserWithUsername = async (username) => {
