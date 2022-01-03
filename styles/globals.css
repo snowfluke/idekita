@@ -78,7 +78,7 @@
   }
 
   .btn-section {
-    @apply text-lg text-white bg-fuchsia-500 hover:bg-fuchsia-600 rounded-md py-2 px-5 b-transition cursor-pointer
+    @apply text-lg text-white bg-fuchsia-500 hover:bg-fuchsia-600 rounded-md py-2 px-5 b-transition cursor-pointer;
   }
 
   /* leftsidebar class component LeftSidebar.tsx */
@@ -162,5 +162,13 @@
 
   .btn-idea-right {
     @apply flex-1 rounded-tr-full border-l-4 hover:translate-x-10 b-transition border-dashed border-fuchsia-500 rounded-br-full rounded-md content-center;
+  }
+
+  .btn-idea-right-after {
+    @apply flex flex-grow text-lg font-bold select-none;
+  }
+
+  .btn-idea-icon {
+    @apply flex-none w-8 text-center bg-gray-100 text-lg rounded-full p-[2px] prose justify-self-end select-none;
   }
 }

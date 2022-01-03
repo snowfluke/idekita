@@ -2,8 +2,15 @@ import { useRouter } from "next/router";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import { IdeaLayout } from "@modules/layouter";
-import { IdeaContentRight, IdeaContent } from "@modules/composer";
+import {
+  IdeaContentRight,
+  IdeaContent,
+  CheckLogin,
+  LinkTo,
+  Cloud,
+} from "@modules/composer";
 import { emoji } from "@modules/emojier";
+import { useState } from "react";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -41,12 +48,8 @@ export async function getStaticPaths({ params }) {
 
 export default function IdeaProfile({ post, userDataPost }) {
   const router = useRouter();
-
+  const [cloudCount, setCloudCount] = useState(post.cloud);
   const ideaContentMenu = [
-    {
-      special: true,
-      post: post,
-    },
     {
       name: "#Bagikan",
       icon: "🖐",
@@ -69,23 +72,41 @@ export default function IdeaProfile({ post, userDataPost }) {
     },
   ];
 
-  const TopElement = () => {
+  const updateCloudState = () => setCloudCount(cloudCount + 1);
+
+  const CloudStat = () => {
     return (
       <div className="prose flex-1 font-bold text-3xl pl-5 pt-2 content-center">
         <button className="focus:animate-bounce duration-1000 b-transition select-none">
           <span className="pr-3">{emoji.awan}</span>
-          {post.cloud}
+          {cloudCount}
         </button>
       </div>
     );
   };
 
   return (
-  
     <IdeaLayout
       MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
       SidebarComponent={
-        <IdeaContentRight menu={ideaContentMenu} TopElement={TopElement} />
+        <IdeaContentRight
+          menu={ideaContentMenu}
+          Top={
+            <>
+              <CloudStat />
+
+              <CheckLogin
+                fallback={
+                  <LinkTo href={"/bergabung"}>
+                    Bergabung dan beri dukungan
+                  </LinkTo>
+                }
+              >
+                <Cloud post={post} update={() => updateCloudState()} />
+              </CheckLogin>
+            </>
+          }
+        />
       }
     />
   );

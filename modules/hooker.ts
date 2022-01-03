@@ -20,10 +20,10 @@ export function useUserData() {
         setUsername(doc.data()?.username);
         setUserData(docToJSON(doc));
       });
-      return unsub;
+    } else {
+      setUsername(null);
     }
 
-    setUsername(null);
     return unsub;
   }, [user]);
 
