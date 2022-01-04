@@ -1,10 +1,16 @@
+/** Custom component to wrap right sidebar in mesin-ide and individual idea post, separate cloud count and the button */
+
 export default function IdeaContentRight({ menu, Top }) {
   const TopElement = () => Top;
   const ideaMenu = () =>
     menu.map((menu, id) => {
       return (
         <div key={menu.name + id} className={"btn-idea-right bg-white"}>
-          <button onClick={menu.onclick} disabled={menu.disabled} className="btn-idea-content !cursor-pointer ">
+          <button
+            onClick={menu.onclick}
+            disabled={menu.disabled}
+            className="btn-idea-content !cursor-pointer "
+          >
             <div className="span-idea-content">{menu.name}</div>
             <div className="btn-idea-icon">{menu.icon}</div>
           </button>

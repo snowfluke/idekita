@@ -1,3 +1,5 @@
+/** Components to wrap a components that need to login first */
+
 import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 import NotFound404 from "@pages/404";

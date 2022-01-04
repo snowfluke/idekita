@@ -1,3 +1,6 @@
+/** Layout for the idea page (used twice) */
+/** 4:1 Layout with sidebar on the right */
+
 import { useState } from "react";
 
 export default function IdeaLayout(props) {
@@ -9,7 +12,14 @@ export default function IdeaLayout(props) {
         {props.MainComponent}
       </div>
 
-      <div id="ideaRightButtons" className={sidebar ? "flex-1 h-[100%] md:block md:static hidden" : "flex-1 h-[100%] fixed left-0"}>
+      <div
+        id="ideaRightButtons"
+        className={
+          sidebar
+            ? "flex-1 h-[100%] md:block md:static hidden"
+            : "flex-1 h-[100%] fixed left-0"
+        }
+      >
         {props.SidebarComponent}
       </div>
 

@@ -1,3 +1,6 @@
+/** Pretty much the same as ProfileRecent.tsx component, the main different is that this component is default rendered at the first time */
+/** Also the paginated query different */
+
 import { Feed, Spinner } from "@modules/composer";
 import { useState } from "react";
 import { docToJSON } from "@modules/helper";

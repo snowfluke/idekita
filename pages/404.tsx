@@ -1,6 +1,11 @@
+/** Fallback route, if the destined route doesn't exist in the first place */
+
 import { useRouter } from "next/router";
 
-export default function NotFound404({ msg = "Sepertinya halaman yang kamu tuju tidak tersedia", emoji = "🤷‍♂️" }) {
+export default function NotFound404({
+  msg = "Sepertinya halaman yang kamu tuju tidak tersedia",
+  emoji = "🤷‍♂️",
+}) {
   const router = useRouter();
   return (
     <div className="prose text-center mx-auto lg:my-20 my-10 pb-10">

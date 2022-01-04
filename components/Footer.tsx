@@ -1,3 +1,5 @@
+/** A loyal footer components displayed on all the pages just like the navbar */
+
 export default function Footer() {
   return (
     <>

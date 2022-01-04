@@ -1,3 +1,5 @@
+/** Custom modals components, reacting to data through the Context API */
+
 import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 import ReactMarkdown from "react-markdown";

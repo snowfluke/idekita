@@ -1,3 +1,7 @@
+/** Left sidebar components in the main page (/langit-idea route) */
+
+/** Displaying 3 kinds of categories, popular posts, tech posts and farm posts */
+
 import { useEffect, useState } from "react";
 import { docToJSON } from "@modules/helper";
 import { toast } from "@modules/composer";

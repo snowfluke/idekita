@@ -1,3 +1,5 @@
+/** This files is used to store all the used terminologies on the site */
+
 const terminologies = `
 Nama iDekita berasal dari penggabungan kata Ide dan Kita yang berarti Ide
 yang bersumber dari kita (pengguna). Selain itu terdapat permainan kata yaitu

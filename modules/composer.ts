@@ -1,4 +1,6 @@
-// Custom Components
+/** This files is used to store all the reusable and composable that is used components in the overall code */
+
+/** Import and export all the custom components */
 export { default as Feed } from "@components/Feed";
 export { default as Footer } from "@components/Footer";
 export { default as LeftSidebar } from "@components/LeftSidebar";
@@ -23,6 +25,6 @@ export { default as ProfileBadge } from "@components/ProfileBadge";
 export { default as ProfileRecent } from "@components/ProfileRecent";
 export { default as ProfilePopular } from "@components/ProfilePopular";
 
-// Library
+/** Import and export all the components from 3rd parties library */
 export { default as toast, Toaster } from "react-hot-toast";
 export { default as TextArea } from "react-textarea-autosize";

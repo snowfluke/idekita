@@ -1,3 +1,5 @@
+/** The home route providing home components, right and left sidebar and the nav search */
+
 import { useContext, useState } from "react";
 import { UserContext } from "@modules/contexter";
 import {

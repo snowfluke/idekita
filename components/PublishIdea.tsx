@@ -1,3 +1,5 @@
+/** PublishIdea Components used in /mesin-ide route */
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IdeaLayout } from "@modules/layouter";
@@ -15,6 +17,11 @@ import TextArea from "react-textarea-autosize";
 import kebabCase from "lodash.kebabcase";
 import { isValidTag } from "@modules/helper";
 
+/**
+ * Reusable for toggling between edit post and preview post mode
+ * @param param0 initial post and user data
+ * @returns Publish idea components
+ */
 export default function PublishIdea({ initialPost, userData }) {
   const data = {
     background: "",
@@ -38,7 +45,17 @@ export default function PublishIdea({ initialPost, userData }) {
   const router = useRouter();
   const slug = initialPost ? post.slug : encodeURI(kebabCase(post.title));
 
+  /**
+   * Check the input value
+   * @param expression expression of the post( content, background ...)
+   * @param arg the value of the expression
+   * @returns true or false
+   */
   const check = (expression, arg) => validator[expression](arg);
+
+  /**
+   * Publish Idea functions
+   */
   const publishIdea = async () => {
     try {
       setPost({ ...post, tags: tags });
@@ -79,9 +96,15 @@ export default function PublishIdea({ initialPost, userData }) {
     }
   };
 
+  /**
+   * Delete idea functions
+   */
   const deleteIdea = async () => {
     try {
       if (initialPost) {
+        let confirmation = confirm("Apakah anda yakin?");
+        if (!confirmation) return;
+
         const docRef = doc(db, `users/${userData.uid}/posts`, slug);
         await deleteDoc(docRef);
       }
@@ -94,6 +117,10 @@ export default function PublishIdea({ initialPost, userData }) {
     }
   };
 
+  /**
+   * Render tags typed by user
+   * @returns tag components
+   */
   const renderTag = () =>
     tags.map((tag, id) => (
       <a key={tag + id} className="mr-2">
@@ -101,11 +128,18 @@ export default function PublishIdea({ initialPost, userData }) {
       </a>
     ));
 
+  /**
+   * Reset the tag input after rendered
+   * @param ev event
+   */
   const resetTag = (ev) => {
     ev.preventDefault();
     setTagsInput("");
   };
 
+  /**
+   * List of all individuals props corresponding to the event name
+   */
   const tagsProps = {
     onchange: (ev) => setTagsInput(ev.target.value),
     onkeydown: (ev) => {
@@ -130,6 +164,7 @@ export default function PublishIdea({ initialPost, userData }) {
     },
   };
 
+  /** Check the initial post, in case editing an idea */
   useEffect(() => {
     if (initialPost) {
       setTags(initialPost.tags);

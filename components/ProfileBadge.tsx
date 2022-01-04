@@ -1,3 +1,5 @@
+/** Components to render the avalable title from the user, takes the user object as the props */
+
 import { Popover, Transition } from "@headlessui/react";
 import { badges } from "@modules/markdowner";
 import { Fragment } from "react";

@@ -1,3 +1,6 @@
+/** Route for authenticated user to edit the idea they've already created */
+/** slug is the query in the URL that comes after /mesin-ide/ */
+
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { CheckLogin } from "@modules/composer";

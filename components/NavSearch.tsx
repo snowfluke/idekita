@@ -1,3 +1,5 @@
+/** Search component on the middle of the navigation bar, currently not yet implemented */
+
 import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 

@@ -1,3 +1,5 @@
+/** Route for registering a user using google account and also to create a custom usernames */
+
 import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";

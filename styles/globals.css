@@ -1,3 +1,5 @@
+/* Global Tailwind CSS */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -148,7 +150,7 @@
   .article-wrapper {
     @apply bg-white rounded-md border border-gray-300 px-8 py-10 lg:px-24 lg:py-16 mb-10 shadow;
   }
-  
+
   .btn-idea-right {
     @apply flex-1 rounded-tr-full border-l-4 hover:translate-x-10 b-transition border-dashed border-fuchsia-500 rounded-br-full rounded-md content-center;
   }
@@ -162,11 +164,11 @@
   }
 
   .btn-idea-content {
-    @apply p-5 flex active:bg-fuchsia-500 active:outline-none w-full rounded-br-full rounded-tr-full border-2 md:border-none border-fuchsia-500
+    @apply p-5 flex active:bg-fuchsia-500 active:outline-none w-full rounded-br-full rounded-tr-full border-2 md:border-none border-fuchsia-500;
   }
-  
+
   .span-idea-content {
-    @apply btn-idea-right-after text-fuchsia-500 active:text-white text-left
+    @apply btn-idea-right-after text-fuchsia-500 active:text-white text-left;
   }
 
   /* RightSidebar class component .tsx */

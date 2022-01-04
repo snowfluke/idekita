@@ -1,3 +1,5 @@
+/** Recent Post Components used in /[username] route */
+
 import { Feed, Spinner } from "@modules/composer";
 import { useEffect, useState } from "react";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
@@ -13,6 +15,11 @@ import {
   query as q,
 } from "@modules/firebaser";
 
+/**
+ * Server side rendering for recent post
+ * @param param0 query from URL
+ * @returns props user and post
+ */
 export async function getServerSideProps({ query }) {
   const { username } = query;
   const user = await getUserWithUsername(username);
@@ -34,11 +41,19 @@ export async function getServerSideProps({ query }) {
   return { props: { user, post } };
 }
 
+/**
+ * Used vice-versa with ProfilePopular components
+ * @param props property of the ProfileRecent Components
+ * @returns the component itself
+ */
 export default function ProfileRecent(props) {
   const [posts, setPosts] = useState([]);
   const [postsEnd, setPostsEnd] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Get more of the post using paginated query
+   */
   const getMorePosts = async () => {
     setLoading(true);
     const lastPost = posts[posts.length - 1];
@@ -58,6 +73,7 @@ export default function ProfileRecent(props) {
     setLoading(false);
   };
 
+  /** Grab the post, first time loads */
   useEffect(() => {
     try {
       const fetchData = async () => {

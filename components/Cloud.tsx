@@ -1,3 +1,5 @@
+/** The cloud components, used in /[username]/[slug] route displayed the amount of cloud as well as the button to increment it */
+
 import { useDocument } from "react-firebase-hooks/firestore";
 import { toast } from "@modules/composer";
 import { db, doc, writeBatch, increment } from "@modules/firebaser";

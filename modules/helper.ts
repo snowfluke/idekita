@@ -1,3 +1,6 @@
+/** This files is used to store all the custom helper functions available */
+
+/** Import all the necessary modules */
 import {
   GoogleAuthProvider,
   signInWithRedirect,
@@ -13,6 +16,9 @@ import {
 } from "@modules/firebaser";
 import { toast } from "@modules/composer";
 
+/**
+ * Function to Sign In using Google account with Redirect method
+ */
 const signIn = async () => {
   try {
     const provider = new GoogleAuthProvider();
@@ -22,10 +28,18 @@ const signIn = async () => {
   }
 };
 
+/**
+ * Function to Sign Out from currently active user account
+ */
 const signOut = () => {
   auth.signOut();
 };
 
+/**
+ * Function to get user details using the given username and the results already serialized
+ * @param username username from the account that the user details wants to get retrieved
+ * @returns Object of the user details, null if not found
+ */
 const getUserWithUsername = async (username) => {
   try {
     const queryUsers = query(
@@ -62,16 +76,31 @@ const docToJSON = (doc) => {
       };
 };
 
-const isValidUsername = (username: string) => {
+/**
+ * Check username using regex validation, alphabet and between 3-15 characters long
+ * @param username username to check
+ * @returns boolean of the test result
+ */
+const isValidUsername = (username) => {
   const regex = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
   return regex.test(username);
 };
 
+/**
+ * Check tag (3-12 characters) same as isValidUsername function
+ * @param tag individual tag, string
+ * @returns boolean result
+ */
 const isValidTag = (tag) => {
   const regex = /^(?=[a-zA-Z._]{3,12}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
   return regex.test(tag);
 };
 
+/**
+ * Function to check the username when debouncing
+ * @param username username to check the availability, string
+ * @returns true if available
+ */
 const isUsernameAvailable = async (username: string) => {
   try {
     const ref = doc(db, "usernames", username);
@@ -89,17 +118,23 @@ const isUsernameAvailable = async (username: string) => {
  * @param content The text content
  * @returns minutes
  */
-const minutesToRead = (content: string) => {
+const minutesToRead = (content) => {
   const wordCount = content.trim().split(/\s+/g).length;
   const minutes = (wordCount / 100 + 1).toFixed(0);
   return minutes;
 };
 
-const formatDate = (milis: number) =>
+/**
+ * Convert miliseconds to Indonesian date time format
+ * @param milis miliseconds of the date
+ * @returns string formatted date
+ */
+const formatDate = (milis) =>
   new Intl.DateTimeFormat("id", {
     dateStyle: "long",
   }).format(milis);
 
+/** Export all the necessary modules */
 export {
   signIn,
   signOut,

@@ -1,3 +1,5 @@
+/** Root, landing page route */
+
 import { LinkTo } from "@modules/composer";
 import { Meta } from "@modules/composer";
 

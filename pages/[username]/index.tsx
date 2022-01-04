@@ -1,3 +1,5 @@
+/** Route for user profile */
+
 import { useState, useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import dynamic from "next/dynamic";
@@ -14,11 +16,11 @@ import {
   orderBy,
   where,
   limit,
-  startAfter,
   collectionGroup,
   db,
   query as q,
 } from "@modules/firebaser";
+
 const ProfileRecent = dynamic(() => import("@components/ProfileRecent"));
 
 export async function getServerSideProps({ query }) {

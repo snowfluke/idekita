@@ -1,3 +1,5 @@
+/** This files is used to store all the supporters logo and information on the site */
+
 const supporters = `
 
 ## Wirabisnis.com

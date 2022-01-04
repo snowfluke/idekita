@@ -1,3 +1,5 @@
+/** Components to show the profile info including, name, bio, profile pictures, email and date creation */
+
 import Image from "next/image";
 import { formatDate } from "@modules/helper";
 import { useContext } from "react";

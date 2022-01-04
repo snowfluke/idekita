@@ -1,3 +1,5 @@
+/** This files is used to store all the available badges and the tiering sequences */
+
 const badges = {
   snowfluke: {
     name: "snowfluke",
