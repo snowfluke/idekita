@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IdeaLayout } from "@modules/layouter";
 import { PublishSidebar, IdeaContent, toast } from "@modules/composer";
 import { validator, msg } from "@modules/validator";
-import { UserContext } from "@modules/contexter";
 import {
-  auth,
   doc,
   db,
   deleteDoc,

@@ -62,7 +62,7 @@ export default function Profile({ user, post }) {
       </div>
 
       <ProfileOption username={user.username} />
-      <ProfileInfo user={user} photoURL={photoURL} />
+      <ProfileInfo user={user} photoURL={photoURL} idekiawan={idekiawan} />
       <ProfileBadge user={user} />
 
       {post && (

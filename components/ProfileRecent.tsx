@@ -1,7 +1,7 @@
 import { Feed, Spinner } from "@modules/composer";
 import { useEffect, useState } from "react";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
-
+import { toast } from "@modules/composer";
 import {
   getDocs,
   orderBy,
@@ -59,20 +59,25 @@ export default function ProfileRecent(props) {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const postsQuery = q(
-        collectionGroup(db, "posts"),
-        where("username", "==", props.username),
-        orderBy("dateUpdated", "desc"),
-        limit(10)
-      );
+    try {
+      const fetchData = async () => {
+        const postsQuery = q(
+          collectionGroup(db, "posts"),
+          where("username", "==", props.username),
+          orderBy("dateUpdated", "desc"),
+          limit(10)
+        );
 
-      let post = (await getDocs(postsQuery)).docs.map(docToJSON);
-      setPosts(post);
-    };
+        let post = (await getDocs(postsQuery)).docs.map(docToJSON);
+        setPosts(post);
+      };
 
-    fetchData();
-  });
+      fetchData();
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan, mohon coba beberapa saat lagi");
+    }
+  }, []);
 
   return (
     <>
