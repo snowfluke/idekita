@@ -121,7 +121,7 @@ export default function Profile({ user, post }) {
       <div className="flex space-x-2 print:hidden justify-between md:justify-end mb-7 mt-5 md:mb-0">
         <button
           onClick={router.back}
-          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6"
+          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6 font-bold px-4 sm:px-8"
         >
           {"<"}
         </button>
@@ -133,19 +133,19 @@ export default function Profile({ user, post }) {
               )
             )
           }
-          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6"
+          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6 px-6 sm:px-8"
         >
           #Laporkan
         </button>
         <button
           onClick={() => window.print()}
-          className="btn-fuchsia hover:scale-105 inline-block hover:-rotate-6"
+          className="btn-fuchsia hover:scale-105 inline-block hover:-rotate-6 px-6 sm:px-8"
         >
           #Cetak
         </button>
       </div>
 
-      <div className="grid xl:grid-cols-4 xl:gap-10 md:grid-cols-2 md:gap-5 grid-cols-1">
+      <div className="grid xl:grid-cols-4 xl:gap-10 md:grid-cols-2 md:gap-5 grid-cols-1 mt-10">
         <div className="flex justify-center md:col-span-2 xl:col-span-1">
           <Image
             src={photoURL}
