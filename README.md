@@ -1,5 +1,7 @@
 # 💡 iDekita 🌉 Jembatani Ide Dengan Realisasi
 
+![Situs iDekita](https://raw.githubusercontent.com/snowfluke/idekita/main/public/landing-idekita.png)
+
 ## Tentang 💡 iDekita
 
 iDekita merupakan sebuah aplikasi berbasis web yang dikembangkan sebagai wadah untuk menampung dan mencari ide-ide kreatif seperti ide proyek, ide penelitian, ide penyelesaian permasalahan dan ide-ide kreatif lainnya. Aplikasi iDekita harapannya dapat menampung para pemikir hebat, imajinatif dan kreatif yang memiliki ide namun tidak mampu merealisasikannya dengan alasan tertentu.
@@ -16,6 +18,11 @@ Selain itu, di sisi lain para pencari ide-ide kreatif maupun penanam modal dapat
 - Portofolio Ide
 - Laporkan Ide 
 
+## Kenali iDekita 💫 Lebih Jauh
+
+Anda dapat membaca [Proposal iDekita](https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing
+) untuk mendapatkan penjelasan mengenai iDekita lebih dalam.
+
 ## Berpartisipasi Menjadi 👨🏻‍💻 Pengembang
 
 Saat ini iDekita belum mengembangkan REST API. Jika kalian ingin berpartisipasi ikuti langkah berikut.
@@ -23,7 +30,7 @@ Saat ini iDekita belum mengembangkan REST API. Jika kalian ingin berpartisipasi 
 ## Menyiapkan 🧰 Pengembangan
 Ini adalah proyek [Next.js](https://nextjs.org/) yang di-bootstrap dengan [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-### Memulai
+### ⚒️ Memulai
 
 Pastikan Anda telah menginstall Node.js dan Yarn.
 
@@ -49,7 +56,7 @@ Anda dapat memulai dengan mengedit halaman `pages/index.tsx`. Halaman akan diper
 
 Direktori `pages/api` dipetakan ke `/api/*`. File di dalam direktori ini diperlakukan sebagai [API routes](https://nextjs.org/docs/api-routes/introduction) alih-alih halaman React.
 
-### Pelajari Lebih Lanjut
+### Pelajari 📒 Lebih Lanjut
 
 Untuk mempelajari lebih lanjut tentang Next.js, lihat referensi berikut.
 
@@ -58,7 +65,7 @@ Untuk mempelajari lebih lanjut tentang Next.js, lihat referensi berikut.
 
 Anda dapat melihat [the Next.js GitHub repository](https://github.com/vercel/next.js/) - Masukan dan kontribusi Anda dipersilakan!
 
-### Deploy di Vercel
+### Deploy 🛠️ di Vercel
 
 Cara termudah untuk mendeploy aplikasi Next.js Anda adalah dengan menggunakan [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dari creators Next.js.
 

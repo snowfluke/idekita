@@ -9,7 +9,7 @@ export default function Home() {
         description="Cari, temukan, dan publikasikan ide-ide kreatif bersama dengan Idekiawan di seluruh Indonesia"
       />
       {/* <!-- Content --> */}
-      <div className="flex-row lg:flex justify-between items-center mt-4">
+      <div className="flex-row lg:flex justify-between items-center">
         {/* <!-- hero image --> */}
         <img src="hero.png" alt="iDekita" className="w-full lg:w-[50%]" />
 
