@@ -22,7 +22,7 @@ const signIn = async () => {
   }
 };
 
-const signOut = (router) => {
+const signOut = () => {
   auth.signOut();
 };
 

@@ -72,7 +72,7 @@ export default function IdeaProfile({ post, userDataPost }) {
       onclick: () =>
         router.push(
           encodeURI(
-            `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melakukan publikasi ide ${post.title} ( https://idekita.id/${post.username}/${post.slug} ) karena terbukti melakukan pelanggaran ...`
+            `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melaporkan sebuah publikasi ide berjudul ${post.title} ( https://idekita.id/${post.username}/${post.slug} ) karena terbukti melakukan pelanggaran ...`
           )
         ),
     },
