@@ -9,6 +9,10 @@ berarti (telah selesai) melakukannya/jadi.
 ### Idekiawan
 Merupakan istilah untuk menyebut orang yang bergabung dengan iDekita
 
+### Langit ide
+Tempat eksplorasi ide-ide, terdiri dari 2 kata yaitu "langit" dan "ide", langit adalah bagian dari bumi yang memiliki lapisan tersendiri disebut atmosfer yang sangat luas, sedangkan ide
+merupakan suatu rancangan, gagasan maupun cita-cita. Jadi langit ide adalah tempat yang sangat luas yang di dalamnya terdapat banyak gagasan serta pemikiran orang-orang.
+
 ## Daftar istilah lencana
 
 ### Founder
