@@ -96,7 +96,7 @@ export default function Profile({ user, post }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute  z-10 w-screen max-w-sm -translate-x-1/3 lg:max-w-3xl">
+            <Popover.Panel className="absolute  z-10 w-screen max-w-sm -translate-x-1/3 lg:max-w-1xl">
               <div className="text-sm text-center bg-white p-2 font-normal rounded-lg shadow-md">
                 {title?.desc}
               </div>
@@ -164,7 +164,9 @@ export default function Profile({ user, post }) {
             {user.displayName}
           </p>
           <p className="text-xl font-semibold">{user.bio}</p>
-          <p className="text-xl text-fuchsia-500 font-semibold">{user.email}</p>
+          <p className="text-xl text-fuchsia-500 font-semibold select-all">
+            {user.email}
+          </p>
         </div>
       </div>
 

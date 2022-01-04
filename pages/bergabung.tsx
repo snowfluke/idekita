@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";
 import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
+import { policies } from "@modules/markdowner";
 import {
   signIn,
   isValidUsername,
@@ -145,6 +146,8 @@ export default function Register() {
 }
 
 function CreateUser() {
+  const { modal } = useContext(UserContext);
+
   return (
     <section className="w-full py-14">
       <div className="container-section">
@@ -154,8 +157,19 @@ function CreateUser() {
               <div className="wrap-section">
                 <div className="mb-3">
                   <h3 className="px-0 md:px-3">
-                    Dengan mendaftar berarti Anda menyetujui segala peraturan
-                    dan kebijakan yang terdapat di situs iDekita.
+                    Dengan mendaftar berarti Anda menyetujui segala{" "}
+                    <span
+                      onClick={() =>
+                        modal.openModal({
+                          title: "Kebijakan Privasi dan Penggunaan iDekita",
+                          content: policies,
+                        })
+                      }
+                      className="underline cursor-pointer"
+                    >
+                      peraturan dan kebijakan
+                    </span>{" "}
+                    yang terdapat di situs iDekita.
                   </h3>
                 </div>
                 <hr className="my-6" />

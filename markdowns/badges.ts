@@ -22,7 +22,7 @@ const badges = {
   ceo: {
     name: "ceo",
     badge: "👤",
-    desc: "CEO (Chied Executive Officer) seseorang yang memiliki posisi tertinggi di perusahaan",
+    desc: "CEO (Chief Executive Officer) seseorang yang memiliki posisi tertinggi di perusahaan",
   },
   adipati: {
     name: "adipati",
