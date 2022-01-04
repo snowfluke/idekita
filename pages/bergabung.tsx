@@ -62,7 +62,7 @@ export default function Register() {
       email: user.email,
       notifications: `{"recent":["Selamat bergabung di iDekita 😉!"]}`,
       reports: 0,
-      bio: `${user.displayName} telah terdafter resmi sebagai Idekiawan! Selamat datang di iDekita - Jembatani ide dan realisasi`,
+      bio: `${user.displayName} telah terdaftar resmi sebagai Idekiawan! Selamat datang di iDekita - Jembatani ide dan realisasi`,
       title: {
         journey: "buntel",
         supporter: "",

@@ -161,7 +161,7 @@ export default function PublishIdea({ initialPost, userData }) {
               <div className="flex w-full">
                 <TextArea
                   value={`https://idekita.id/${userData.username}/${slug}`}
-                  className="underline cursor-pointer text-fuchsia-500 w-full"
+                  className="underline cursor-pointer text-fuchsia-500 w-full resize-none"
                   disabled
                 />
               </div>

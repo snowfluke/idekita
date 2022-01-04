@@ -19,7 +19,6 @@
 .DS_Store
 *.pem
 .vscode
-.rules
 
 # debug
 npm-debug.log*
@@ -36,3 +35,4 @@ yarn.lock
 
 # vercel
 .vercel
+firestore.rules
