@@ -21,12 +21,12 @@ const credentials = [
   },
 ];
 
-export default function MiddleMenu() {
+export default function MiddleMenu({toggle}) {
   const { modal } = useContext(UserContext);
   return (
-    <ul className="md:flex text-center mt-3 md:mt-0" id="menu1">
+    <ul className={toggle}>
       {Credentials(modal)}
-      <LinkTo href="https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing">
+      <LinkTo target="_blank" href="https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing">
         <li className="li-item-navmid">#Proposal</li>
       </LinkTo>
 
