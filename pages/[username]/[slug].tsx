@@ -8,6 +8,7 @@ import {
   CheckLogin,
   LinkTo,
   Cloud,
+  Meta,
 } from "@modules/composer";
 import { emoji } from "@modules/emojier";
 import { useState } from "react";
@@ -66,6 +67,16 @@ export default function IdeaProfile({ post, userDataPost }) {
         ),
     },
     {
+      name: "#Laporkan",
+      icon: "👊",
+      onclick: () =>
+        router.push(
+          encodeURI(
+            `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melakukan publikasi ide ${post.title} ( https://idekita.id/${post.username}/${post.slug} ) karena terbukti melakukan pelanggaran ...`
+          )
+        ),
+    },
+    {
       name: "#Kembali",
       icon: "👈",
       onclick: () => router.back(),
@@ -73,7 +84,6 @@ export default function IdeaProfile({ post, userDataPost }) {
   ];
 
   const updateCloudState = () => setCloudCount(cloudCount + 1);
-
   const CloudStat = () => {
     return (
       <div className="prose flex-1 font-bold text-3xl pl-5 pt-2 content-center">
@@ -86,28 +96,34 @@ export default function IdeaProfile({ post, userDataPost }) {
   };
 
   return (
-    <IdeaLayout
-      MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
-      SidebarComponent={
-        <IdeaContentRight
-          menu={ideaContentMenu}
-          Top={
-            <>
-              <CloudStat />
+    <>
+      <Meta
+        title={`iDekita ✨ ${post.title}`}
+        description={`${post.background}`}
+      />
+      <IdeaLayout
+        MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
+        SidebarComponent={
+          <IdeaContentRight
+            menu={ideaContentMenu}
+            Top={
+              <>
+                <CloudStat />
 
-              <CheckLogin
-                fallback={
-                  <LinkTo href={"/bergabung"}>
-                    Bergabung dan beri dukungan
-                  </LinkTo>
-                }
-              >
-                <Cloud post={post} update={() => updateCloudState()} />
-              </CheckLogin>
-            </>
-          }
-        />
-      }
-    />
+                <CheckLogin
+                  fallback={
+                    <LinkTo href={"/bergabung"}>
+                      Bergabung dan beri dukungan
+                    </LinkTo>
+                  }
+                >
+                  <Cloud post={post} update={() => updateCloudState()} />
+                </CheckLogin>
+              </>
+            }
+          />
+        }
+      />
+    </>
   );
 }

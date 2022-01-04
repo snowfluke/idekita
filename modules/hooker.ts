@@ -14,6 +14,7 @@ export function useUserData() {
     content: "",
     title: "",
   });
+
   const openModal = ({ title, content }) =>
     setModalData({ title, content, show: true });
   const closeModal = () =>

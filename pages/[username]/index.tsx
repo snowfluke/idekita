@@ -82,7 +82,7 @@ export default function Profile({ user, post }) {
   return (
     <>
       <Meta
-        title="iDekiawan 👨🏻‍🏫 Pasukan iDekita"
+        title={`iDekiawan 👨🏻‍🏫 ${user.displayName}`}
         description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
       />
       <div className="big-heading print:hidden">

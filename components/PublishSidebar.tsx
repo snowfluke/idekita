@@ -2,9 +2,12 @@ import { IdeaContentRight } from "@modules/composer";
 import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 import { markdownhelps } from "@modules/markdowner";
+import { useRouter } from "next/router";
 
 export default function PublishSidebar(props) {
   const { modal } = useContext(UserContext);
+  const router = useRouter();
+
   const menu = [
     {
       name: "#Publikasi",
@@ -25,6 +28,11 @@ export default function PublishSidebar(props) {
           content: markdownhelps,
         });
       },
+    },
+    {
+      name: "#Kembali",
+      icon: "⬅",
+      onclick: router.back,
     },
     {
       name: "#Buang",

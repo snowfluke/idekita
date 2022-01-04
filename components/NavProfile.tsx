@@ -1,21 +1,11 @@
-import { useState } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { signOut } from "@modules/helper";
 import { LinkTo } from "@modules/composer";
 import { useRouter } from "next/router";
+import { Menu, Transition } from "@headlessui/react";
 
 export default function NavProfile({ user }) {
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showNotifMenu, setShowNotifMenu] = useState(false);
-
-  const showMenu = () => {
-    setShowProfileMenu(!showProfileMenu);
-    setShowNotifMenu(false);
-  };
-
-  const showNotif = () => {
-    setShowNotifMenu(!showNotifMenu);
-    setShowProfileMenu(false);
-  };
+  const router = useRouter();
   return (
     <>
       <div className="relative text-left">
@@ -31,95 +21,142 @@ export default function NavProfile({ user }) {
             </LinkTo>
           </li>
           <li className="list-none">
-            <button
-              className="li-item-profile py-[6px] focus:bg-gray-300"
-              aria-expanded="true"
-              aria-haspopup="true"
-              onClick={() => showNotif()}
-            >
-              🔔
-            </button>
+            <Notification notifications={user?.notifications} />
           </li>
           <li className="md:ml-4 rounded">
-            <div className="flex md:space-x-2">
-              <div
-                className="w-10 h-10 cursor-pointer"
-                onClick={() => showMenu()}
-              >
-                <img
-                  width={50}
-                  height={50}
-                  className="rounded-full border-2 p-[2px] border-fuchsia-500 shadow-sm hover:border-dashed b-transition hover:scale-105 hover:-rotate-3"
-                  src={user?.photoURL}
-                  alt={user?.displayName}
-                />
+            <Menu as="div" className="relative inline-block">
+              <div>
+                <Menu.Button className="inline-flex justify-center focus:outline-none">
+                  <div className="w-10 h-10 cursor-pointer">
+                    <img
+                      width={50}
+                      height={50}
+                      className="rounded-full border-2 p-[2px] border-fuchsia-500 shadow-sm hover:border-dashed b-transition hover:scale-105 hover:-rotate-3"
+                      src={user?.photoURL}
+                      alt={user?.displayName}
+                    />
+                  </div>
+                </Menu.Button>
               </div>
-            </div>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute flex flex-col right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        className={
+                          active
+                            ? "li-item-profile-menu-active"
+                            : "li-item-profile-menu"
+                        }
+                        href="/langit-ide"
+                      >
+                        🌎 Eksplorasi
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <LinkTo
+                        className={
+                          active
+                            ? "li-item-profile-menu-active"
+                            : "li-item-profile-menu"
+                        }
+                        href={`/${user.username}`}
+                      >
+                        🙎🏻‍♂️ Profil
+                      </LinkTo>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <LinkTo
+                        className={
+                          active
+                            ? "li-item-profile-menu-active"
+                            : "li-item-profile-menu"
+                        }
+                        onClick={() => signOut(router)}
+                      >
+                        🚪 Keluar
+                      </LinkTo>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Transition>
+            </Menu>
           </li>
-          {showNotifMenu && <NotificationItems />}
-          {showProfileMenu && <ProfileMenu username={user?.username} />}
         </ul>
       </div>
     </>
   );
 }
 
-const ProfileMenu = ({ username }) => {
-  const router = useRouter();
+const Notification = ({ notifications }) => {
+  let latestNotifications;
+  const [recent, setRecent] = useState([]);
+
+  useEffect(() => {
+    try {
+      if (!notifications) {
+        latestNotifications = JSON.parse('{"recent":[]}');
+        setRecent(latestNotifications.recent.splice(0, 5).reverse());
+        return;
+      }
+      latestNotifications = JSON.parse(notifications);
+      setRecent(latestNotifications.recent.splice(0, 5).reverse());
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  }, [notifications]);
 
   return (
-    <div
-      className="origin-top-right dropdown-list-nav w-48 py-3"
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="menu-btn"
-      id="dropnav"
-    >
-      {/* <!-- dropdown item --> */}
-      <div role="none">
-        <LinkTo href="/langit-ide" className="li-item-profile-menu">
-          🌎 Eksplorasi
-        </LinkTo>
-        <LinkTo href={`/${username}`} className="li-item-profile-menu">
-          🙎🏻‍♂️ <span className="pl-[3px]">Profil</span>
-        </LinkTo>
-        <a
-          onClick={() => signOut(router)}
-          className="li-item-profile-menu font-semibold"
-          role="menuitem"
-        >
-          🚪
-          <span className="text-fuchsia pl-2 cursor-pointer">Keluar</span>
-        </a>
+    <Menu as="div" className="relative inline-block">
+      <div>
+        <Menu.Button className="li-item-profile py-[6px] focus:bg-gray-300 inline-flex justify-center focus:outline-none">
+          🔔
+        </Menu.Button>
       </div>
-    </div>
-  );
-};
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute flex flex-col right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="text-bold py-2 px-4 border-b-gray-200 border-2">
+            Pemberitahuan
+          </div>
 
-const NotificationItems = () => {
-  return (
-    <div
-      className="origin-top-center dropdown-list-nav w-64"
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="notif-btn"
-      id="dropnotif"
-    >
-      <div className="pt-1" role="none">
-        <span className="px-4 py-2 block font-semibold">Notifikasi</span>
-        <hr className="shadow" />
-        <div>
-          <span className="dropdown-list-notif">
-            Selamat! Kamu mendapatkan lencana #Pocung
-          </span>
-          <span className="dropdown-list-notif">
-            Idemu tentang telah didukung lebih dari 100 orang
-          </span>
-          <span className="dropdown-list-notif">
-            Idemu tentang telah dilihat lebih dari 1000 kali
-          </span>
-        </div>
-      </div>
-    </div>
+          {recent.map((notif, id) => (
+            <Menu.Item key={id}>
+              {({ active }) => (
+                <LinkTo
+                  className={
+                    active
+                      ? "li-item-profile-menu-active text-sm"
+                      : "li-item-profile-menu text-sm"
+                  }
+                >
+                  {notif}
+                </LinkTo>
+              )}
+            </Menu.Item>
+          ))}
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 };
