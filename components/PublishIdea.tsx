@@ -4,18 +4,11 @@ import { IdeaLayout } from "@modules/layouter";
 import { PublishSidebar, IdeaContent, toast } from "@modules/composer";
 import { validator, msg } from "@modules/validator";
 import { UserContext } from "@modules/contexter";
-import {
-  auth,
-  doc,
-  db,
-  deleteDoc,
-  setDoc,
-  updateDoc,
-  serverTimestamp,
-} from "@modules/firebaser";
+import { auth, doc, db, deleteDoc, setDoc, updateDoc, serverTimestamp } from "@modules/firebaser";
 import TextArea from "react-textarea-autosize";
 import kebabCase from "lodash.kebabcase";
 import { isValidTag } from "@modules/helper";
+import { emoji } from "@modules/emojier";
 
 export default function PublishIdea({ initialPost, userData }) {
   const data = {
@@ -46,8 +39,7 @@ export default function PublishIdea({ initialPost, userData }) {
       setPost({ ...post, tags: tags });
 
       if (!check("title", post.title)) return toast.error(msg["title"]);
-      if (!check("background", post.background))
-        return toast.error(msg["background"]);
+      if (!check("background", post.background)) return toast.error(msg["background"]);
       if (!check("tags", tags)) return toast.error(msg["tags"]);
       if (!check("content", post.content)) return toast.error(msg["content"]);
 
@@ -73,7 +65,7 @@ export default function PublishIdea({ initialPost, userData }) {
         });
       }
 
-      toast.success("Berhasil mempublikasikan ide 🎉");
+      toast.success(`Berhasil mempublikasikan ide ${emoji.hore}`);
       router.push(`/${userData.username}/${post.slug}`);
     } catch (error) {
       console.log(error);
@@ -89,7 +81,7 @@ export default function PublishIdea({ initialPost, userData }) {
       }
 
       router.push("/langit-ide");
-      toast.success("Berhasil membuang ide 😢");
+      toast.success(`Berhasil membuang ide ${emoji.sedih}`);
     } catch (error) {
       console.log(error);
       toast.error("Terjadi kesalahan, silakan coba kembali");
@@ -159,11 +151,7 @@ export default function PublishIdea({ initialPost, userData }) {
               />
 
               <div className="flex w-full">
-                <TextArea
-                  value={`https://idekita.id/${userData.username}/${slug}`}
-                  className="underline cursor-pointer text-fuchsia-500 w-full"
-                  disabled
-                />
+                <TextArea value={`https://idekita.id/${userData.username}/${slug}`} className="underline cursor-pointer text-fuchsia-500 w-full" disabled />
               </div>
 
               <hr />
@@ -172,9 +160,7 @@ export default function PublishIdea({ initialPost, userData }) {
                 <TextArea
                   name="background"
                   value={post.background}
-                  onChange={(ev) =>
-                    setPost({ ...post, background: ev.target.value })
-                  }
+                  onChange={(ev) => setPost({ ...post, background: ev.target.value })}
                   className="txt-area italic"
                   spellCheck={false}
                   minRows={2}
@@ -189,11 +175,7 @@ export default function PublishIdea({ initialPost, userData }) {
                   spellCheck={false}
                   value={tagsInput}
                   className="txt-area form-control outline-none border-none w-full"
-                  placeholder={
-                    tags.length < 4
-                      ? "Berikan tag idemu dan pisahkan dengan koma"
-                      : ""
-                  }
+                  placeholder={tags.length < 4 ? "Berikan tag idemu dan pisahkan dengan koma" : ""}
                   onKeyDown={tagsProps.onkeydown}
                   onChange={tagsProps.onchange}
                 />
@@ -202,9 +184,7 @@ export default function PublishIdea({ initialPost, userData }) {
               <TextArea
                 maxLength={10000}
                 name="content"
-                onChange={(ev) =>
-                  setPost({ ...post, content: ev.target.value })
-                }
+                onChange={(ev) => setPost({ ...post, content: ev.target.value })}
                 className="txt-area mt-5"
                 value={post.content}
                 spellCheck={false}

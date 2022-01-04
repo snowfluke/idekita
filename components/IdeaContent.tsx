@@ -4,6 +4,7 @@ import { LinkTo } from "@modules/composer";
 import { formatDate, minutesToRead } from "@modules/helper";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
+import { emoji } from "@modules/emojier";
 
 export default function IdeaContent({ post, userDataPost }) {
   const { username } = useContext(UserContext);
@@ -36,9 +37,9 @@ export default function IdeaContent({ post, userDataPost }) {
           </div>
         )}
         <h5>
-          📅 {post.edited && <>Diubah</>} {publishedDate} • 📝
+          {emoji.tanggal} {post.edited && <>Diubah</>} {publishedDate} • {emoji.edit}
           <LinkTo href={`/${post.username}`}>{userDataPost.username}</LinkTo> •
-          ⌛ {readTime} menit membaca
+          {emoji.bataswaktu} {readTime} menit membaca
         </h5>
 
         <hr />

@@ -2,14 +2,7 @@ import { useRouter } from "next/router";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import { IdeaLayout } from "@modules/layouter";
-import {
-  IdeaContentRight,
-  IdeaContent,
-  CheckLogin,
-  LinkTo,
-  Cloud,
-  Meta,
-} from "@modules/composer";
+import { IdeaContentRight, IdeaContent, CheckLogin, LinkTo, Cloud, Meta } from "@modules/composer";
 import { emoji } from "@modules/emojier";
 import { useState } from "react";
 
@@ -53,22 +46,22 @@ export default function IdeaProfile({ post, userDataPost }) {
   const ideaContentMenu = [
     {
       name: "#Bagikan",
-      icon: "🖐",
+      icon: emoji.angkattangan,
       onclick: () => router.push("#idea-header"),
     },
     {
       name: "#Kirim Email",
-      icon: "🤝",
+      icon: emoji.salaman,
       onclick: () =>
         router.push(
           encodeURI(
-            `https://mail.google.com/mail/?view=cm&fs=1&to=${userDataPost.email}&su=iDekita - ${post.title}&body=Hai, ${userDataPost.displayName} 👋! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
+            `https://mail.google.com/mail/?view=cm&fs=1&to=${userDataPost.email}&su=iDekita - ${post.title}&body=Hai, ${userDataPost.displayName} ${emoji.hai}! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
           )
         ),
     },
     {
       name: "#Laporkan",
-      icon: "👊",
+      icon: emoji.kepalan,
       onclick: () =>
         router.push(
           encodeURI(
@@ -78,7 +71,7 @@ export default function IdeaProfile({ post, userDataPost }) {
     },
     {
       name: "#Kembali",
-      icon: "👈",
+      icon: emoji.tunjuk,
       onclick: () => router.back(),
     },
   ];
@@ -97,10 +90,7 @@ export default function IdeaProfile({ post, userDataPost }) {
 
   return (
     <>
-      <Meta
-        title={`iDekita ✨ ${post.title}`}
-        description={`${post.background}`}
-      />
+      <Meta title={`iDekita ✨ ${post.title}`} description={`${post.background}`} />
       <IdeaLayout
         MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
         SidebarComponent={
@@ -112,10 +102,7 @@ export default function IdeaProfile({ post, userDataPost }) {
 
                 <CheckLogin
                   fallback={
-                    <LinkTo
-                      href={"/bergabung"}
-                      className="ml-5 py-2 inline-block"
-                    >
+                    <LinkTo href={"/bergabung"} className="ml-5 py-2 inline-block">
                       Bergabung dan beri dukungan
                     </LinkTo>
                   }

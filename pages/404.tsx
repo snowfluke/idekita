@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
+import { emoji as em } from "@modules/emojier";
 
-export default function NotFound404({ msg = "Sepertinya halaman yang kamu tuju tidak tersedia", emoji = "🤷‍♂️" }) {
+export default function NotFound404({ msg = "Sepertinya halaman yang kamu tuju tidak tersedia", emoji = em.lelah }) {
   const router = useRouter();
   return (
     <div className="prose text-center mx-auto lg:my-20 my-10 pb-10">

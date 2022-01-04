@@ -3,6 +3,7 @@ import { signOut } from "@modules/helper";
 import { LinkTo } from "@modules/composer";
 import { useRouter } from "next/router";
 import { Menu, Transition } from "@headlessui/react";
+import { emoji } from "@modules/emojier";
 
 export default function NavProfile({ user, toggle }) {
   const router = useRouter();
@@ -12,12 +13,12 @@ export default function NavProfile({ user, toggle }) {
         <ul className="flex items-center justify-center md:justify-end list-none">
           <li className="list-none">
             <LinkTo href={"/langit-ide"} className="li-item-profile">
-              🏠
+              {emoji.rumah}
             </LinkTo>
           </li>
           <li className="list-none">
             <LinkTo href={"/mesin-ide"} className="li-item-profile">
-              📝
+              {emoji.edit}
             </LinkTo>
           </li>
           <li className="list-none">
@@ -45,21 +46,21 @@ export default function NavProfile({ user, toggle }) {
                   <Menu.Item>
                     {({ active }) => (
                       <a className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} href="/langit-ide">
-                        🌎 Eksplorasi
+                        {emoji.dunia} Eksplorasi
                       </a>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <LinkTo className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} href={`/${user.username}`}>
-                        🙎🏻‍♂️ Profil
+                        {emoji.profil} Profil
                       </LinkTo>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <LinkTo className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} onClick={() => signOut()}>
-                        🚪 Keluar
+                        {emoji.pintu} Keluar
                       </LinkTo>
                     )}
                   </Menu.Item>
@@ -95,7 +96,7 @@ const Notification = ({ notifications }) => {
   return (
     <Menu as="div" className="relative inline-block">
       <div>
-        <Menu.Button className="li-item-profile py-[6px] focus:bg-gray-300 inline-flex justify-center focus:outline-none">🔔</Menu.Button>
+        <Menu.Button className="li-item-profile py-[6px] focus:bg-gray-300 inline-flex justify-center focus:outline-none">{emoji.lonceng}</Menu.Button>
       </div>
       <Transition
         as={Fragment}

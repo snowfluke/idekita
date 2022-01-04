@@ -6,6 +6,7 @@ import { doc, db } from "@modules/firebaser";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import NotFound404 from "@pages/404";
+import { emoji } from "@modules/emojier";
 
 // Dynamic Imports
 const PublishIdea = dynamic(() => import("@components/PublishIdea"));
@@ -23,9 +24,7 @@ function IdeaManager() {
   const router = useRouter();
   const { slug } = router.query;
 
-  const postRef = user
-    ? doc(db, `users/${user.uid}/posts/`, slug.toString())
-    : null;
+  const postRef = user ? doc(db, `users/${user.uid}/posts/`, slug.toString()) : null;
   const [post] = useDocumentDataOnce(postRef);
 
   return (
@@ -41,9 +40,7 @@ function IdeaManager() {
         />
       )}
 
-      {!post && (
-        <NotFound404 msg="Kamu tidak memiliki akses untuk ide ini" emoji="😪" />
-      )}
+      {!post && <NotFound404 msg="Kamu tidak memiliki akses untuk ide ini" emoji={`${emoji.lelah}`} />}
     </>
   );
 }

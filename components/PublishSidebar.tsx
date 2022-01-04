@@ -3,6 +3,7 @@ import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 import { markdownhelps } from "@modules/markdowner";
 import { useRouter } from "next/router";
+import { emoji } from "@modules/emojier";
 
 export default function PublishSidebar(props) {
   const { modal } = useContext(UserContext);
@@ -11,17 +12,17 @@ export default function PublishSidebar(props) {
   const menu = [
     {
       name: "#Publikasi",
-      icon: "🚀",
+      icon: emoji.roket,
       onclick: props.sidebar.submit,
     },
     {
       name: "#Pratinjau",
-      icon: "👀",
+      icon: emoji.mata,
       onclick: props.sidebar.preview,
     },
     {
       name: "#Bantuan",
-      icon: "🙋‍♂️",
+      icon: emoji.ngacung,
       onclick: () => {
         modal.openModal({
           title: "Bantuan Penggunaan Markdown",
@@ -31,12 +32,12 @@ export default function PublishSidebar(props) {
     },
     {
       name: "#Kembali",
-      icon: "⬅",
+      icon: emoji.kembali,
       onclick: router.back,
     },
     {
       name: "#Buang",
-      icon: "🗑️",
+      icon: emoji.tempatsampah,
       onclick: props.sidebar.delete,
     },
   ];

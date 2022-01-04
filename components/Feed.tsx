@@ -3,11 +3,7 @@ import { minutesToRead, formatDate } from "@modules/helper";
 import { emoji } from "@modules/emojier";
 
 export default function Feed({ posts, idekiawan }) {
-  return posts
-    ? posts.map((post, id) => (
-        <FeedItem post={post} key={post.slug + id} idekiawan={idekiawan} />
-      ))
-    : null;
+  return posts ? posts.map((post, id) => <FeedItem post={post} key={post.slug + id} idekiawan={idekiawan} />) : null;
 }
 
 const FeedItem = ({ post, idekiawan = false }) => {
@@ -23,13 +19,9 @@ const FeedItem = ({ post, idekiawan = false }) => {
       </div>
       <div className="grid my-3 content-center">
         <LinkTo href={`/${post.username}/${post.slug}`}>
-          <h2 className="font-semibold b-transition bg-gray-100 rounded-md text-xl md:text-2xl border-l-8 px-4 py-2 border-fuchsia-500 hover:translate-x-2">
-            {post.title}
-          </h2>
+          <h2 className="font-semibold b-transition bg-gray-100 rounded-md text-xl md:text-2xl border-l-8 px-4 py-2 border-fuchsia-500 hover:translate-x-2">{post.title}</h2>
         </LinkTo>
-        <div className="text-sm mt-3 text-justify">
-          {post.background.substring(0, 200)}..
-        </div>
+        <div className="text-sm mt-3 text-justify">{post.background.substring(0, 200)}..</div>
         <div className="mt-2 text-gray-500 text-sm space-x-2">
           <Tags items={post.tags} />
         </div>
@@ -41,26 +33,16 @@ const FeedItem = ({ post, idekiawan = false }) => {
             <span className="text-icon-feed">{post.cloud}</span>
           </div>
           <div className="flex items-center">
-            <span className="text-lg">⏱️</span>
+            <span className="text-lg">{emoji.waktu}</span>
             <span className="text-icon-feed">{readTime}m baca</span>
           </div>
         </div>
 
-        <LinkTo
-          href={idekiawan ? `/mesin-ide/${post.slug}` : `/${post.username}`}
-        >
+        <LinkTo href={idekiawan ? `/mesin-ide/${post.slug}` : `/${post.username}`}>
           <div className="flex items-center bg-gray-100 rounded-full pl-5 hover:bg-gray-200 transition-colors">
-            <span className="text-fuchsia-500 font-semibold mr-2 md:mr-4 text-xs md:text-base">
-              {idekiawan ? "Ubah ide" : post.username}
-            </span>
+            <span className="text-fuchsia-500 font-semibold mr-2 md:mr-4 text-xs md:text-base">{idekiawan ? "Ubah ide" : post.username}</span>
             <div className="w-8 h-8">
-              <img
-                width={50}
-                height={50}
-                className="rounded-full shadow-sm"
-                src={post.photoURL}
-                alt={post.username}
-              />
+              <img width={50} height={50} className="rounded-full shadow-sm" src={post.photoURL} alt={post.username} />
             </div>
           </div>
         </LinkTo>
@@ -71,11 +53,7 @@ const FeedItem = ({ post, idekiawan = false }) => {
 
 const Tags = ({ items }) =>
   items.map((tag) => (
-    <LinkTo
-      href={`/tag/${tag}`}
-      key={tag}
-      className="lowercase font-bold hover:text-fuchsia-500 b-transition"
-    >
+    <LinkTo href={`/tag/${tag}`} key={tag} className="lowercase font-bold hover:text-fuchsia-500 b-transition">
       #{tag}
     </LinkTo>
   ));

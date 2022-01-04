@@ -2,44 +2,45 @@ import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import { LinkTo } from "@modules/composer";
 import { terminologies, policies } from "@modules/markdowner";
+import { emoji } from "@modules/emojier";
 
 export default function RightSidebar({ username = "" }) {
   const { modal } = useContext(UserContext);
 
   const menuList = [
     {
-      icon: "🏠",
+      icon: emoji.rumah,
       name: "#Beranda",
       route: "/langit-ide",
     },
     {
-      icon: "🙍",
+      icon: emoji.profil,
       name: "#Profil",
       route: `/${username}`,
       linkto: true,
       requireLogin: true,
     },
     {
-      icon: "💡",
+      icon: emoji.lampu,
       name: "#Buat Ide",
       route: `/mesin-ide`,
     },
     {
-      icon: "📕",
+      icon: emoji.buku,
       name: "#Terminologi",
       requireModal: true,
       title: "Terminologi iDekita",
       content: terminologies,
     },
     {
-      icon: "📐",
+      icon: emoji.penggaris,
       name: "#Kebijakan",
       requireModal: true,
       title: "Kebijakan Privasi dan Penggunaan iDekita",
       content: policies,
     },
     {
-      icon: "🚪",
+      icon: emoji.pintu,
       name: "#Keluar",
       requireLogin: true,
       route: "/bergabung",
@@ -52,13 +53,7 @@ export default function RightSidebar({ username = "" }) {
         .filter((menu) => (!username ? !menu.requireLogin : true))
         .map((menu) => (
           <div key={menu.name}>
-            <li
-              className={
-                menu.icon !== "🚪"
-                  ? "li-r-sidebar hover:text-fuchsia-500"
-                  : "li-r-sidebar text-fuchsia-500"
-              }
-            >
+            <li className={menu.icon !== emoji.pintu ? "li-r-sidebar hover:text-fuchsia-500" : "li-r-sidebar text-fuchsia-500"}>
               {menu.requireModal ? (
                 <a
                   className="cursor-pointer"
@@ -70,35 +65,15 @@ export default function RightSidebar({ username = "" }) {
                   }
                 >
                   <div className="flex space-x-2">
-                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">
-                      {menu.icon}
-                    </div>
-                    <div
-                      className={
-                        menu.icon !== "🚪"
-                          ? "flex-1 w-64"
-                          : "flex-1 w-64 text-fuchsia-500"
-                      }
-                    >
-                      {menu.name}
-                    </div>
+                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">{menu.icon}</div>
+                    <div className={menu.icon !== emoji.pintu ? "flex-1 w-64" : "flex-1 w-64 text-fuchsia-500"}>{menu.name}</div>
                   </div>
                 </a>
               ) : (
                 <LinkTo href={menu.route}>
                   <div className="flex space-x-2">
-                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">
-                      {menu.icon}
-                    </div>
-                    <div
-                      className={
-                        menu.icon !== "🚪"
-                          ? "flex-1 w-64"
-                          : "flex-1 w-64 text-fuchsia-500"
-                      }
-                    >
-                      {menu.name}
-                    </div>
+                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">{menu.icon}</div>
+                    <div className={menu.icon !== emoji.pintu ? "flex-1 w-64" : "flex-1 w-64 text-fuchsia-500"}>{menu.name}</div>
                   </div>
                 </LinkTo>
               )}
