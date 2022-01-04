@@ -7,7 +7,7 @@ import { NavMiddle, NavSearch, NavProfile, LinkTo } from "@modules/composer";
 export default function Navbar() {
   const router = useRouter();
   const { userData, username } = useContext(UserContext);
-  const isLandingPage = router.pathname === "/" ? true : false;
+  const isMainpage = router.pathname === "/langit-ide" ? true : false;
 
   useEffect(() => {
     if (userData && !username) {
@@ -41,8 +41,8 @@ export default function Navbar() {
 
           {/* <!-- menu center --> */}
 
-          {isLandingPage && <NavMiddle />}
-          {!isLandingPage && <NavSearch />}
+          {isMainpage && <NavSearch />}
+          {!isMainpage && <NavMiddle />}
 
           {/* <!-- menu right --> */}
 
