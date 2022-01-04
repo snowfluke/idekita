@@ -17,6 +17,11 @@ export { default as CheckLogin } from "@components/CheckLogin";
 export { default as Meta } from "@components/Meta";
 export { default as Cloud } from "@components/Cloud";
 export { default as Modal } from "@components/Modal";
+export { default as ProfileOption } from "@components/ProfileOption";
+export { default as ProfileInfo } from "@components/ProfileInfo";
+export { default as ProfileBadge } from "@components/ProfileBadge";
+export { default as ProfileRecent } from "@components/ProfileRecent";
+export { default as ProfilePopular } from "@components/ProfilePopular";
 
 // Library
 export { default as toast, Toaster } from "react-hot-toast";
