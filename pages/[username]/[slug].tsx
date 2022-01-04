@@ -97,7 +97,7 @@ export default function IdeaProfile({ post, userDataPost }) {
 
               <CheckLogin
                 fallback={
-                  <LinkTo href={"/bergabung"}>
+                  <LinkTo href={"/bergabung"} className="ml-5 py-2 inline-block">
                     Bergabung dan beri dukungan
                   </LinkTo>
                 }
