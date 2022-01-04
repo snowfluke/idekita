@@ -28,7 +28,7 @@ export default function IdeaContent({ post, userDataPost }) {
         {username === post.username && (
           <div className="flex content-center w-full justify-center p-2 cursor-pointer hover:bg-fuchsia-100 rounded-md mb-5 border-2 border-fuchsia-500">
             <LinkTo
-              className="text-lg no-underline"
+              className="text-lg no-underline w-full h-full text-center"
               href={`/mesin-ide/${post.slug}`}
             >
               Ubah
@@ -37,10 +37,8 @@ export default function IdeaContent({ post, userDataPost }) {
         )}
         <h5>
           📅 {post.edited && <>Diubah</>} {publishedDate} • 📝
-          <LinkTo href={`/${post.username}`}>
-            {userDataPost.displayName}
-          </LinkTo>{" "}
-          • ⌛ {readTime} menit membaca
+          <LinkTo href={`/${post.username}`}>{userDataPost.username}</LinkTo> •
+          ⌛ {readTime} menit membaca
         </h5>
 
         <hr />

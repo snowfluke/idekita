@@ -9,6 +9,15 @@ export function useUserData() {
   const [username, setUsername] = useState(null);
   const [userData, setUserData] = useState(null);
   const router = useRouter();
+  const [modalData, setModalData] = useState({
+    show: false,
+    content: "",
+    title: "",
+  });
+  const openModal = ({ title, content }) =>
+    setModalData({ title, content, show: true });
+  const closeModal = () =>
+    setModalData({ title: "", content: "", show: false });
 
   useEffect(() => {
     let unsub;
@@ -27,5 +36,11 @@ export function useUserData() {
     return unsub;
   }, [user]);
 
-  return { user, username, userData };
+  return {
+    user,
+    username,
+    userData,
+    modalData: modalData,
+    modal: { openModal, closeModal },
+  };
 }

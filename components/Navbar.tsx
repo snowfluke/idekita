@@ -16,7 +16,7 @@ export default function Navbar() {
   }, [userData, username]);
 
   return (
-    <div className="bg-gray-100 shadow-md fixed top-0 w-full z-50 print:hidden">
+    <div className="bg-gray-100 shadow-md fixed top-0 w-full z-10 print:hidden">
       <div className="w-[80%] m-auto p-3">
         <nav className="md:flex justify-between items-center">
           <div className="flex justify-between">

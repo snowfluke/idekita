@@ -1,11 +1,15 @@
-import React from "react";
+import { useContext } from "react";
+import { UserContext } from "@modules/contexter";
+import { LinkTo } from "@modules/composer";
+import { terminologies, policies } from "@modules/markdowner";
 
 export default function RightSidebar({ username = "" }) {
+  const { modal } = useContext(UserContext);
+
   const menuList = [
     {
       icon: "🏠",
       name: "#Beranda",
-      requireLogin: false,
       route: "/langit-ide",
     },
     {
@@ -17,21 +21,22 @@ export default function RightSidebar({ username = "" }) {
     },
     {
       icon: "💡",
-      requireLogin: false,
       name: "#Buat Ide",
       route: `/mesin-ide`,
     },
     {
       icon: "📕",
-      requireLogin: false,
       name: "#Terminologi",
-      route: "/",
+      requireModal: true,
+      title: "Terminologi iDekita",
+      content: terminologies,
     },
     {
       icon: "📐",
-      requireLogin: false,
       name: "#Kebijakan",
-      route: "/",
+      requireModal: true,
+      title: "Kebijakan Privasi dan Penggunaan iDekita",
+      content: policies,
     },
     {
       icon: "🚪",
@@ -46,7 +51,7 @@ export default function RightSidebar({ username = "" }) {
       {menuList
         .filter((menu) => (!username ? !menu.requireLogin : true))
         .map((menu) => (
-          <React.Fragment key={menu.name}>
+          <div key={menu.name}>
             <li
               className={
                 menu.icon !== "🚪"
@@ -54,24 +59,51 @@ export default function RightSidebar({ username = "" }) {
                   : "li-r-sidebar text-fuchsia-500"
               }
             >
-              <a href={menu.route}>
-                <div className="flex space-x-2">
-                  <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">
-                    {menu.icon}
+              {menu.requireModal ? (
+                <a
+                  className="cursor-pointer"
+                  onClick={() =>
+                    modal.openModal({
+                      title: menu.title,
+                      content: menu.content,
+                    })
+                  }
+                >
+                  <div className="flex space-x-2">
+                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">
+                      {menu.icon}
+                    </div>
+                    <div
+                      className={
+                        menu.icon !== "🚪"
+                          ? "flex-1 w-64"
+                          : "flex-1 w-64 text-fuchsia-500"
+                      }
+                    >
+                      {menu.name}
+                    </div>
                   </div>
-                  <div
-                    className={
-                      menu.icon !== "🚪"
-                        ? "flex-1 w-64"
-                        : "flex-1 w-64 text-fuchsia-500"
-                    }
-                  >
-                    {menu.name}
+                </a>
+              ) : (
+                <LinkTo href={menu.route}>
+                  <div className="flex space-x-2">
+                    <div className="flex-none w-8 bg-gray-100 rounded-full content-center text-center">
+                      {menu.icon}
+                    </div>
+                    <div
+                      className={
+                        menu.icon !== "🚪"
+                          ? "flex-1 w-64"
+                          : "flex-1 w-64 text-fuchsia-500"
+                      }
+                    >
+                      {menu.name}
+                    </div>
                   </div>
-                </div>
-              </a>
+                </LinkTo>
+              )}
             </li>
-          </React.Fragment>
+          </div>
         ))}
     </>
   );

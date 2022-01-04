@@ -1,7 +1,8 @@
 import "@styles/globals.css";
 import { UserContext } from "@modules/contexter";
 import { useUserData } from "@modules/hooker";
-import { Navbar, Footer, Toaster, Meta } from "@modules/composer";
+import { Navbar, Footer, Toaster, Meta, Modal } from "@modules/composer";
+import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   const UserData = useUserData();
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }) {
         </main>
       </div>
       <Toaster />
+      {UserData.modalData.show && <Modal />}
     </UserContext.Provider>
   );
 }
