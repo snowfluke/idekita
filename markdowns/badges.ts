@@ -304,6 +304,11 @@ supporter
 👋maniac
 🤟mahajari
 
+sarjana
+🥉Sarjana
+🥈Magister
+🥇Doktor
+
 supported
 🤨dilirik
 😍disenengi
