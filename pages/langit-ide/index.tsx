@@ -18,7 +18,7 @@ const LIMIT = 10;
 export async function getServerSideProps(context) {
   const postsQuery = query(
     collectionGroup(db, "posts"),
-    orderBy("dateCreated", "desc"),
+    orderBy("dateUpdated", "desc"),
     limit(LIMIT)
   );
 
@@ -58,7 +58,6 @@ export default function Sky({ postsFetched }) {
 
   return (
     <>
-      {" "}
       <Meta
         title="iDekita 📕 Temukan Ide-ide Kreatif"
         description="Cari, temukan, dan publikasikan ide-ide kreatif bersama dengan Idekiawan di seluruh Indonesia demi masa depan yang lebih baik lagi"

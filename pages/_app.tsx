@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
       />
       <Navbar />
       <div className="pt-14 mt-10 print:!pt-1 print:!mt-0">
-        <main className="w-[80%] mx-auto">
+        <main className="w-[95%] md:w-[80%] mx-auto">
           <Component {...pageProps} />
           <Footer />
         </main>

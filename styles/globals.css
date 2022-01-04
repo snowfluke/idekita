@@ -137,7 +137,7 @@
 
   /* NavMiddle class component NavMiddle.tsx */
   .li-item-navmid {
-    @apply md:mx-3 border-fuchsia-500 b-transition mb-1 md:mb-0 hover:border-b hover:text-fuchsia-500 cursor-pointer;
+    @apply md:mx-[4px] lg:mx-3 text-base md:text-sm lg:text-base border-fuchsia-500 b-transition mb-1 md:mb-0 hover:border-b hover:text-fuchsia-500 cursor-pointer;
   }
 
   /* IdeaContent & IdeaPublish class component .tsx*/
@@ -146,7 +146,27 @@
   }
 
   .article-wrapper {
-    @apply bg-white rounded-md border border-gray-300 px-24 py-16 mb-10 shadow;
+    @apply bg-white rounded-md border border-gray-300 px-8 py-10 lg:px-24 lg:py-16 mb-10 shadow;
+  }
+  
+  .btn-idea-right {
+    @apply flex-1 rounded-tr-full border-l-4 hover:translate-x-10 b-transition border-dashed border-fuchsia-500 rounded-br-full rounded-md content-center;
+  }
+
+  .btn-idea-right-after {
+    @apply flex flex-grow text-lg font-bold select-none;
+  }
+
+  .btn-idea-icon {
+    @apply flex-none w-8 text-center bg-gray-100 text-lg rounded-full p-[2px] prose justify-self-end select-none;
+  }
+
+  .btn-idea-content {
+    @apply p-5 flex active:bg-fuchsia-500 active:outline-none w-full rounded-br-full rounded-tr-full border-2 md:border-none border-fuchsia-500
+  }
+  
+  .span-idea-content {
+    @apply btn-idea-right-after text-fuchsia-500 active:text-white text-left
   }
 
   /* RightSidebar class component .tsx */
@@ -166,17 +186,5 @@
   /* TextArea class component */
   .txt-area {
     @apply resize-none block w-full bg-clip-padding rounded b-transition focus:outline-none overflow-hidden;
-  }
-
-  .btn-idea-right {
-    @apply flex-1 rounded-tr-full border-l-4 hover:translate-x-10 b-transition border-dashed border-fuchsia-500 rounded-br-full rounded-md content-center;
-  }
-
-  .btn-idea-right-after {
-    @apply flex flex-grow text-lg font-bold select-none;
-  }
-
-  .btn-idea-icon {
-    @apply flex-none w-8 text-center bg-gray-100 text-lg rounded-full p-[2px] prose justify-self-end select-none;
   }
 }

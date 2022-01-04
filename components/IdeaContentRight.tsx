@@ -4,14 +4,8 @@ export default function IdeaContentRight({ menu, Top }) {
     menu.map((menu, id) => {
       return (
         <div key={menu.name + id} className={"btn-idea-right bg-white"}>
-          <button
-            onClick={menu.onclick}
-            disabled={menu.disabled}
-            className="p-5 flex active:bg-fuchsia-500 active:outline-none w-full !cursor-pointer rounded-br-full rounded-tr-full"
-          >
-            <div className="btn-idea-right-after text-fuchsia-500 active:text-white">
-              {menu.name}
-            </div>
+          <button onClick={menu.onclick} disabled={menu.disabled} className="btn-idea-content !cursor-pointer ">
+            <div className="span-idea-content">{menu.name}</div>
             <div className="btn-idea-icon">{menu.icon}</div>
           </button>
         </div>
@@ -19,7 +13,7 @@ export default function IdeaContentRight({ menu, Top }) {
     });
 
   return (
-    <div className="space-y-2 rounded-md border sticky top-24 flex-col">
+    <div className="space-y-2 rounded-md md:bg-transparent md:pr-0 md:pt-0 md:pb-0 md:border-0 bg-white pr-10 py-10 sticky top-24 flex-col border-2">
       {TopElement()}
       {ideaMenu()}
     </div>
