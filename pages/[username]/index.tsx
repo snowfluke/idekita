@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { UserContext } from "@modules/contexter";
+import dynamic from "next/dynamic";
 import { getUserWithUsername, docToJSON } from "@modules/helper";
 import {
   ProfileOption,
   ProfileInfo,
-  ProfileRecent,
   ProfileBadge,
   ProfilePopular,
   Meta,
@@ -19,6 +19,7 @@ import {
   db,
   query as q,
 } from "@modules/firebaser";
+const ProfileRecent = dynamic(() => import("@components/ProfileRecent"));
 
 export async function getServerSideProps({ query }) {
   const { username } = query;
