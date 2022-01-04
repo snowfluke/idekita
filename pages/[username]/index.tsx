@@ -1,5 +1,6 @@
 import { getUserWithUsername, docToJSON, formatDate } from "@modules/helper";
 import { Feed } from "@modules/composer";
+import { badges } from "@modules/markdowner";
 import Image from "next/image";
 import {
   getDocs,
@@ -12,10 +13,11 @@ import {
   query,
 } from "@modules/firebaser";
 import { useState } from "react";
-import { useContext } from "react";
+import { useContext, Fragment } from "react";
 import { UserContext } from "@modules/contexter";
 import { Meta } from "@modules/composer";
 import { useRouter } from "next/router";
+import { Popover, Transition } from "@headlessui/react";
 
 const LIMIT = 10;
 const q = query;
@@ -70,21 +72,44 @@ export default function Profile({ user, post }) {
 
   const photoURL = user.photoURL.split("=")[0];
   const idekiawan = currentUser === user.username ? true : false;
+
   const getTitle = () =>
-    Object.values(user.title).map((title) => {
+    Object.values(user.title).map((idtitle, id) => {
+      let title = badges[`${idtitle}`];
       return (
-        <div key={`${title}`} className="mx-1 md:mx-2 mb-4">
-          <div className="px-3 py-2 article-prose prose-a:no-underline prose-a:hover:text-white bg-white border b-transition border-fuchsia-500 hover:bg-fuchsia-600 cursor-default rounded inline-block">
-            <a>{title}</a>
-          </div>
-        </div>
+        <Popover key={id} className="relative outline-none">
+          <Popover.Button className={"outline-none"}>
+            <div className="mx-1 md:mx-2 mb-4">
+              <div className="px-3 py-2 article-prose prose-a:no-underline prose-a:hover:text-white bg-white border b-transition border-fuchsia-500 hover:bg-fuchsia-600 cursor-default rounded inline-block">
+                <a>
+                  {title?.badge} {title?.name}
+                </a>
+              </div>
+            </div>
+          </Popover.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 translate-y-1"
+            enterTo="opacity-100 translate-y-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 translate-y-1"
+          >
+            <Popover.Panel className="absolute  z-10 w-screen max-w-sm -translate-x-1/3 lg:max-w-3xl">
+              <div className="text-sm text-center bg-white p-2 font-normal rounded-lg shadow-md">
+                {title?.desc}
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </Popover>
       );
     });
 
   return (
     <>
       <Meta
-        title={`iDekiawan 👨🏻‍🏫 ${user.displayName}`}
+        title={`Idekiawan 👨🏻‍🏫 ${user.displayName}`}
         description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
       />
       <div className="big-heading print:hidden">
@@ -113,7 +138,7 @@ export default function Profile({ user, post }) {
           #Laporkan
         </button>
         <button
-          onClick={window.print}
+          onClick={() => window.print()}
           className="btn-fuchsia hover:scale-105 inline-block hover:-rotate-6"
         >
           #Cetak
