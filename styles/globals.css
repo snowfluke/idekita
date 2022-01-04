@@ -6,7 +6,7 @@
 
 @layer components {
   body {
-    @apply font-body;
+    @apply font-body selection:text-white selection:bg-fuchsia-400;
   }
 
   /* transition */
@@ -37,6 +37,10 @@
 
   .btn-fuchsia {
     @apply px-8 py-2 text-white bg-fuchsia-500 rounded-md b-transition hover:bg-fuchsia-600;
+  }
+
+  .btn-fuchsia-reverse {
+    @apply px-8 py-2 text-fuchsia-500 border border-fuchsia-500 rounded-md b-transition hover:bg-fuchsia-600 hover:text-white;
   }
 
   .input-white {

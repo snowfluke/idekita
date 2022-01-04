@@ -15,6 +15,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import { Meta } from "@modules/composer";
+import { useRouter } from "next/router";
 
 const LIMIT = 10;
 const q = query;
@@ -41,6 +42,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Profile({ user, post }) {
+  const router = useRouter();
   const [posts, setPosts] = useState(post);
   const [loading, setLoading] = useState(false);
   const [postsEnd, setPostsEnd] = useState(false);
@@ -72,8 +74,8 @@ export default function Profile({ user, post }) {
     Object.values(user.title).map((title) => {
       return (
         <div key={`${title}`} className="mx-1 md:mx-2 mb-4">
-          <div className="px-3 py-2 prose bg-white border b-transition border-fuchsia-500 hover:bg-fuchsia-600 cursor-default hover:text-white rounded inline-block">
-            <p>{title}</p>
+          <div className="px-3 py-2 article-prose prose-a:no-underline prose-a:hover:text-white bg-white border b-transition border-fuchsia-500 hover:bg-fuchsia-600 cursor-default rounded inline-block">
+            <a>{title}</a>
           </div>
         </div>
       );
@@ -91,44 +93,31 @@ export default function Profile({ user, post }) {
         </h1>
       </div>
 
-      <div className="flex print:hidden justify-between md:justify-end mb-7 mt-5 md:mb-0">
+      <div className="flex space-x-2 print:hidden justify-between md:justify-end mb-7 mt-5 md:mb-0">
         <button
-          onClick={() => window.print()}
+          onClick={router.back}
+          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6"
+        >
+          {"<"}
+        </button>
+        <button
+          onClick={() =>
+            router.push(
+              encodeURI(
+                `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melaporkan salah satu akun Idekiawan dengan nama pengguna #${post.username} ( https://idekita.id/${post.username}/ ) karena terbukti melakukan pelanggaran ...`
+              )
+            )
+          }
+          className="btn-fuchsia-reverse hover:scale-105 inline-block hover:-rotate-6"
+        >
+          #Laporkan
+        </button>
+        <button
+          onClick={window.print}
           className="btn-fuchsia hover:scale-105 inline-block hover:-rotate-6"
         >
           #Cetak
         </button>
-
-        <div className="relative inline-block text-left">
-          <div
-            id="report-btn"
-            className="ml-7 cursor-pointer"
-            aria-expanded="true"
-            aria-haspopup="true"
-          >
-            <div className="report-btn mt-1"></div>
-            <div className="report-btn my-1"></div>
-            <div className="report-btn"></div>
-          </div>
-
-          <div
-            className="dropdown-list-nav hidden origin-top-right w-20"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="report-btn"
-            id="dropreport"
-          >
-            <div role="none">
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm hover:bg-fuchsia-500 hover:text-white b-transition rounded-md"
-                role="menuitem"
-              >
-                Laporkan
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="grid xl:grid-cols-4 xl:gap-10 md:grid-cols-2 md:gap-5 grid-cols-1">
@@ -149,11 +138,7 @@ export default function Profile({ user, post }) {
           <p className="md:text-6xl text-4xl font-semibold mb-3">
             {user.displayName}
           </p>
-          <p className="text-xl font-semibold">
-            Kamu telah terdafter resmi sebagai Idekiawan! Selamat datang di
-            iDekita - Jembatani ide dan realisasi. Klik disini untuk mengubah
-            bio mu 👋
-          </p>
+          <p className="text-xl font-semibold">{user.bio}</p>
           <p className="text-xl text-fuchsia-500 font-semibold">{user.email}</p>
         </div>
       </div>

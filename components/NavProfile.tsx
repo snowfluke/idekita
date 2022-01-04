@@ -84,7 +84,7 @@ export default function NavProfile({ user }) {
                             ? "li-item-profile-menu-active"
                             : "li-item-profile-menu"
                         }
-                        onClick={() => signOut(router)}
+                        onClick={() => signOut()}
                       >
                         🚪 Keluar
                       </LinkTo>

@@ -186,7 +186,7 @@ function ThankYou() {
         <p className="btn-section" onClick={() => router.back()}>
           Kembali
         </p>
-        <p className="btn-section" onClick={() => signOut(router)}>
+        <p className="btn-section" onClick={() => signOut()}>
           Keluar
         </p>
       </div>
