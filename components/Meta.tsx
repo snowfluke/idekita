@@ -1,3 +1,5 @@
+/** Reusable and composable meta tags for SEO */
+
 import Head from "next/head";
 import { emoji } from "@modules/emojier";
 

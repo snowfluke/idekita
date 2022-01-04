@@ -1,3 +1,5 @@
+/** Components to display in the /langit-ide route, provide recent and random post  */
+
 import { LinkTo } from "@modules/composer";
 import { minutesToRead, formatDate } from "@modules/helper";
 import { emoji } from "@modules/emojier";

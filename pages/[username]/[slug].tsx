@@ -1,3 +1,5 @@
+/** post route to show idea published by the [username] params on the URL */
+
 import { useRouter } from "next/router";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";

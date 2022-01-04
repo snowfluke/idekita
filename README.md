@@ -16,18 +16,22 @@ Selain itu, di sisi lain para pencari ide-ide kreatif maupun penanam modal dapat
 - Dapatkan Penghargaan Ide
 - Pencarian Ide
 - Portofolio Ide
-- Laporkan Ide 
+- Laporkan Ide
 
 ## Kenali iDekita 💫 Lebih Jauh
 
-Anda dapat membaca [Proposal iDekita](https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing
-) untuk mendapatkan penjelasan mengenai iDekita lebih dalam.
+Anda dapat membaca [Proposal iDekita](https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing) untuk mendapatkan penjelasan mengenai iDekita lebih dalam.
+
+## Demonstrasi iDekita
+
+[iDekita - Jembatani ide dengan realisasi](https://idekita.vercel.app)
 
 ## Berpartisipasi Menjadi 👨🏻‍💻 Pengembang
 
 Saat ini iDekita belum mengembangkan REST API. Jika kalian ingin berpartisipasi ikuti langkah berikut.
 
 ## Menyiapkan 🧰 Pengembangan
+
 Ini adalah proyek [Next.js](https://nextjs.org/) yang di-bootstrap dengan [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### ⚒️ Memulai

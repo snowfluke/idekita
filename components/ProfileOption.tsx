@@ -1,3 +1,5 @@
+/** The option button in the profile page containing Back, Report and Print button */
+
 import { useRouter } from "next/router";
 
 export default function ProfileOption({ username }) {

@@ -1,9 +1,25 @@
+/** Route for user profile */
+
 import { useState, useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import dynamic from "next/dynamic";
 import { getUserWithUsername, docToJSON } from "@modules/helper";
-import { ProfileOption, ProfileInfo, ProfileBadge, ProfilePopular, Meta } from "@modules/composer";
-import { getDocs, orderBy, where, limit, startAfter, collectionGroup, db, query as q } from "@modules/firebaser";
+import {
+  ProfileOption,
+  ProfileInfo,
+  ProfileBadge,
+  ProfilePopular,
+  Meta,
+} from "@modules/composer";
+import {
+  getDocs,
+  orderBy,
+  where,
+  limit,
+  collectionGroup,
+  db,
+  query as q,
+} from "@modules/firebaser";
 import { emoji } from "@modules/emojier";
 
 const ProfileRecent = dynamic(() => import("@components/ProfileRecent"));
@@ -41,7 +57,7 @@ export default function Profile({ user, post }) {
       </div>
 
       <ProfileOption username={user.username} />
-      <ProfileInfo user={user} photoURL={photoURL} />
+      <ProfileInfo user={user} photoURL={photoURL} idekiawan={idekiawan} />
       <ProfileBadge user={user} />
 
       {post && (

@@ -1,9 +1,16 @@
+/** Sidebar Components used in /langit-ide route */
+
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";
 import { LinkTo } from "@modules/composer";
 import { terminologies, policies } from "@modules/markdowner";
 import { emoji } from "@modules/emojier";
 
+/**
+ * Logged and unlogged
+ * @param param0 Accept optional username active user
+ * @returns Sidebar components
+ */
 export default function RightSidebar({ username = "" }) {
   const { modal } = useContext(UserContext);
 

@@ -1,3 +1,5 @@
+/** Extend the Document components to add a global HTML css styling */
+
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {

@@ -1,3 +1,5 @@
+/** Fallback route, if the destined route doesn't exist in the first place */
+
 import { useRouter } from "next/router";
 import { emoji as em } from "@modules/emojier";
 

@@ -1,3 +1,5 @@
+/** This files is used to store all the markdown command and the explanation on how to use it */
+
 const markdownhelps = `
 
 # Paragraf

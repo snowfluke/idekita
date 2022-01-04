@@ -1,3 +1,5 @@
+/** This files is used to store privacy policies and agreement on the site */
+
 const policies = `
 
 ### KEBIJAKAN PRIVASI DAN PENGGUNAAN

@@ -1,3 +1,4 @@
+/** Route for authenticated user to create a new idea */
 import { CheckLogin } from "@modules/composer";
 import { useContext } from "react";
 import { UserContext } from "@modules/contexter";

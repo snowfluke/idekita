@@ -1,3 +1,5 @@
+/** Route for registering a user using google account and also to create a custom usernames */
+
 import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";
@@ -58,7 +60,7 @@ export default function Register() {
       email: user.email,
       notifications: `{"recent":["Selamat bergabung di iDekita ${emoji.kedip}!"]}`,
       reports: 0,
-      bio: `${user.displayName} telah terdafter resmi sebagai Idekiawan! Selamat datang di iDekita - Jembatani ide dan realisasi`,
+      bio: `${user.displayName} telah terdaftar resmi sebagai Idekiawan! Selamat datang di iDekita - Jembatani ide dan realisasi`,
       title: {
         journey: "buntel",
         supporter: "",

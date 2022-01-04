@@ -1,3 +1,5 @@
+/** Main components to display a post from a markdown */
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { LinkTo } from "@modules/composer";

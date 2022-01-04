@@ -1,3 +1,5 @@
+/** Extend the app component to add a Context API, Toaster, Navbar, Footer, Modal and Meta tags */
+
 import "@styles/globals.css";
 import { UserContext } from "@modules/contexter";
 import { useUserData } from "@modules/hooker";

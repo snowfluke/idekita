@@ -1,3 +1,7 @@
+/** Navigation menu on the center, showed when it's not /langit-ide route */
+
+/** Containing basic menu from markdown */
+
 import { UserContext } from "@modules/contexter";
 import { useContext } from "react";
 import { policies, supporters, terminologies } from "@modules/markdowner";
@@ -21,12 +25,15 @@ const credentials = [
   },
 ];
 
-export default function MiddleMenu({toggle}) {
+export default function MiddleMenu({ toggle }) {
   const { modal } = useContext(UserContext);
   return (
     <ul className={toggle}>
       {Credentials(modal)}
-      <LinkTo target="_blank" href="https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing">
+      <LinkTo
+        target="_blank"
+        href="https://drive.google.com/file/d/1iixidxwUlPqslumHRVjmmyzz_CdHiEII/view?usp=sharing"
+      >
         <li className="li-item-navmid">#Proposal</li>
       </LinkTo>
 
