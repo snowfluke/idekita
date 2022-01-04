@@ -71,37 +71,45 @@ export default function Sky({ postsFetched }) {
         <LeftSidebar />
 
         <div className="col-span-2">
-          <div className="mb-4">
-            <a href="#" className="li-top-menu font-bold">
-              Terbaru
-            </a>
-            <a href="#" className="li-top-menu">
-              Jelajah
-            </a>
-          </div>
+          {posts.length !== 0 && (
+            <>
+              <div className="mb-4">
+                <a href="#" className="li-top-menu font-bold">
+                  Terbaru
+                </a>
+                <a href="#" className="li-top-menu">
+                  Jelajah
+                </a>
+              </div>
 
-          <Feed posts={posts} idekiawan={false} />
+              <Feed posts={posts} idekiawan={false} />
 
-          {!loading && !postsEnd && (
-            <div className="flex justify-center">
-              <button
-                onClick={getMorePosts}
-                className="btn-fuchsia rounded-full hover:bg-fuchsia-600"
-              >
-                Lihat lebih banyak
-              </button>
-            </div>
+              {!loading && !postsEnd && (
+                <div className="flex justify-center">
+                  <button
+                    onClick={getMorePosts}
+                    className="btn-fuchsia rounded-full hover:bg-fuchsia-600"
+                  >
+                    Lihat lebih banyak
+                  </button>
+                </div>
+              )}
+
+              <Spinner show={loading} />
+
+              {postsEnd && (
+                <p className="text-center">
+                  Kamu telah mencapai batas akhir eksplorasi
+                </p>
+              )}
+            </>
           )}
-
-          <Spinner show={loading} />
-
-          {postsEnd && (
-            <p className="text-center">
-              Kamu telah mencapai batas akhir eksplorasi
-            </p>
+          {posts.length === 0 && (
+            <h1 className="article-prose text-center">
+              Tidak ada ide untuk saat ini
+            </h1>
           )}
         </div>
-
         <RightSidebar username={username} />
       </div>
     </>
