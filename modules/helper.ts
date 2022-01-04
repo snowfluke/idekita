@@ -1,6 +1,6 @@
 import {
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
   auth,
   db,
   query,
@@ -16,7 +16,7 @@ import { toast } from "@modules/composer";
 const signIn = async () => {
   try {
     const provider = new GoogleAuthProvider();
-    const log = await signInWithPopup(auth, provider);
+    const log = await signInWithRedirect(auth, provider);
   } catch (error) {
     toast.error("Autentikasi dibatalkan");
   }
