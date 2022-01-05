@@ -24,7 +24,7 @@ Anda dapat membaca [Proposal iDekita](https://drive.google.com/file/d/1iixidxwUl
 
 ## Demonstrasi iDekita
 
-[iDekita - Jembatani ide dengan realisasi](https://idekita.vercel.app)
+[iDekita - Jembatani ide dengan realisasi](https://idekita.herokuapp.com/)
 
 ## Berpartisipasi Menjadi 👨🏻‍💻 Pengembang
 
