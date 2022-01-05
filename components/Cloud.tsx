@@ -36,12 +36,10 @@ export default function Cloud({ post, update }) {
 
   return (
     <>
-<<<<<<< HEAD
       <div key="#Dukung" className={cloudDoc?.exists() ? "btn-idea-right bg-fuchsia-500 cursor-default" : "btn-idea-right bg-white cursor-pointer"}>
         <button onClick={addCloud} disabled={cloudDoc?.exists()} className="btn-idea-content">
           <div className={cloudDoc?.exists() ? "btn-idea-right-after text-white" : "span-idea-content"}>{cloudDoc?.exists() ? "#Didukung" : "#Dukung"}</div>
           <div className="btn-idea-icon">{emoji.semangat}</div>
-=======
       <div
         key="#Dukung"
         className={
@@ -65,7 +63,6 @@ export default function Cloud({ post, update }) {
             {cloudDoc?.exists() ? "#Didukung" : "#Dukung"}
           </div>
           <div className="btn-idea-icon">{"✊"}</div>
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
         </button>
       </div>
     </>
