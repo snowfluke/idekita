@@ -62,7 +62,7 @@ const firebaseConfig3 = {
 /**
  * Initialize firebase app using the config object, get the database and auth object
  */
-const app = initializeApp(firebaseConfig3);
+const app = initializeApp(firebaseConfig2);
 const db = getFirestore();
 const auth = getAuth();
 
