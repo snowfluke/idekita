@@ -10,11 +10,11 @@ import { emoji } from "@modules/emojier";
 
 export default function IdeaContent({ post, userDataPost }) {
   const { username } = useContext(UserContext);
-  const publishedDate = formatDate(post.dateUpdated);
-  const readTime = minutesToRead(post.content);
+  const publishedDate = formatDate(post?.dateUpdated);
+  const readTime = minutesToRead(post?.content);
 
   const Tag = () =>
-    post.tags.map((tag) => {
+    post?.tags.map((tag) => {
       return (
         <LinkTo key={tag} href={`/tag/${tag}`} className="mr-3">
           #{tag}
@@ -26,32 +26,34 @@ export default function IdeaContent({ post, userDataPost }) {
     <div className="article-wrapper">
       <article className="article-prose">
         <h1 id="idea-header" className="scroll-mt-36">
-          {post.title}
+          {post?.title}
         </h1>
-        {username === post.username && (
+        {username === post?.username && (
           <div className="flex content-center w-full justify-center p-2 cursor-pointer hover:bg-fuchsia-100 rounded-md mb-5 border-2 border-fuchsia-500">
             <LinkTo
               className="text-lg no-underline w-full h-full text-center"
-              href={`/mesin-ide/${post.slug}`}
+              href={`/mesin-ide/${post?.slug}`}
             >
               Ubah
             </LinkTo>
           </div>
         )}
         <h5>
-          {emoji.tanggal} {post.edited && <>Diubah</>} {publishedDate} •{" "}
+          {emoji.tanggal} {post?.edited && <>Diubah</>} {publishedDate} •{" "}
           {emoji.edit}
-          <LinkTo href={`/${post.username}`}>{userDataPost.username}</LinkTo> •
-          {emoji.bataswaktu} {readTime} menit membaca
+          <LinkTo href={`/${post?.username}`}>
+            {userDataPost?.username}
+          </LinkTo>{" "}
+          •{emoji.bataswaktu} {readTime} menit membaca
         </h5>
 
         <hr />
         <blockquote>
-          <b>Latar belakang: </b> {post.background}
+          <b>Latar belakang: </b> {post?.background}
         </blockquote>
         <div>Tag: {Tag()}</div>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {post.content}
+          {post?.content}
         </ReactMarkdown>
       </article>
     </div>

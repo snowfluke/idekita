@@ -51,7 +51,8 @@ export async function getStaticPaths({ params }) {
 
 export default function IdeaProfile({ post, userDataPost }) {
   const router = useRouter();
-  const [cloudCount, setCloudCount] = useState(post.cloud);
+  let initialCloud = post?.cloud || 0;
+  const [cloudCount, setCloudCount] = useState(initialCloud);
   const ideaContentMenu = [
     {
       name: "#Bagikan",
@@ -64,7 +65,7 @@ export default function IdeaProfile({ post, userDataPost }) {
       onclick: () =>
         router.push(
           encodeURI(
-            `https://mail.google.com/mail/?view=cm&fs=1&to=${userDataPost.email}&su=iDekita - ${post.title}&body=Hai, ${userDataPost.displayName} ${emoji.hai}! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post.username}/${post.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
+            `https://mail.google.com/mail/?view=cm&fs=1&to=${userDataPost.email}&su=iDekita - ${post?.title}&body=Hai, ${userDataPost.displayName} ${emoji.hai}! Sehubungan dengan ide yang Anda publikasi di tautan https://idekita.id/${post?.username}/${post?.slug}. Saya bermaksud untuk berdiskusi lebih jauh mengenai hal itu. `
           )
         ),
     },
@@ -74,7 +75,7 @@ export default function IdeaProfile({ post, userDataPost }) {
       onclick: () =>
         router.push(
           encodeURI(
-            `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melaporkan sebuah publikasi ide berjudul ${post.title} ( https://idekita.id/${post.username}/${post.slug} ) karena terbukti melakukan pelanggaran ...`
+            `https://mail.google.com/mail/?view=cm&fs=1&to=admidekita@gmail.com&su=iDekita - Laporan Pelanggaran Kebijakan&body=Selamat siang, Tim iDekita. Saya ingin melaporkan sebuah publikasi ide berjudul ${post?.title} ( https://idekita.id/${post?.username}/${post?.slug} ) karena terbukti melakukan pelanggaran ...`
           )
         ),
     },
@@ -100,8 +101,8 @@ export default function IdeaProfile({ post, userDataPost }) {
   return (
     <>
       <Meta
-        title={`iDekita ✨ ${post.title}`}
-        description={`${post.background}`}
+        title={`iDekita ✨ ${post?.title}`}
+        description={`${post?.background}`}
       />
       <IdeaLayout>
         <IdeaContent post={post} userDataPost={userDataPost} />

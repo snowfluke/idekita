@@ -22,9 +22,10 @@ import { toast } from "@modules/composer";
 const signIn = async () => {
   try {
     const provider = new GoogleAuthProvider();
-    const log = await signInWithRedirect(auth, provider);
+    await signInWithRedirect(auth, provider);
   } catch (error) {
     toast.error("Autentikasi dibatalkan");
+    console.log(error);
   }
 };
 
@@ -119,7 +120,7 @@ const isUsernameAvailable = async (username: string) => {
  * @returns minutes
  */
 const minutesToRead = (content) => {
-  const wordCount = content.trim().split(/\s+/g).length;
+  const wordCount = content?.trim().split(/\s+/g).length;
   const minutes = (wordCount / 100 + 1).toFixed(0);
   return minutes;
 };
