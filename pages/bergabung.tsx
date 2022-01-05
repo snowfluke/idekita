@@ -47,7 +47,7 @@ export default function Register() {
         setLoading(false);
       }
     }, 1000),
-    []
+    [username]
   );
 
   const submitHandler = async (event) => {
@@ -90,7 +90,7 @@ export default function Register() {
 
   useEffect(() => {
     checkUsername(valueForm);
-  }, [valueForm, checkUsername]);
+  }, [valueForm]);
 
   return (
     <>
@@ -109,7 +109,11 @@ export default function Register() {
                   <div className="box-section">
                     <div className="wrap-section">
                       <div className="mb-6">
-                        <h3 className="h3-style">Buat Username</h3>
+                        <h3 className="h3-style">Buat Nama Pengguna</h3>
+                        <p>
+                          Berupa huruf dan angka, tanpa spasi dan panjangnya
+                          3-15 karakter
+                        </p>
                       </div>
                       <div>
                         <form onSubmit={submitHandler}>

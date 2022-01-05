@@ -39,7 +39,8 @@ export default function IdeaContent({ post, userDataPost }) {
           </div>
         )}
         <h5>
-          {emoji.tanggal} {post.edited && <>Diubah</>} {publishedDate} • {emoji.edit}
+          {emoji.tanggal} {post.edited && <>Diubah</>} {publishedDate} •{" "}
+          {emoji.edit}
           <LinkTo href={`/${post.username}`}>{userDataPost.username}</LinkTo> •
           {emoji.bataswaktu} {readTime} menit membaca
         </h5>
@@ -49,7 +50,9 @@ export default function IdeaContent({ post, userDataPost }) {
           <b>Latar belakang: </b> {post.background}
         </blockquote>
         <div>Tag: {Tag()}</div>
-        <ReactMarkdown children={post.content} remarkPlugins={[remarkGfm]} />
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {post.content}
+        </ReactMarkdown>
       </article>
     </div>
   );
