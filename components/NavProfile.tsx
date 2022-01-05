@@ -54,10 +54,6 @@ export default function NavProfile({ user, toggle }) {
                 <Menu.Items className="absolute flex flex-col right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
-<<<<<<< HEAD
-                      <a className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} href="/langit-ide">
-                        {emoji.dunia} Eksplorasi
-=======
                       <a
                         className={
                           active
@@ -66,17 +62,12 @@ export default function NavProfile({ user, toggle }) {
                         }
                         href="/langit-ide"
                       >
-                        🌎 Eksplorasi
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
+                        {emoji.dunia} Eksplorasi
                       </a>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-<<<<<<< HEAD
-                      <LinkTo className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} href={`/${user.username}`}>
-                        {emoji.profil} Profil
-=======
                       <LinkTo
                         className={
                           active
@@ -85,17 +76,12 @@ export default function NavProfile({ user, toggle }) {
                         }
                         href={`/${user.username}`}
                       >
-                        🙎🏻‍♂️ Profil
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
+                        {emoji.profil} Profil
                       </LinkTo>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-<<<<<<< HEAD
-                      <LinkTo className={active ? "li-item-profile-menu-active" : "li-item-profile-menu"} onClick={() => signOut()}>
-                        {emoji.pintu} Keluar
-=======
                       <LinkTo
                         className={
                           active
@@ -104,8 +90,7 @@ export default function NavProfile({ user, toggle }) {
                         }
                         onClick={() => signOut()}
                       >
-                        🚪 Keluar
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
+                        {emoji.pintu} Keluar
                       </LinkTo>
                     )}
                   </Menu.Item>
@@ -146,13 +131,9 @@ const Notification = ({ notifications }) => {
   return (
     <Menu as="div" className="relative inline-block">
       <div>
-<<<<<<< HEAD
-        <Menu.Button className="li-item-profile py-[6px] focus:bg-gray-300 inline-flex justify-center focus:outline-none">{emoji.lonceng}</Menu.Button>
-=======
         <Menu.Button className="li-item-profile py-[6px] focus:bg-gray-300 inline-flex justify-center focus:outline-none">
-          🔔
+          {emoji.lonceng}
         </Menu.Button>
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
       </div>
       <Transition
         as={Fragment}

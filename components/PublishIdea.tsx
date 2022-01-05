@@ -5,10 +5,6 @@ import { useRouter } from "next/router";
 import { IdeaLayout } from "@modules/layouter";
 import { PublishSidebar, IdeaContent, toast } from "@modules/composer";
 import { validator, msg } from "@modules/validator";
-<<<<<<< HEAD
-import { UserContext } from "@modules/contexter";
-import { auth, doc, db, deleteDoc, setDoc, updateDoc, serverTimestamp } from "@modules/firebaser";
-=======
 import {
   doc,
   db,
@@ -17,7 +13,6 @@ import {
   updateDoc,
   serverTimestamp,
 } from "@modules/firebaser";
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
 import TextArea from "react-textarea-autosize";
 import kebabCase from "lodash.kebabcase";
 import { isValidTag } from "@modules/helper";
@@ -67,7 +62,8 @@ export default function PublishIdea({ initialPost, userData }) {
       setPost({ ...post, tags: tags });
 
       if (!check("title", post.title)) return toast.error(msg["title"]);
-      if (!check("background", post.background)) return toast.error(msg["background"]);
+      if (!check("background", post.background))
+        return toast.error(msg["background"]);
       if (!check("tags", tags)) return toast.error(msg["tags"]);
       if (!check("content", post.content)) return toast.error(msg["content"]);
 
@@ -197,15 +193,11 @@ export default function PublishIdea({ initialPost, userData }) {
               />
 
               <div className="flex w-full">
-<<<<<<< HEAD
-                <TextArea value={`https://idekita.id/${userData.username}/${slug}`} className="underline cursor-pointer text-fuchsia-500 w-full" disabled />
-=======
                 <TextArea
                   value={`https://idekita.id/${userData.username}/${slug}`}
                   className="underline cursor-pointer text-fuchsia-500 w-full resize-none"
                   disabled
                 />
->>>>>>> cbc3230437e1c6713be481b231b5b9af2d0be49c
               </div>
 
               <hr />
@@ -214,7 +206,9 @@ export default function PublishIdea({ initialPost, userData }) {
                 <TextArea
                   name="background"
                   value={post.background}
-                  onChange={(ev) => setPost({ ...post, background: ev.target.value })}
+                  onChange={(ev) =>
+                    setPost({ ...post, background: ev.target.value })
+                  }
                   className="txt-area italic"
                   spellCheck={false}
                   minRows={2}
@@ -229,7 +223,11 @@ export default function PublishIdea({ initialPost, userData }) {
                   spellCheck={false}
                   value={tagsInput}
                   className="txt-area form-control outline-none border-none w-full"
-                  placeholder={tags.length < 4 ? "Berikan tag idemu dan pisahkan dengan koma" : ""}
+                  placeholder={
+                    tags.length < 4
+                      ? "Berikan tag idemu dan pisahkan dengan koma"
+                      : ""
+                  }
                   onKeyDown={tagsProps.onkeydown}
                   onChange={tagsProps.onchange}
                 />
@@ -238,7 +236,9 @@ export default function PublishIdea({ initialPost, userData }) {
               <TextArea
                 maxLength={10000}
                 name="content"
-                onChange={(ev) => setPost({ ...post, content: ev.target.value })}
+                onChange={(ev) =>
+                  setPost({ ...post, content: ev.target.value })
+                }
                 className="txt-area mt-5"
                 value={post.content}
                 spellCheck={false}

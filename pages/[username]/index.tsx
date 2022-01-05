@@ -32,7 +32,12 @@ export async function getServerSideProps({ query }) {
   let post = null;
 
   if (user) {
-    const postsQuery = q(collectionGroup(db, "posts"), where("username", "==", username), orderBy("cloud", "desc"), limit(10));
+    const postsQuery = q(
+      collectionGroup(db, "posts"),
+      where("username", "==", username),
+      orderBy("cloud", "desc"),
+      limit(10)
+    );
 
     post = (await getDocs(postsQuery)).docs.map(docToJSON);
   }
@@ -49,7 +54,10 @@ export default function Profile({ user, post }) {
 
   return (
     <>
-      <Meta title={`Idekiawan ${emoji.ilmuwan} ${user.displayName}`} description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi" />
+      <Meta
+        title={`Idekiawan ${emoji.ilmuwan} ${user.displayName}`}
+        description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
+      />
       <div className="big-heading print:hidden">
         <h1>
           <span className="text-fuchsia-500">#Idekiawan</span> kita
@@ -60,18 +68,31 @@ export default function Profile({ user, post }) {
       <ProfileInfo user={user} photoURL={photoURL} idekiawan={idekiawan} />
       <ProfileBadge user={user} />
 
-      {post && (
+      {post.length !== 0 && (
         <>
           <hr className="shadow-top h-[3px] bg-white hidden md:block mb-8" />
           <div className="text-center mt-5 mb-10 print:hidden">
-            <a onClick={() => setIsPopular(!isPopular)} className="text-2xl font-semibold cursor-pointer hover:text-fuchsia-500 transition duration-500">
+            <a
+              onClick={() => setIsPopular(!isPopular)}
+              className="text-2xl font-semibold cursor-pointer hover:text-fuchsia-500 transition duration-500"
+            >
               {isPopular ? "#populer" : "#terbaru"}
             </a>
           </div>
 
           {isPopular && <ProfilePopular post={post} idekiawan={idekiawan} />}
-          {!isPopular && <ProfileRecent idekiawan={idekiawan} username={user.username} />}
+          {!isPopular && (
+            <ProfileRecent idekiawan={idekiawan} username={user.username} />
+          )}
         </>
+      )}
+
+      {post.length === 0 && (
+        <div className="my-10 mx-auto w-full flex">
+          <a className="article-prose text-2xl font-semibold transition duration-500">
+            Tidak ada ide untuk saat ini {emoji.lelah}
+          </a>
+        </div>
       )}
     </>
   );

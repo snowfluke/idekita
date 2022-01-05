@@ -104,7 +104,7 @@ export default function ProfileRecent(props) {
       )}
 
       {!loading && !postsEnd && (
-        <div className="flex justify-center">
+        <div className="flex justify-center my-10">
           <button
             onClick={getMorePosts}
             className="btn-fuchsia rounded-full hover:bg-fuchsia-600"
