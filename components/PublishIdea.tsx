@@ -64,7 +64,10 @@ export default function PublishIdea({ initialPost, userData }) {
       if (!check("title", post.title)) return toast.error(msg["title"]);
       if (!check("background", post.background))
         return toast.error(msg["background"]);
-      if (!check("tags", tags)) return toast.error(msg["tags"]);
+      if (!check("tags", tags)) {
+        if (!check("tags", tagsInput.trim().toLowerCase().split(",")))
+          return toast.error(msg["tags"]);
+      }
       if (!check("content", post.content)) return toast.error(msg["content"]);
 
       const docRef = doc(db, `users/${userData.uid}/posts`, slug);

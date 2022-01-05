@@ -3,7 +3,7 @@
 /** Import all the necessary modules */
 
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -77,7 +77,7 @@ export {
   db,
   auth,
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
   collection,
   limit,
   doc,

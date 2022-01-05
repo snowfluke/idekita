@@ -1,7 +1,7 @@
 /** Pretty much the same as ProfileRecent.tsx component, the main different is that this component is default rendered at the first time */
 /** Also the paginated query different */
 
-import { Feed, Spinner } from "@modules/composer";
+import { Feed, Spinner, toast } from "@modules/composer";
 import { useState } from "react";
 import { docToJSON } from "@modules/helper";
 
@@ -21,23 +21,28 @@ export default function ProfilePopular({ post, idekiawan }) {
   const [loading, setLoading] = useState(false);
 
   const getMorePosts = async () => {
-    setLoading(true);
-    const lastPost = posts[posts.length - 1];
+    try {
+      setLoading(true);
+      const lastPost = posts[posts.length - 1];
 
-    const newPostsQuery = q(
-      collectionGroup(db, "posts"),
-      orderBy("cloud", "desc"),
-      startAfter(lastPost.cloud),
-      limit(10)
-    );
+      const newPostsQuery = q(
+        collectionGroup(db, "posts"),
+        orderBy("cloud", "desc"),
+        startAfter(lastPost.cloud),
+        limit(10)
+      );
 
-    const newPosts = (await getDocs(newPostsQuery)).docs.map(docToJSON);
-    setPosts(posts.concat(newPosts));
+      const newPosts = (await getDocs(newPostsQuery)).docs.map(docToJSON);
+      setPosts(posts.concat(newPosts));
 
-    if (newPosts.length < 10) {
-      setPostsEnd(true);
+      if (newPosts.length < 10) {
+        setPostsEnd(true);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan, coba kembali nanti");
     }
-    setLoading(false);
   };
 
   return (

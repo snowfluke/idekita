@@ -16,37 +16,45 @@ import { emoji } from "@modules/emojier";
 import { useState } from "react";
 
 export async function getStaticProps({ params }) {
-  const { username, slug } = params;
-  const userDataPost = await getUserWithUsername(username);
+  try {
+    const { username, slug } = params;
+    const userDataPost = await getUserWithUsername(username);
 
-  let post;
+    let post;
 
-  if (userDataPost) {
-    const postRef = doc(db, `users/${userDataPost.uid}/posts`, slug);
-    const postData = await getDoc(postRef);
-    post = docToJSON(postData);
+    if (userDataPost) {
+      const postRef = doc(db, `users/${userDataPost.uid}/posts`, slug);
+      const postData = await getDoc(postRef);
+      post = docToJSON(postData);
+    }
+
+    return {
+      props: { post, userDataPost },
+      revalidate: 60 * 1000,
+    };
+  } catch (error) {
+    console.log(error);
   }
-
-  return {
-    props: { post, userDataPost },
-    revalidate: 60 * 1000,
-  };
 }
 
 export async function getStaticPaths({ params }) {
-  const snapshot = await getDocs(collectionGroup(db, "posts"));
+  try {
+    const snapshot = await getDocs(collectionGroup(db, "posts"));
 
-  const paths = snapshot.docs.map((doc) => {
-    const { slug, username } = doc.data();
+    const paths = snapshot.docs.map((doc) => {
+      const { slug, username } = doc.data();
+      return {
+        params: { username, slug },
+      };
+    });
+
     return {
-      params: { username, slug },
+      paths,
+      fallback: "blocking",
     };
-  });
-
-  return {
-    paths,
-    fallback: "blocking",
-  };
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function IdeaProfile({ post, userDataPost }) {

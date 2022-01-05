@@ -16,32 +16,6 @@ import {
 } from "@modules/firebaser";
 
 /**
- * Server side rendering for recent post
- * @param param0 query from URL
- * @returns props user and post
- */
-export async function getServerSideProps({ query }) {
-  const { username } = query;
-  const user = await getUserWithUsername(username);
-
-  if (!user) return { notFound: true };
-  let post = null;
-
-  if (user) {
-    const postsQuery = q(
-      collectionGroup(db, "posts"),
-      where("username", "==", username),
-      orderBy("dateUpdated", "desc"),
-      limit(10)
-    );
-
-    post = (await getDocs(postsQuery)).docs.map(docToJSON);
-  }
-
-  return { props: { user, post } };
-}
-
-/**
  * Used vice-versa with ProfilePopular components
  * @param props property of the ProfileRecent Components
  * @returns the component itself
@@ -55,22 +29,27 @@ export default function ProfileRecent(props) {
    * Get more of the post using paginated query
    */
   const getMorePosts = async () => {
-    setLoading(true);
-    const lastPost = posts[posts.length - 1];
+    try {
+      setLoading(true);
+      const lastPost = posts[posts.length - 1];
 
-    const newPostsQuery = q(
-      collectionGroup(db, "posts"),
-      orderBy("dateUpdated", "desc"),
-      startAfter(lastPost.dateUpdated),
-      limit(10)
-    );
-    const newPosts = (await getDocs(newPostsQuery)).docs.map(docToJSON);
-    setPosts(posts.concat(newPosts));
+      const newPostsQuery = q(
+        collectionGroup(db, "posts"),
+        orderBy("dateUpdated", "desc"),
+        startAfter(lastPost.dateUpdated),
+        limit(10)
+      );
+      const newPosts = (await getDocs(newPostsQuery)).docs.map(docToJSON);
+      setPosts(posts.concat(newPosts));
 
-    if (newPosts.length < 10) {
-      setPostsEnd(true);
+      if (newPosts.length < 10) {
+        setPostsEnd(true);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Terjadi kesalahan silakan coba kembali");
     }
-    setLoading(false);
   };
 
   /** Grab the post, first time loads */

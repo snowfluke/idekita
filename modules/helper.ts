@@ -3,7 +3,7 @@
 /** Import all the necessary modules */
 import {
   GoogleAuthProvider,
-  signInWithRedirect,
+  signInWithPopup,
   auth,
   db,
   query,
@@ -22,7 +22,7 @@ import { toast } from "@modules/composer";
 const signIn = async () => {
   try {
     const provider = new GoogleAuthProvider();
-    await signInWithRedirect(auth, provider);
+    await signInWithPopup(auth, provider);
   } catch (error) {
     toast.error("Autentikasi dibatalkan");
     console.log(error);
@@ -33,7 +33,12 @@ const signIn = async () => {
  * Function to Sign Out from currently active user account
  */
 const signOut = () => {
-  auth.signOut();
+  try {
+    auth.signOut();
+    toast.success("Berhasil keluar");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**

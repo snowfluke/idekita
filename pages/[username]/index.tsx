@@ -25,24 +25,28 @@ import { emoji } from "@modules/emojier";
 const ProfileRecent = dynamic(() => import("@components/ProfileRecent"));
 
 export async function getServerSideProps({ query }) {
-  const { username } = query;
-  const user = await getUserWithUsername(username);
+  try {
+    const { username } = query;
+    const user = await getUserWithUsername(username);
 
-  if (!user) return { notFound: true };
-  let post = null;
+    if (!user) return { notFound: true };
+    let post = null;
 
-  if (user) {
-    const postsQuery = q(
-      collectionGroup(db, "posts"),
-      where("username", "==", username),
-      orderBy("cloud", "desc"),
-      limit(10)
-    );
+    if (user) {
+      const postsQuery = q(
+        collectionGroup(db, "posts"),
+        where("username", "==", username),
+        orderBy("cloud", "desc"),
+        limit(10)
+      );
 
-    post = (await getDocs(postsQuery)).docs.map(docToJSON);
+      post = (await getDocs(postsQuery)).docs.map(docToJSON);
+    }
+
+    return { props: { user, post } };
+  } catch (error) {
+    console.log(error);
   }
-
-  return { props: { user, post } };
 }
 
 export default function Profile({ user, post }) {
