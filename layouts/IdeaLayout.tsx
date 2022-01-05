@@ -2,14 +2,17 @@
 /** 4:1 Layout with sidebar on the right */
 
 import { useState } from "react";
+import { Children } from "react";
 
 export default function IdeaLayout(props) {
   const [sidebar, setSidebar] = useState(true);
 
+  const Components = Children.toArray(props.children);
+
   return (
     <div id="ideaContainer" className="flex my-5 relative">
       <div id="ideaContent" className="flex-auto w-[full] md:w-[80%]">
-        {props.MainComponent}
+        {Components[0]}
       </div>
 
       <div
@@ -20,7 +23,7 @@ export default function IdeaLayout(props) {
             : "flex-1 h-[100%] fixed left-0"
         }
       >
-        {props.SidebarComponent}
+        {Components[1]}
       </div>
 
       {/* <!-- burger --> */}

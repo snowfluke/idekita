@@ -177,96 +177,91 @@ export default function PublishIdea({ initialPost, userData }) {
   }, [initialPost]);
 
   return (
-    <IdeaLayout
-      MainComponent={
-        !preview ? (
-          <div className="article-wrapper">
-            <article className="article-prose">
+    <IdeaLayout>
+      {!preview ? (
+        <div className="article-wrapper">
+          <article className="article-prose">
+            <TextArea
+              spellCheck={false}
+              value={post.title}
+              onChange={(ev) => setPost({ ...post, title: ev.target.value })}
+              name="title"
+              className="txt-area scroll-mt-36 text-4xl font-bold"
+              placeholder="Judul ide brilianmu"
+              maxLength={100}
+            />
+
+            <div className="flex w-full">
               <TextArea
-                spellCheck={false}
-                value={post.title}
-                onChange={(ev) => setPost({ ...post, title: ev.target.value })}
-                name="title"
-                className="txt-area scroll-mt-36 text-4xl font-bold"
-                placeholder="Judul ide brilianmu"
-                maxLength={100}
+                value={`https://idekita.id/${userData.username}/${slug}`}
+                className="underline cursor-pointer text-fuchsia-500 w-full resize-none"
+                disabled
               />
+            </div>
 
-              <div className="flex w-full">
-                <TextArea
-                  value={`https://idekita.id/${userData.username}/${slug}`}
-                  className="underline cursor-pointer text-fuchsia-500 w-full resize-none"
-                  disabled
-                />
-              </div>
+            <hr />
 
-              <hr />
-
-              <blockquote>
-                <TextArea
-                  name="background"
-                  value={post.background}
-                  onChange={(ev) =>
-                    setPost({ ...post, background: ev.target.value })
-                  }
-                  className="txt-area italic"
-                  spellCheck={false}
-                  minRows={2}
-                  maxLength={400}
-                  placeholder="Latar belakang: Ceritakan bagaimana idemu bisa terlahir dan buat orang lain terinspirasi"
-                />
-              </blockquote>
-
-              <div className="w-full flex">
-                {renderTag()}
-                <input
-                  spellCheck={false}
-                  value={tagsInput}
-                  className="txt-area form-control outline-none border-none w-full"
-                  placeholder={
-                    tags.length < 4
-                      ? "Berikan tag idemu dan pisahkan dengan koma"
-                      : ""
-                  }
-                  onKeyDown={tagsProps.onkeydown}
-                  onChange={tagsProps.onchange}
-                />
-              </div>
-
+            <blockquote>
               <TextArea
-                maxLength={10000}
-                name="content"
+                name="background"
+                value={post.background}
                 onChange={(ev) =>
-                  setPost({ ...post, content: ev.target.value })
+                  setPost({ ...post, background: ev.target.value })
                 }
-                className="txt-area mt-5"
-                value={post.content}
+                className="txt-area italic"
                 spellCheck={false}
-                placeholder="Tuliskan '# Halo iDekita' dan mulai dari sekarang sebelum idemu pergi"
+                minRows={2}
+                maxLength={400}
+                placeholder="Latar belakang: Ceritakan bagaimana idemu bisa terlahir dan buat orang lain terinspirasi"
               />
-            </article>
-          </div>
-        ) : (
-          <IdeaContent
-            post={{
-              dateCreated: Date.now(),
-              dateUpdated: Date.now(),
-              ...post,
-              tags: tags,
-            }}
-            userDataPost={userData}
-          />
-        )
-      }
-      SidebarComponent={
-        <PublishSidebar
-          sidebar={{
-            preview: () => setPreview(!preview),
-            submit: () => publishIdea(),
-            delete: () => deleteIdea(),
+            </blockquote>
+
+            <div className="w-full flex">
+              {renderTag()}
+              <input
+                spellCheck={false}
+                value={tagsInput}
+                className="txt-area form-control outline-none border-none w-full"
+                placeholder={
+                  tags.length < 4
+                    ? "Berikan tag idemu dan pisahkan dengan koma"
+                    : ""
+                }
+                onKeyDown={tagsProps.onkeydown}
+                onChange={tagsProps.onchange}
+              />
+            </div>
+
+            <TextArea
+              maxLength={10000}
+              name="content"
+              onChange={(ev) => setPost({ ...post, content: ev.target.value })}
+              className="txt-area mt-5"
+              value={post.content}
+              spellCheck={false}
+              placeholder="Tuliskan '# Halo iDekita' dan mulai dari sekarang sebelum idemu pergi"
+            />
+          </article>
+        </div>
+      ) : (
+        <IdeaContent
+          post={{
+            dateCreated: Date.now(),
+            dateUpdated: Date.now(),
+            ...post,
+            tags: tags,
           }}
+          userDataPost={userData}
         />
-      }
-    />
+      )}
+
+      <PublishSidebar
+        sidebar={{
+          preview: () => setPreview(!preview),
+          submit: () => publishIdea(),
+          delete: () => deleteIdea(),
+        }}
+      />
+    </IdeaLayout>
   );
 }

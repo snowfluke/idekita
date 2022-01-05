@@ -1,11 +1,17 @@
 /** Route for registering a user using google account and also to create a custom usernames */
 
+import Image from "next/image";
 import { useContext, useEffect, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 import { UserContext } from "@modules/contexter";
 import { doc, db, writeBatch, serverTimestamp } from "@modules/firebaser";
 import { policies } from "@modules/markdowner";
-import { signIn, isValidUsername, isUsernameAvailable, signOut } from "@modules/helper";
+import {
+  signIn,
+  isValidUsername,
+  isUsernameAvailable,
+  signOut,
+} from "@modules/helper";
 import { useRouter } from "next/router";
 import { Meta } from "@modules/composer";
 import { emoji } from "@modules/emojier";
@@ -84,11 +90,14 @@ export default function Register() {
 
   useEffect(() => {
     checkUsername(valueForm);
-  }, [valueForm]);
+  }, [valueForm, checkUsername]);
 
   return (
     <>
-      <Meta title={`Bergabung ${emoji.salaman} Bersama dengan iDekita`} description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi" />
+      <Meta
+        title={`Bergabung ${emoji.salaman} Bersama dengan iDekita`}
+        description="Bergabung bersama kami sebagai Idekiawan, mengumpulkan semua ide-ide dan solusi kreatif demi masa depan yang lebih baik lagi"
+      />
       {user ? (
         username ? (
           <ThankYou />
@@ -104,10 +113,24 @@ export default function Register() {
                       </div>
                       <div>
                         <form onSubmit={submitHandler}>
-                          <input name="username" className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center" placeholder="username" value={valueForm} onChange={changeHandler} />
-                          <UsernameMessage username={valueForm} isValid={isValid} loading={loading} />
+                          <input
+                            name="username"
+                            className="input-white px-4 py-2 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-center"
+                            placeholder="username"
+                            value={valueForm}
+                            onChange={changeHandler}
+                          />
+                          <UsernameMessage
+                            username={valueForm}
+                            isValid={isValid}
+                            loading={loading}
+                          />
 
-                          <button type="submit" className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white" disabled={!isValid}>
+                          <button
+                            type="submit"
+                            className="btn-transparent mt-6 hover:text-fuchsia-500 hover:bg-white"
+                            disabled={!isValid}
+                          >
                             Gunakan
                           </button>
                         </form>
@@ -157,8 +180,16 @@ function CreateUser() {
                 <div className="grid">
                   <h3>Mendaftar menggunakan</h3>
                   <div className="justify-self-center mt-4">
-                    <button className="btn-white flex hover:shadow-md hover:bg-gray-50" onClick={signIn}>
-                      <img src="google-logo.png" className="w-6 h-6 mr-2" />
+                    <button
+                      className="btn-white flex hover:shadow-md hover:bg-gray-50"
+                      onClick={signIn}
+                    >
+                      <Image
+                        src={"/google-logo.png"}
+                        alt={"Google Logo"}
+                        width={24}
+                        height={24}
+                      />
                       Google
                     </button>
                   </div>
@@ -203,7 +234,8 @@ function UsernameMessage({ username, isValid, loading }) {
   } else if (isValid) {
     return (
       <p className="mt-2">
-        <span className="font-semibold">{username}</span> bisa digunakan {emoji.jempol}
+        <span className="font-semibold">{username}</span> bisa digunakan{" "}
+        {emoji.jempol}
       </p>
     );
   } else if (username && !isValid) {

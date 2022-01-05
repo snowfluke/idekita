@@ -93,7 +93,7 @@ export default function ProfileRecent(props) {
       console.log(error);
       toast.error("Terjadi kesalahan, mohon coba beberapa saat lagi");
     }
-  }, []);
+  }, [props.username]);
 
   return (
     <>

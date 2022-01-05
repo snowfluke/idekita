@@ -4,7 +4,14 @@ import { useRouter } from "next/router";
 import { docToJSON, getUserWithUsername } from "@modules/helper";
 import { db, doc, getDoc, collectionGroup, getDocs } from "@modules/firebaser";
 import { IdeaLayout } from "@modules/layouter";
-import { IdeaContentRight, IdeaContent, CheckLogin, LinkTo, Cloud, Meta } from "@modules/composer";
+import {
+  IdeaContentRight,
+  IdeaContent,
+  CheckLogin,
+  LinkTo,
+  Cloud,
+  Meta,
+} from "@modules/composer";
 import { emoji } from "@modules/emojier";
 import { useState } from "react";
 
@@ -92,30 +99,34 @@ export default function IdeaProfile({ post, userDataPost }) {
 
   return (
     <>
-      <Meta title={`iDekita ✨ ${post.title}`} description={`${post.background}`} />
-      <IdeaLayout
-        MainComponent={<IdeaContent post={post} userDataPost={userDataPost} />}
-        SidebarComponent={
-          <IdeaContentRight
-            menu={ideaContentMenu}
-            Top={
-              <>
-                <CloudStat />
-
-                <CheckLogin
-                  fallback={
-                    <LinkTo href={"/bergabung"} className="ml-5 py-2 inline-block">
-                      Bergabung dan beri dukungan
-                    </LinkTo>
-                  }
-                >
-                  <Cloud post={post} update={() => updateCloudState()} />
-                </CheckLogin>
-              </>
-            }
-          />
-        }
+      <Meta
+        title={`iDekita ✨ ${post.title}`}
+        description={`${post.background}`}
       />
+      <IdeaLayout>
+        <IdeaContent post={post} userDataPost={userDataPost} />
+        <IdeaContentRight
+          menu={ideaContentMenu}
+          Top={
+            <>
+              <CloudStat />
+
+              <CheckLogin
+                fallback={
+                  <LinkTo
+                    href={"/bergabung"}
+                    className="ml-5 py-2 inline-block"
+                  >
+                    Bergabung dan beri dukungan
+                  </LinkTo>
+                }
+              >
+                <Cloud post={post} update={() => updateCloudState()} />
+              </CheckLogin>
+            </>
+          }
+        />
+      </IdeaLayout>
     </>
   );
 }

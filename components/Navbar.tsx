@@ -19,7 +19,7 @@ export default function Navbar() {
     if (userData && !username) {
       router.push("/bergabung");
     }
-  }, [userData, username]);
+  }, [userData, username, router]);
 
   return (
     <div className="bg-gray-100 shadow-md fixed top-0 w-full z-10 print:hidden">
@@ -96,11 +96,11 @@ export default function Navbar() {
                   #Masuk
                 </li>
               </a>
-              <a href="/bergabung">
+              <LinkTo href="/bergabung">
                 <li className="md:ml-5 text-fuchsia-500 px-3 py-1 border border-fuchsia-500 rounded-md hover:bg-fuchsia-500 hover:text-white b-transition">
                   #Bergabung
                 </li>
-              </a>
+              </LinkTo>
             </ul>
           )}
         </nav>
