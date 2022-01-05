@@ -60,31 +60,6 @@ export default function Cloud({ post, update }) {
           </div>
           <div className="btn-idea-icon">{emoji.semangat}</div>
         </button>
-        <div
-          key="#Dukung"
-          className={
-            cloudDoc?.exists()
-              ? "btn-idea-right bg-fuchsia-500 cursor-default"
-              : "btn-idea-right bg-white cursor-pointer"
-          }
-        >
-          <button
-            onClick={addCloud}
-            disabled={cloudDoc?.exists()}
-            className="btn-idea-content"
-          >
-            <div
-              className={
-                cloudDoc?.exists()
-                  ? "btn-idea-right-after text-white"
-                  : "span-idea-content"
-              }
-            >
-              {cloudDoc?.exists() ? "#Didukung" : "#Dukung"}
-            </div>
-            <div className="btn-idea-icon">{"✊"}</div>
-          </button>
-        </div>
       </div>
     </>
   );
