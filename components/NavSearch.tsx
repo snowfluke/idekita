@@ -17,7 +17,7 @@ export default function NavSearch({ toggle }) {
       <button
         onClick={() =>
           modal.openModal({
-            title: "404 - Maintenance",
+            title: "Mohon Maaf, Dalam Pengembangan",
             content:
               "Fitur pencarian sedang dalam tahap pengembangan. Kami memohon maaf yang sebesar-sebesarnya dan berusaha semaksimal mungkin untuk menyelesaikannya. Terima kasih atas dukungannya 😉",
           })

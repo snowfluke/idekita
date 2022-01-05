@@ -15,7 +15,7 @@ export default function NavProfile({ user, toggle }) {
   const router = useRouter();
 
   useEffect(() => {
-    setUserPhoto(user.photoURL);
+    user?.photoURL && setUserPhoto(user?.photoURL);
   }, [user]);
   return (
     <>

@@ -105,27 +105,21 @@ export default function IdeaProfile({ post, userDataPost }) {
       />
       <IdeaLayout>
         <IdeaContent post={post} userDataPost={userDataPost} />
-        <IdeaContentRight
-          menu={ideaContentMenu}
-          Top={
-            <>
-              <CloudStat />
+        <IdeaContentRight menu={ideaContentMenu}>
+          <>
+            <CloudStat />
 
-              <CheckLogin
-                fallback={
-                  <LinkTo
-                    href={"/bergabung"}
-                    className="ml-5 py-2 inline-block"
-                  >
-                    Bergabung dan beri dukungan
-                  </LinkTo>
-                }
-              >
-                <Cloud post={post} update={() => updateCloudState()} />
-              </CheckLogin>
-            </>
-          }
-        />
+            <CheckLogin
+              fallback={
+                <LinkTo href={"/bergabung"} className="ml-5 py-2 inline-block">
+                  Bergabung dan beri dukungan
+                </LinkTo>
+              }
+            >
+              <Cloud post={post} update={() => updateCloudState()} />
+            </CheckLogin>
+          </>
+        </IdeaContentRight>
       </IdeaLayout>
     </>
   );

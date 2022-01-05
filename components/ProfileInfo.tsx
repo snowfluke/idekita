@@ -33,12 +33,12 @@ export default function UserInfo({ user, photoURL, idekiawan }) {
             <a
               onClick={() =>
                 modal.openModal({
-                  title: "404 - Maintenance",
+                  title: "Mohon Maaf, Dalam Pengembangan",
                   content:
-                    "Fitur pencarian sedang dalam tahap pengembangan. Kami memohon maaf yang sebesar-sebesarnya dan berusaha semaksimal mungkin untuk menyelesaikannya. Terima kasih atas dukungannya 😉",
+                    "Fitur ubah bio sedang dalam tahap pengembangan. Kami memohon maaf yang sebesar-sebesarnya dan berusaha semaksimal mungkin untuk menyelesaikannya. Terima kasih atas dukungannya 😉",
                 })
               }
-              className="text-fuchsia-500 underline"
+              className="text-fuchsia-500 underline cursor-pointer"
             >
               Ubah bio
             </a>

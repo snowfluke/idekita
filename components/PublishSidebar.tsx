@@ -49,5 +49,5 @@ export default function PublishSidebar(props) {
     },
   ];
 
-  return <IdeaContentRight Top={false} menu={menu} />;
+  return <IdeaContentRight menu={menu}></IdeaContentRight>;
 }

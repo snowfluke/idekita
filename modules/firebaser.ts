@@ -50,10 +50,19 @@ const firebaseConfig2 = {
   appId: "1:85598449281:web:5eb8d5201f1eebf397e780",
 };
 
+const firebaseConfig3 = {
+  apiKey: "AIzaSyDQwLLr9MstJQFcQ25HKUv5zK-NyzHXIzA",
+  authDomain: "idekita3-9cd65.firebaseapp.com",
+  projectId: "idekita3-9cd65",
+  storageBucket: "idekita3-9cd65.appspot.com",
+  messagingSenderId: "697850478988",
+  appId: "1:697850478988:web:ee97322260a84ca03796a9",
+};
+
 /**
  * Initialize firebase app using the config object, get the database and auth object
  */
-const app = initializeApp(firebaseConfig2);
+const app = initializeApp(firebaseConfig3);
 const db = getFirestore();
 const auth = getAuth();
 
