@@ -32,31 +32,31 @@ export const getServerSideProps = async ({ res }) => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${baseURL}/</loc>
+    <loc>${baseURL}</loc>
     <lastmod>${new Date(Date.now())}</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${baseURL}/langit-ide</loc>
+    <loc>${baseURL}langit-ide</loc>
     <lastmod>${new Date(Date.now())}</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${baseURL}/mesin-ide</loc>
+    <loc>${baseURL}mesin-ide</loc>
     <lastmod>${new Date(Date.now())}</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${baseURL}/snowfluke</loc>
+    <loc>${baseURL}snowfluke</loc>
     <lastmod>${new Date(Date.now())}</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${baseURL}/404</loc>
+    <loc>${baseURL}404</loc>
     <lastmod>${new Date(Date.now())}</lastmod>
     <changefreq>never</changefreq>
     <priority>1.0</priority>
