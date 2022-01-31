@@ -1,4 +1,5 @@
 # 💡 iDekita 🌉 Jembatani Ide Dengan Realisasi
+# 1st Techcomfest 2022 Software Development Competition
 
 ![Situs iDekita](https://raw.githubusercontent.com/snowfluke/idekita/main/public/landing-idekita.png)
 
