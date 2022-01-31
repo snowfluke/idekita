@@ -14,7 +14,10 @@ export default function MetaTags({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-
+      <meta
+        name="google-site-verification"
+        content="0pnDGQ5kl7Ebp0jOPr8vYT5jEokNnjpiuL7XWG6LUQY"
+      />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@idekita" />
       <meta name="twitter:title" content={title} />
